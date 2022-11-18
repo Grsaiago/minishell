@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 19:04:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/09 19:34:38 by gsaiago          ###   ########.fr       */
+/*   Created: 2022/09/17 22:13:42 by gsaiago           #+#    #+#             */
+/*   Updated: 2022/09/19 09:54:05 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	pwd(void)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	char	*cwd;
+	t_list	*node;
 
-	cwd = getcwd(NULL, 0);
-	printf("%s\n", cwd);
-	free(cwd);
-}
-
-int	main(void)
-{
-	pwd();
+	node = lst;
+	if (!lst || !f)
+		return ;
+	while (node)
+	{
+		f(node->content);
+		node = node->next;
+	}
+	return ;
 }
