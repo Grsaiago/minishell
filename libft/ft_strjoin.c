@@ -6,15 +6,28 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:22:48 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/17 17:10:35 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/20 14:22:33 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 static void check_free(char *s1, char *s2, int flag);
+static char	*join_str(char *s1, char *s2);
 
 char	*ft_strjoin(char *s1, char *s2, int flag)
+{
+	char	*str;
+
+	str = join_str(s1, s2);
+	if (!str)
+		return (NULL);
+	if (flag)
+		check_free(s1, s2, flag);
+	return (str);
+}
+
+static char	*join_str(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -38,11 +51,8 @@ char	*ft_strjoin(char *s1, char *s2, int flag)
 	}
 	while (--j >= 0)
 		str[count + j] = s2[j];
-	if (flag)
-		check_free(s1, s2, flag);
 	return (str);
 }
-
 static void check_free(char *s1, char *s2, int flag)
 {
 	if (flag == 1)
