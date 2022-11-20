@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:19:07 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/18 00:03:31 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/19 16:49:35 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	main(int argc, char **argv, char **envp)
 	s_shell = &(t_shell){0};
 	s_shell->envp = envp;
 	s_shell->name_host = get_name_host();
-	s_shell->pre_line = get_dir_path(s_shell);
+	get_prompt_msg(s_shell);
 	while (42)
 	{
-		s_shell->input_line = give_prompt(s_shell->pre_line);
+		s_shell->input_line = get_user_input(s_shell->prompt);
 		while (s_shell->input_line[i] == ' ')
 			i++;
 		eval_input(s_shell, s_shell->input_line + i);

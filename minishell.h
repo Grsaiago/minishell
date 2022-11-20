@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 19:04:32 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/18 00:03:07 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/19 16:48:57 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ typedef struct s_shell
 {
 	char 	*name_host;
 	char	*dir_line;
-	char	*pre_line;
+	char	*prompt;
 	char	*input_line;
 	char	**envp;
 }	t_shell;
 
 /* PROMPT CONTROL */
 char	*get_name_host(void);
-char	*get_dir_path(t_shell *s_shell);
+void	get_prompt_msg(t_shell *s_shell);
 char	*get_env(char **envp, char *line);
 int		find_envp_line(char **envp, char *find);
-char	*give_prompt(char *line);
+char	*get_user_input(char *line);
 /* COMMANDS */
 void	eval_input(t_shell *s_shell, char *line);
 void	env_cmd(char **envp);
