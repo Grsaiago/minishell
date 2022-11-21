@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:19:07 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/19 16:49:35 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/21 17:33:22 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,27 @@ int	main(int argc, char **argv, char **envp)
 		free(s_shell->input_line);
 	}
 }
+
+char	*get_execv_output(char *pathname)
+{
+
+
+}
+
+/* TEST MAIN */
+
 /*
 int	main(int argc, char **argv, char **envp)
 {
-	char	*line;
+	t_shell	*s_shell;
+	int	i;
 
-	printf("envp[0] > |%s|\n", envp[0]);
-	while (42)
-	{
-		line = give_prompt(envp);
-		eval_input(line);
-		free(line);
-	}
+	i = -1;
+	s_shell = &(t_shell){0};
+	initialize_shell_struct(s_shell, envp);
+	printf("%s\n", get_cmd_path(s_shell, "cd"));
+	while (s_shell->path_mat[++i])
+		free(s_shell->path_mat[i]);
+	free(s_shell->path_mat);
 }
 */

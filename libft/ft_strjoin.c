@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:22:48 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/20 14:22:33 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/21 13:31:02 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,13 @@ static char	*join_str(char *s1, char *s2)
 }
 static void check_free(char *s1, char *s2, int flag)
 {
-	if (flag == 1)
+	if (flag == 1 || flag == 3)
 	{
 		if (s1)
 			free(s1);
 	}
-	else if (flag == 2)
+	else if (flag == 2 || flag == 3)
 	{
-		if (s2)
-			free(s1);
-	}
-	else if (flag == 3)
-	{
-		if (s1)
-			free(s1);
 		if (s2)
 			free(s1);
 	}
