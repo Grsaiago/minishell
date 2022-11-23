@@ -6,17 +6,18 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:50:17 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/20 14:05:16 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/22 15:42:27 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*get_user_input(char *pre_line)
+char	*get_user_input(char *prompt_msg)
 {
 	char	*line;
 
-	line = readline(pre_line);
+	line = readline(prompt_msg);
+	add_history(line);
 	return (line);
 }
 

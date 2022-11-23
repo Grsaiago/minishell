@@ -6,7 +6,7 @@
 #    By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/31 18:35:35 by gsaiago           #+#    #+#              #
-#    Updated: 2022/09/20 18:13:17 by gsaiago          ###   ########.fr        #
+#    Updated: 2022/11/22 19:21:14 by gsaiago          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRCS =  ft_isalpha.c\
 		ft_isdigit.c\
+		ft_isspace.c\
 		ft_isalnum.c\
 		ft_isascii.c\
 		ft_isprint.c\
@@ -31,6 +32,7 @@ SRCS =  ft_isalpha.c\
 		ft_toupper.c\
 		ft_tolower.c\
 		ft_strchr.c\
+		ft_strchrn.c\
 		ft_strrchr.c\
 		ft_strncmp.c\
 		ft_memchr.c\
@@ -39,6 +41,7 @@ SRCS =  ft_isalpha.c\
 		ft_atoi.c\
 		ft_calloc.c\
 		ft_strdup.c\
+		ft_strndup.c\
 		ft_putstr_fd.c\
 		ft_putnbr_fd.c\
 		ft_putchar_fd.c\

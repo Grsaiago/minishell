@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:23:47 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/17 17:10:52 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/22 19:21:29 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int				ft_atoi(const char *str);
 void			ft_bzero(void *b, size_t len);
 void			*ft_calloc(size_t count, size_t size);
 int				ft_isalnum(int c);
+int				ft_isspace(char c);
 int				ft_isalpha(int c);
 int				ft_isascii(int c);
 int				ft_isdigit(int c);
@@ -44,7 +45,9 @@ void			*ft_memcpy(void *dest, const void *src, size_t len);
 void			*ft_memmove(void *dst,	const void *src, size_t len);
 void			*ft_memset(void *dest, int c, size_t len);
 char			*ft_strchr(const char *s, int c);
+int				ft_strchrn(const char *s, char c);
 char			*ft_strdup(const char *s1);
+char			*ft_strndup(const char *s1, int n);
 size_t			ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t			ft_strlen(const char *c);

@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 19:04:32 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/21 17:27:20 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/22 18:51:03 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,17 @@ typedef struct s_shell
 	char	**envp;
 }	t_shell;
 
-/* INITIALIZE CONTROL */
-int	initialize_shell_struct(t_shell *s_shell, char **envp);
+/* INPUT SANITIZATION */
+int		count_phrases(char *line);
+char 	**create_argv(t_shell s_shell);
+char	***create_argv_array(t_shell s_shell);
+int		initialize_shell_struct(t_shell *s_shell, char **envp);
 /* PROMPT CONTROL */
 char	*get_name_host(void);
 void	get_prompt_msg(t_shell *s_shell);
 char	*get_env(char **envp, char *line);
 int		find_envp_line(char **envp, char *find);
-char	*get_user_input(char *line);
+char	*get_user_input(char *prompt_msg);
 /* COMMANDS */
 char 	*get_cmd_path(t_shell *s_shell, char *cmd);
 void	eval_input(t_shell *s_shell, char *line);
