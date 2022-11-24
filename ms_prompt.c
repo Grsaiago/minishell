@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:50:17 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/22 15:42:27 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/23 23:49:31 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ char	*get_name_host(void)
 {
 	char	*line;
 	
-	line = ft_strjoin(getenv("USER"), NULL, 0);
-	line = ft_strjoin(line, "@", 1);
+	line = ft_strjoin(getenv("USER"), "@", 0);
 	line = ft_strjoin(line, getenv("NAME"), 1);
 	line = ft_strjoin(line, ":", 1);
 	return (line);

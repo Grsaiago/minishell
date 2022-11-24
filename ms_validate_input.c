@@ -6,12 +6,12 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:36:25 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/22 19:45:20 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/23 23:49:54 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+/*
 char	***create_argv_array(t_shell s_shell)
 {
 	char	***argv_array;
@@ -98,3 +98,4 @@ int	count_words(char *line)
 
 
 }
+*/

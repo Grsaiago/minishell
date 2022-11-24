@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:29:19 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/18 00:03:58 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/23 23:52:50 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	eval_input(t_shell *s_shell, char *line)
 {
-	if (!ft_strncmp("pwd", line, 3))
+	if (!line || !line[0])
+		return ;
+	else if (!ft_strncmp("pwd", line, 3))
 		pwd_cmd();
 	else if (!ft_strncmp("env", line, 3))
 		env_cmd(s_shell->envp);

@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:19:07 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/21 17:33:22 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/22 22:34:22 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv, char **envp)
 	while (42)
 	{
 		s_shell->input_line = get_user_input(s_shell->prompt);
+		printf("%s\n", s_shell->input_line);
 		while (s_shell->input_line[i] == ' ')
 			i++;
 		eval_input(s_shell, s_shell->input_line + i);
