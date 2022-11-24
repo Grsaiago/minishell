@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:36:25 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/24 00:07:56 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/24 00:45:19 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ int	count_phrases(char *line)
 			i = ft_strchrn(line + i, '"');
 		if (line[i] == '|' || line[i] == '>' || line[i] == '<')
 		{
-			if (line[i] == '>' || line[i] == '<')
+			if ((line[i] == '>' && line[i + 1] == '>')
+					|| (line[i] == '<' && line[i + 1] == '<'))
 				i++;
 			phrases++;
 		}
