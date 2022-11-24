@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:36:25 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/23 23:54:07 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/24 00:07:56 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char	**minishell_split(t_shell s_shell)
 
 	
 }
+*/
 
 int	count_phrases(char *line)
 {
@@ -66,7 +67,11 @@ int	count_phrases(char *line)
 		if (line[i] == '"')
 			i = ft_strchrn(line + i, '"');
 		if (line[i] == '|' || line[i] == '>' || line[i] == '<')
+		{
+			if (line[i] == '>' || line[i] == '<')
+				i++;
 			phrases++;
+		}
 		i++;
 	}
 	return (phrases);
@@ -84,12 +89,12 @@ int	word_len(char *line)
 	while (ft_isspace(line[i]))
 		i++;
 	if (line[i] == '"')
-		len = ft_strchrn(line[i], '"');
+		len = ft_strchrn(line + i, '"');
 	while (!ft_isspace(line[i + len]))
 		len++;
 	return (len);
 }
-
+/*
 int	count_words(char *line)
 {
 	int	i;
