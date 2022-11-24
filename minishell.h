@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 19:04:32 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/24 00:03:32 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/24 13:03:04 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_shell
 /* INPUT SANITIZATION */
 int		count_phrases(char *line);
 int		word_len(char *line);
+int		next_quotes(char *line);
 char 	**create_argv(t_shell s_shell);
 char	***create_argv_array(t_shell s_shell);
 int		initialize_shell_struct(t_shell *s_shell, char **envp);
