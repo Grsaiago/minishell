@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:50:17 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/24 00:04:32 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/24 21:41:45 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void	get_prompt_msg(t_shell *s_shell)
 	}
 	else if (!ft_strncmp(home_dir, cwd, ft_strlen(home_dir)))
 	{
-		s_shell->prompt = ft_strjoin(s_shell->name_host, "~", 0);
-		s_shell->prompt = ft_strjoin(s_shell->prompt, cwd + ft_strlen(home_dir), 1);
+		s_shell->prompt= ft_strjoin(s_shell->name_host, "~", 0);
+		s_shell->prompt= ft_strjoin(s_shell->prompt, cwd + ft_strlen(home_dir), 1);
 	}
 	else
-		s_shell->prompt = ft_strjoin(s_shell->name_host, cwd, 0);
+		s_shell->prompt= ft_strjoin(s_shell->name_host, cwd, 0);
 	free(cwd);
 	s_shell->prompt = ft_strjoin(s_shell->prompt, "$ ", 1);
 }

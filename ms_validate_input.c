@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:36:25 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/24 15:38:26 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/24 22:14:40 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	count_phrase_len(char *line)
 {
 
 }
+
 int	count_word_len(char *phrase)
 {
 	int	i;
@@ -140,7 +141,7 @@ int	count_words(char *line)
 		line++;
 	while (*line)
 	{
-		if (line[i] == ''' || line[i] == '"')
+		if (*line == ''' || *line == '"')
 			line += next_quotes(line);
 		line++;
 		words++;
