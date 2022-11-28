@@ -5,18 +5,18 @@
 #                                                     +:+ +:+         +:+      #
 #    By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/17 15:55:22 by gsaiago           #+#    #+#              #
-#    Updated: 2022/11/28 17:37:32 by gsaiago          ###   ########.fr        #
+#    Created: 2022/11/28 17:37:55 by gsaiago           #+#    #+#              #
+#    Updated: 2022/11/28 17:39:01 by gsaiago          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minishell
+NAME = parser
 
 SRCS = $(wildcard *.c)
 
 CC = cc 
 
-LIBFT_PATH = ./libft
+LIBFT_PATH = ../libft
 
 LIBFT = $(LIBFT_PATH)/libft.a
 CFLAGS = -g

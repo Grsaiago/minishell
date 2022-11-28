@@ -6,11 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:50:17 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/24 21:41:45 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/28 17:40:01 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 char	*get_user_input(char *prompt_msg)
 {

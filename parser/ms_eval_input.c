@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_env.c                                           :+:      :+:    :+:   */
+/*   ms_eval_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 22:30:45 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/17 22:38:42 by gsaiago          ###   ########.fr       */
+/*   Created: 2022/11/17 17:29:19 by gsaiago           #+#    #+#             */
+/*   Updated: 2022/11/28 17:39:13 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-void	env_cmd(char **envp)
+void	eval_input(t_shell *s_shell, char *line)
 {
-	int	i;
-	
-	i = 0;
-	while (envp[i])
-	{
-		printf("%s\n", envp[i]);
-		i++;
-	}
+	if (!line || !line[0])
+		return ;
+	else if (!ft_strncmp("pwd", line, 3))
+		pwd_cmd();
+	else if (!ft_strncmp("env", line, 3))
+		env_cmd(s_shell->envp);
+	else if (!ft_strncmp("cd", line, 2))
+		cd_cmd(s_shell, line);
+	else
+		printf("Esse comando não existe\n");
 	return ;
 }

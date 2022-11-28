@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_pwd.c                                           :+:      :+:    :+:   */
+/*   ms_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 19:04:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/17 22:34:47 by gsaiago          ###   ########.fr       */
+/*   Created: 2022/11/17 23:03:36 by gsaiago           #+#    #+#             */
+/*   Updated: 2022/11/28 17:39:22 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-void	pwd_cmd(void)
+void cd_cmd(t_shell *s_shell, char *line)
 {
-	char	*cwd;
+	int	i;
 
-	cwd = getcwd(NULL, 0);
-	printf("%s\n", cwd);
-	free(cwd);
+	i = 2;
+	while (line[i] == ' ')
+		i++;
+	if (!line[i])
+		chdir(getenv("HOME"));
+	else
+		chdir(line + i);
+	get_prompt_msg(s_shell);
+	return ;
 }

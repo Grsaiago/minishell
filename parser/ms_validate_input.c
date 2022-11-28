@@ -6,11 +6,12 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:36:25 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/27 20:08:50 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/28 17:54:18 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
+
 /*
 char	***create_argv_array(t_shell s_shell)
 {
@@ -65,7 +66,7 @@ int	count_phrases(char *line)
 	while (line[i])
 	{
 		if (line[i] == '\"' || line[i] == '\'')
-			i = next_quotes(line[i]);
+			i = next_quotes(line + i);
 		if (line[i] == '|' || line[i] == '>' || line[i] == '<')
 		{
 			if ((line[i] == '>' && line[i + 1] == '>')
@@ -81,6 +82,7 @@ int	count_phrases(char *line)
 int	count_phrase_len(char *line)
 {
 
+	return (0);
 }
 
 int	count_word_len(char *phrase)
@@ -107,7 +109,6 @@ int	count_word_len(char *phrase)
 	len += env_len;
 	return (len);
 }
-
 /*
 int	env_len(char *line, int start, int end)
 {
@@ -119,19 +120,19 @@ int	env_len(char *line, int start, int end)
 
 
 }
+*/
 
 int	next_quotes(char *line)
 {
 	if (!line)
 		return (0);
-	if (*line == ''')
-		return (ft_strchrn(line + 1, '"'));
-	else if (*line == ''')
-		return (ft_strchrn(line + 1, '''));
+	if (*line == '\'')
+		return (ft_strchrn(line + 1, '\"'));
+	else if (*line == '\'')
+		return (ft_strchrn(line + 1, '\''));
 	else
 		return (0);
 }
-*/
 
 int	count_words(char *line)
 {
@@ -193,30 +194,30 @@ static int	start(char const *s, char c)
 	return (i);
 }
 
-char	**ms_split_phrases(char const *s, char c)
+char	**ms_split_phrases(char *line, char c)
 {
 	int		i;
 	int		len;
 	int		n_phrases;
-	char	**array;
+	char	**phrase_array;
 
-	if (!s)
+	if (!line)
 		return (NULL);
 	i = 0;
-	n_phrases = count_phrases(s); 
-	array = (char **)malloc((n_phrases+ 1) * sizeof(char *));
-	if (!array)
+	n_phrases = count_phrases(line); 
+	phrase_array = (char **)malloc((n_phrases+ 1) * sizeof(char *));
+	if (!phrase_array)
 		return (NULL);
 	while (i < n_phrases)
 	{
-		while (ft_isspace(*s))
-			s++;
-		len = calc_len(s, c);
-		array[i] = ft_substr(s, 0, len);
-		array[i] = ft_remove_quotes(array[i]);
-		s += len;
+		while (ft_isspace(*line))
+			line++;
+		len = calc_len(line, c);
+		phrase_array[i] = ft_substr(line, 0, len);
+		phrase_array[i] = ft_remove_quotes(phrase_array[i]);
+		line += len;
 		i++;
 	}
-	array[i] = NULL;
-	return (array);
+	phrase_array[i] = NULL;
+	return (phrase_array);
 }

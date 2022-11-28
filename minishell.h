@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 19:04:32 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/24 13:03:04 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/28 17:53:20 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_shell
 	char	*input_line;
 	char	**path_mat;
 	char	**envp;
+	char	***argv_array;
 }	t_shell;
 
 /* INPUT SANITIZATION */
@@ -40,6 +41,7 @@ int		next_quotes(char *line);
 char 	**create_argv(t_shell s_shell);
 char	***create_argv_array(t_shell s_shell);
 int		initialize_shell_struct(t_shell *s_shell, char **envp);
+char	*ft_remove_quotes(char *str);
 /* PROMPT CONTROL */
 char	*get_name_host(void);
 void	get_prompt_msg(t_shell *s_shell);

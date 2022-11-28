@@ -6,11 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:19:07 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/24 00:05:26 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/28 17:39:53 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	main(int argc, char **argv, char **envp)
 {

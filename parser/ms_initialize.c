@@ -6,11 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:20:53 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/21 17:27:22 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/28 17:39:48 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	initialize_shell_struct(t_shell *s_shell, char **envp)
 {
