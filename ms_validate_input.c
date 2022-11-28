@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:36:25 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/24 22:14:40 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/27 20:08:50 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	count_phrases(char *line)
 		return (0);
 	while (line[i])
 	{
-		if (line[i] == '"' || line[i] == ''')
+		if (line[i] == '\"' || line[i] == '\'')
 			i = next_quotes(line[i]);
 		if (line[i] == '|' || line[i] == '>' || line[i] == '<')
 		{
@@ -89,17 +89,17 @@ int	count_word_len(char *phrase)
 	int	len;
 	int	env_len;
 
-	if (!line || !line[0])
+	if (!phrase || !phrase[0])
 		return (0);
 	i = 0;
 	len = 0;
-	while (ft_isspace(line[i]))
+	while (ft_isspace(phrase[i]))
 		i++;
-	while (line[i + len])
+	while (phrase[i + len])
 	{
-		if (line[i + len] == '"' || line[i + len] == ''')
-			len = next_quotes(line[i]) + 1;
-		else if (!ft_isspace(line[i + len]))
+		if (phrase[i + len] == '\"' || phrase[i + len] == '\'')
+			len = next_quotes(phrase + i + 1);
+		else if (!ft_isspace(phrase[i + len]))
 			len++;
 		else
 			break ;
@@ -141,7 +141,7 @@ int	count_words(char *line)
 		line++;
 	while (*line)
 	{
-		if (*line == ''' || *line == '"')
+		if (*line == '\'' || *line == '\"')
 			line += next_quotes(line);
 		line++;
 		words++;
@@ -151,7 +151,7 @@ int	count_words(char *line)
 
 int	is_meta_character(char c)
 {
-	if (line[i] == '|' || line[i] == '>' || line[i] == '<')
+	if (c == '|' || c == '>' || c == '<')
 		return (1);
 	else
 		return (0);
@@ -166,16 +166,16 @@ static int	calc_len(char const *s, char c)
 	i = 0;
 	while (s[i] != c && s[i])
 	{
-		if (s[i] == 34)
+		if (s[i] == '\"') 
 		{
 			i++;
-			while (s[i] != 34 && s[i])
+			while (s[i] != '\"' && s[i])
 				i++;
 		}
-		if (s[i] == 39)
+		if (s[i] == '\'')
 		{
 			i++;
-			while (s[i] != 39 && s[i])
+			while (s[i] != '\'' && s[i])
 				i++;
 		}
 		i++;
