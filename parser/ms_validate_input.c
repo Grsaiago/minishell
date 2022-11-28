@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:36:25 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/28 17:54:18 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/28 18:17:29 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int	count_phrases(char *line)
 
 int	count_phrase_len(char *line)
 {
+
+
 
 	return (0);
 }
@@ -214,7 +216,6 @@ char	**ms_split_phrases(char *line, char c)
 			line++;
 		len = calc_len(line, c);
 		phrase_array[i] = ft_substr(line, 0, len);
-		phrase_array[i] = ft_remove_quotes(phrase_array[i]);
 		line += len;
 		i++;
 	}
