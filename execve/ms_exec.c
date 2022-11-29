@@ -5,20 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguedes <gguedes@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 13:58:52 by gguedes           #+#    #+#             */
-/*   Updated: 2022/11/29 14:00:58 by gguedes          ###   ########.fr       */
+/*   Created: 2022/11/29 14:18:29 by gguedes           #+#    #+#             */
+/*   Updated: 2022/11/29 14:22:57 by gguedes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ms_exec.h"
 
-int	redirect(char ***argv_v)
-{
-	
-}
-
 int	ms_exec(char ***argv_v)
 {
-	redirect(argv_v);
-	
+	while (argv_v)
+	{
+		redirect(argv_v);
+		call_execve(argv_v);
+		argv_v++;
+	}
 }

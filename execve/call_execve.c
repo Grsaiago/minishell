@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_exec.h                                          :+:      :+:    :+:   */
+/*   call_execve.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gguedes <gguedes@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 13:58:33 by gguedes           #+#    #+#             */
-/*   Updated: 2022/11/29 14:30:26 by gguedes          ###   ########.fr       */
+/*   Created: 2022/11/29 13:58:52 by gguedes           #+#    #+#             */
+/*   Updated: 2022/11/29 14:18:16 by gguedes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MS_EXEC_H
-# define MS_EXEC_H
+#include "ms_exec.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
+char	*get_path(char *cmd)
+{
+	
+}
 
-#endif
+int	call_execve(char **cmd, char **envp)
+{
+	char	*path;
+
+	path = get_path(cmd[0]);
+	execve(path, cmd, envp);
+}
