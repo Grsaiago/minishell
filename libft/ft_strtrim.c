@@ -6,13 +6,13 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 14:36:00 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/06/14 18:44:49 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/28 20:22:09 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char *s1, char const *set, int flag)
 {
 	int		len;
 	char	*str;
@@ -32,6 +32,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (str == NULL)
 		return (NULL);
 	ft_memcpy((void *) str, (const void *) s1, len);
+	if (flag && s1)
+		free(s1);
 	return (str);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 20:19:30 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/28 17:39:41 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/28 21:35:52 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_cmd_path(t_shell *s_shell, char *cmd)
 	int		i;
 
 	if (!access(cmd, F_OK | X_OK))
-			return (cmd);
+		return (cmd);
 	i = 0;
 	slash_env = ft_strjoin("/", cmd, 0);
 	while (s_shell->path_mat[i])

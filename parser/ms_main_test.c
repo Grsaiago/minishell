@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_cd.c                                            :+:      :+:    :+:   */
+/*   ms_main_test.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 23:03:36 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/28 21:36:05 by gsaiago          ###   ########.fr       */
+/*   Created: 2022/11/28 20:26:37 by gsaiago           #+#    #+#             */
+/*   Updated: 2022/11/28 21:28:07 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	cd_cmd(t_shell *s_shell, char *line)
+int	main(void)
 {
-	int	i;
+	char	*str;
+	char	**phrase_mat;
+	int		i;
 
-	i = 2;
-	while (line[i] == ' ')
+	i = 0;
+	str = readline("Insert input$ ");
+	phrase_mat = ms_split_phrases(str, 1);
+	while (phrase_mat[i])
+	{
+		printf("Phrase %d > |%s|\n", i, phrase_mat[i]);
 		i++;
-	if (!line[i])
-		chdir(getenv("HOME"));
-	else
-		chdir(line + i);
-	get_prompt_msg(s_shell);
-	return ;
+	}
+	ft_free_mat(phrase_mat);
+	return (0);
 }

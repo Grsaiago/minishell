@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:36:25 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/28 18:17:29 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/11/28 21:39:29 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,9 @@ int	count_phrases(char *line)
 			i = next_quotes(line + i);
 		if (line[i] == '|' || line[i] == '>' || line[i] == '<')
 		{
+			phrases++;
 			if ((line[i] == '>' && line[i + 1] == '>')
-					|| (line[i] == '<' && line[i + 1] == '<'))
+				|| (line[i] == '<' && line[i + 1] == '<'))
 				i++;
 			phrases++;
 		}
@@ -81,10 +82,28 @@ int	count_phrases(char *line)
 
 int	count_phrase_len(char *line)
 {
+	int		i;
+	int		len;
+	char	meta;
 
-
-
-	return (0);
+	i = 0;
+	if (!line)
+		return (0);
+	len = ft_strlen(line);
+	meta = is_meta_character(line[0]);
+	if (len > 2 && meta == '>' && line[1] == '>')
+		return (2);
+	else if (len > 2 && meta == '<' && line[1] == '<')
+		return (2);
+	else if (meta)
+		return (1);
+	while (line[i] && !is_meta_character(line[i]))
+	{
+		if (line[i] == '\"' || line[i] == '\'')
+			i = next_quotes(line + i);
+		i++;
+	}
+	return (i);
 }
 
 int	count_word_len(char *phrase)
@@ -154,71 +173,49 @@ int	count_words(char *line)
 
 int	is_meta_character(char c)
 {
-	if (c == '|' || c == '>' || c == '<')
-		return (1);
+	if (c == '&')
+		return ('&');
+	else if (c == '|')
+		return ('|');
+	else if (c == '>')
+		return ('>');
+	else if (c == '<')
+		return ('<');
 	else
 		return (0);
 }
 
-/* SPLIT DA PIPEX DO GUEDES */
-
-static int	calc_len(char const *s, char c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != c && s[i])
-	{
-		if (s[i] == '\"') 
-		{
-			i++;
-			while (s[i] != '\"' && s[i])
-				i++;
-		}
-		if (s[i] == '\'')
-		{
-			i++;
-			while (s[i] != '\'' && s[i])
-				i++;
-		}
-		i++;
-	}
-	return (i);
-}
-
-static int	start(char const *s, char c)
-{
-	int	i;
-
-	i = 0;
-	while (ft_isspace(s[i]))
-		i++;
-	return (i);
-}
-
-char	**ms_split_phrases(char *line, char c)
+char	**ms_split_phrases(char *line, int flag)
 {
 	int		i;
+	int		line_index;
 	int		len;
 	int		n_phrases;
 	char	**phrase_array;
 
 	if (!line)
 		return (NULL);
-	i = 0;
-	n_phrases = count_phrases(line); 
-	phrase_array = (char **)malloc((n_phrases+ 1) * sizeof(char *));
+	i = -1;
+	line_index = 0;
+	n_phrases = count_phrases(line);
+	phrase_array = (char **)malloc((n_phrases + 1) * sizeof(char *));
 	if (!phrase_array)
 		return (NULL);
-	while (i < n_phrases)
+	while (++i < n_phrases)
 	{
-		while (ft_isspace(*line))
-			line++;
-		len = calc_len(line, c);
-		phrase_array[i] = ft_substr(line, 0, len);
-		line += len;
-		i++;
+		while (ft_isspace(line[line_index]))
+			line_index++;
+		len = count_phrase_len(line + line_index);
+		phrase_array[i] = ft_substr(line, line_index, len);
+		if (!phrase_array[i])
+		{
+			ft_free_mat(phrase_array);
+			return (NULL);
+		}
+		line_index += len;
 	}
 	phrase_array[i] = NULL;
+	if (flag)
+		free (line);
 	return (phrase_array);
 }
