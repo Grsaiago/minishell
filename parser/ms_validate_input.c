@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:36:25 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/12/01 21:42:14 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/12/01 21:51:37 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	count_words(char *line)
 	{
 		while (line[i] && ft_isspace(line[i]))
 			i++;
+		if (!line[i])
+			return (words);
 		while (line[i] && !ft_isspace(line[i]))
 		{
 			if (line[i] == '\'' || line[i] == '\"')
