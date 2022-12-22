@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:36:25 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/12/01 21:51:37 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/12/21 22:09:50 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,30 @@ char	**ms_split_input(char *line);
 int	count_words(char *line)
 {
 	int		words;
-	int		i;
 
-	i = 0;
 	words = 0;
-	while (line[i])
+	while (*line && ft_isspace(*line))
+		line++;
+	while (*line)
 	{
-		while (line[i] && ft_isspace(line[i]))
-			i++;
-		if (!line[i])
-			return (words);
-		while (line[i] && !ft_isspace(line[i]))
+		words++;
+		while (*line && ft_isspace(*line))
+			line++;
+		while (*line && !ft_isspace(*line)) 
 		{
-			if (line[i] == '\'' || line[i] == '\"')
-				i += next_quotes(&line[i]) + 1;
-			if (is_meta_character(line[i]))
+			if (*line == '\'' || *line == '\"')
+				line += next_quotes(line) + 1;
+			else if (is_meta_character(*line))
 			{
-				if (i > 0 && !ft_isspace(line[i-1]))
-					words++;
-				i += count_meta_len(&line[i]);
+				line += count_meta_len(line);
 				break ;
 			}
-			i++;
+			line++;
 		}
-		words++;
 	}
 	return (words);
 }
-
+/*
 int	count_word_len(char *word)
 {
 	int	len;
@@ -87,7 +83,7 @@ int	count_meta_len(char *line)
 	}
 	return (1);
 }
-
+*/
 int	next_quotes(char *line)
 {
 	if (!line)

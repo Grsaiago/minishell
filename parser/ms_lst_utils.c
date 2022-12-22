@@ -1,36 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_main_test.c                                     :+:      :+:    :+:   */
+/*   ms_lst_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 20:26:37 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/12/21 22:38:28 by gsaiago          ###   ########.fr       */
+/*   Created: 2022/12/21 21:02:02 by gsaiago           #+#    #+#             */
+/*   Updated: 2022/12/21 22:40:34 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../libft/libft.h"
 #include "../minishell.h"
-t_word	*ms_create_word_lst(char *line);
-void	ms_word_lst_clear(t_word *head);
 
-int	main(void)
+void	ms_lstadd_back(t_word **head, t_word *new)
 {
-	char	*str;
-	t_word	*word_lst;
-	t_word	*aux;
-	int		i;
+	t_word	*node;
 
-	i = 0;
-	str = readline("Insert input$ ");
-	word_lst = ms_create_word_lst(str);
-	aux = word_lst;
-	while (word_lst)
+	if (!new || !head)
+		return ;
+	if (!*head)
 	{
-		printf("word {%d} > |%s|\n", i, word_lst->word);
-		i++;
-		word_lst = word_lst->next;
+		*head = new;
+		return ;
 	}
-	ms_word_lst_clear(aux);
-	return (0);
+	node = *head;
+	while (node->next)
+		node = node->next;
+	node->next = new;
+	return ;
+}
+
+void	ms_word_lst_clear(t_word *head)
+{
+	t_word	*aux;
+
+	while (head)
+	{
+		aux = head;
+		if (aux->word)
+			free(aux->word);
+		head = head->next;
+		free(aux);
+	}
+	return ;
 }
