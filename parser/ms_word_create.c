@@ -6,12 +6,14 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 21:49:48 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/12/21 22:37:03 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/12/28 13:02:32 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
+int		next_quotes(char *line);
+int		is_meta_character(char c);
 int		count_meta_len(char *line);
 int		count_word_len(char *word);
 void	ms_word_lst_clear(t_word *head);
@@ -79,4 +81,30 @@ int	count_word_len(char *word)
 		len++;
 	}
 	return (len);
+}
+
+int	is_meta_character(char c)
+{
+	if (c == '&')
+		return ('&');
+	else if (c == '|')
+		return ('|');
+	else if (c == '>')
+		return ('>');
+	else if (c == '<')
+		return ('<');
+	else
+		return (0);
+}
+
+int	next_quotes(char *line)
+{
+	if (!line)
+		return (0);
+	if (*line == '\"')
+		return (ft_strchrn(line + 1, '\"'));
+	else if (*line == '\'')
+		return (ft_strchrn(line + 1, '\''));
+	else
+		return (0);
 }
