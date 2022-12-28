@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 21:49:48 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/12/28 13:02:32 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/12/28 13:09:49 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_word	*ms_create_word_lst(char *line)
 	{
 		while (*line && ft_isspace(*line))
 			line++;
-		node = malloc(sizeof(t_word));
+		node = ft_calloc(sizeof(t_word), 1);
 		if (!node)
 			ms_word_lst_clear(head);
 		word = ft_substr(line, 0, count_word_len(line));

@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 19:04:32 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/28 20:29:20 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/12/21 22:08:51 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ typedef struct s_shell
 	char	***argv_array;
 }	t_shell;
 
+typedef struct	s_word
+{
+	char			*word;
+	int				flag;
+	struct s_word	*next;
+}	t_word;
+
 /* INPUT SANITIZATION */
 int		count_phrases(char *line);
 int		word_len(char *line);
@@ -43,6 +50,7 @@ char	***create_argv_array(t_shell s_shell);
 int		initialize_shell_struct(t_shell *s_shell, char **envp);
 char	*ft_remove_quotes(char *str);
 int		is_meta_character(char c);
+void	ms_lstadd_back(t_word **head, t_word *new);
 /* PROMPT CONTROL */
 char	*get_name_host(void);
 void	get_prompt_msg(t_shell *s_shell);

@@ -12,63 +12,64 @@
 
 #include "libft.h"
 
-static size_t	ft_valid(const char *str, char c);
-static int		ft_lenc(char *s, char c);
-static char		**ft_mat(char *str, char c, char **mat, int words);
+static size_t	count_words(const char *str, char c);
+static int		count_word_len(char *str, char c);
+static char		**ft_mat(char *str, char c, int words);
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *str, char c)
 {
-	char	**mat;
-	char	*str;
 	int		words;
+	char	**mat;
 
-	if (!s)
+	if (!str)
 		return (NULL);
-	str = (char *)s;
-	words = ft_valid(str, c);
-	mat = ft_calloc((words + 1), sizeof(char *));
-	if (!mat)
-		return (NULL);
-	mat = ft_mat(str, c, mat, words);
+	words = count_words(str, c);
+	mat = ft_mat(str, c, words);
 	if (!mat)
 		return (NULL);
 	return (mat);
 }
 
-static size_t	ft_valid(const char *str, char c)
+static size_t	count_words(const char *str, char c)
 {
-	int	i;
+	int	words;
 
-	i = 0;
+	words = 0;
+	while (*str && *str == c)
+		str++;
 	while (*str)
 	{
-		if ((*str != c) && ((*(str + 1) == c) || (*(str + 1) == 0)))
-			i++;
-		str++;
-	}
-	return (i);
-}
-
-static int	ft_lenc(char *s, char c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] && (s[i] != c))
-		i++;
-	return (i);
-}
-
-static char	**ft_mat(char *str, char c, char **mat, int words)
-{
-	int	i;
-
-	i = -1;
-	while ((++i < words) && *str)
-	{
-		while (*str == c && *str)
+		words++;
+		while (*str != c)
 			str++;
-		mat[i] = ft_substr(str, 0, ft_lenc(str, c));
+	}
+	return (words);
+}
+
+static int	count_word_len(char *str, char c)
+{
+	int	word_len;
+
+	word_len = 0;
+	while (str[word_len] && str[word_len] != c)
+		word_len++;
+	return (word_len);
+}
+
+static char	**ft_mat(char *str, char c, int words)
+{
+	int		i;
+	char	**mat;
+
+	mat = ft_calloc((words + 1), sizeof(char *));
+	if (!mat)
+		return (NULL);
+	i = -1;
+	while (*str && (++i < words))
+	{
+		while (*str && *str == c)
+			str++;
+		mat[i] = ft_substr(str, 0, count_word_len(str, c));
 		if (!mat[i])
 		{
 			while (mat[i])
@@ -77,8 +78,9 @@ static char	**ft_mat(char *str, char c, char **mat, int words)
 				i--;
 			}
 			return (NULL);
-		}	
-	str += ft_lenc(str, c);
+		}
+		while (*str && *str != c)
+			str++;
 	}
 	return (mat);
 }

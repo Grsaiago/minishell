@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:23:47 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/28 21:25:24 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/12/21 20:57:14 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_meta
 	void	(*dtor)(void *pointer);
 	void	*ptr;
 }	t_meta;
-
+/* libft bonus struct */
 typedef struct s_list
 {
 	void			*content;
@@ -45,9 +45,9 @@ void			*ft_memcpy(void *dest, const void *src, size_t len);
 void			*ft_memmove(void *dst,	const void *src, size_t len);
 void			*ft_memset(void *dest, int c, size_t len);
 char			*ft_strchr(const char *s, int c);
-int				ft_strchrn(const char *s, char c);
-char			*ft_strdup(const char *s1);
-char			*ft_strndup(const char *s1, int n);
+int				ft_strchrn(const char *line, char c);
+char			*ft_strdup(char *s1, int flag);
+char			*ft_strndup(char *s1, int n, int flag);
 size_t			ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t			ft_strlen(const char *c);
@@ -67,9 +67,9 @@ char			*ft_strjoin(char *s1, char *s2, int flag);
 char			*ft_itoa(int n);
 void			ft_striteri(char *s, void (*f)(unsigned int, char*));
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-char			*ft_strtrim(char *s1, char const *set, int flag);
-char			**ft_split(char const *s, char c);
-/* libft bonus functions */
+char			*ft_strtrim(char const *s1, char const *set);
+char			**ft_split(char *str, char c);
+// libft bonus functions //
 t_list			*ft_lstnew(void *content);
 void			ft_lstadd_front(t_list **lst, t_list *new);
 int				ft_lstsize(t_list *lst);
@@ -93,14 +93,14 @@ char			*ft_staticptr(char *buffer);
 char			*ft_returnptr(char *buffer);
 char			*ft_gnl(int valid, int fd, char *sptr);
 char			*get_next_line(int fd);
+/* expanded libft */
+void			ft_free_mat(char **mat);
 /* SMART POINTERS */
-/* Ussage: <variable_name>__attribute__((cleanup(free_call))) */;
+/* Ussage: <variable_name>__attribute__((cleanup(free_call))); */
 void			sfree(void *ptr);
 void			*smalloc(size_t size, void (*dtor)(void *));
 void			free_call(void *ptr);
-/* Dtr smart pointer functions */ 
+/* Dtr smart pointer functions */
 void			destroy_matrix(void	*mat);
-/* Free of Data Structures */
-void			ft_free_mat(char **mat);
 
 #endif

@@ -20,9 +20,9 @@ char	*ft_itoa(int n)
 	char	*itoa;
 
 	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
+		return (ft_strdup("-2147483648", 0));
 	if (n == 0)
-		return (ft_strdup("0"));
+		return (ft_strdup("0", 0));
 	len = ft_lencount(n);
 	itoa = ft_calloc(len + 2, 1);
 	if (!itoa)

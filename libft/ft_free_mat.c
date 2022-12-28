@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 18:28:31 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/11/28 21:27:16 by gsaiago          ###   ########.fr       */
+/*   Created: 2022/12/21 20:50:04 by gsaiago           #+#    #+#             */
+/*   Updated: 2022/12/21 20:51:37 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_free_mat(char **mat)
 	int	i;
 
 	i = 0;
+	if (!mat)
+		return ;
 	while (mat[i])
 	{
 		free(mat[i]);

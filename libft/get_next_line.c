@@ -29,7 +29,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	if (!sptr)
-		sptr = ft_strdup("");
+		sptr = ft_strdup("", 0);
 	valid = 1;
 	sptr = ft_gnl(valid, fd, sptr);
 	if (!sptr)

@@ -6,7 +6,7 @@
 #    By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/31 18:35:35 by gsaiago           #+#    #+#              #
-#    Updated: 2022/11/28 21:21:50 by gsaiago          ###   ########.fr        #
+#    Updated: 2022/12/21 20:51:57 by gsaiago          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRCS =  ft_isalpha.c\
 		ft_lstclear.c\
 		ft_lstiter.c\
 		ft_lstmap.c\
+		ft_lst_remove_if.c\
 		get_next_line.c\
 		ft_strjoin_gnl.c\
 		ft_printf.c\
@@ -71,8 +72,13 @@ SRCS =  ft_isalpha.c\
 		ft_printptr.c\
 		ft_putnbr.c\
 		ft_putchar.c\
-		smartptr.c\
 		ft_free_mat.c\
+		smartptr.c\
+
+COLOR_GREEN	=	\033[0;32m
+COLOR_RED	=	\033[0;31m
+COLOR_BLUE	=	\033[0;34m
+COLOR_END	=	\033[0m
 
 OBJS = $(SRCS:.c=.o)
 
@@ -83,6 +89,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) 
 	@ar -rcs $(NAME) $(OBJS)
+	@echo "$(COLOR_GREEN)Libft Compiled :D$(COLOR_END)"
 
 $(OBJS): $(SRCS)
 	@$(CC) -c $(CFLAGS) $(SRCS)

@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 21:02:02 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/12/21 22:40:34 by gsaiago          ###   ########.fr       */
+/*   Updated: 2022/12/28 13:58:19 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ms_lstadd_back(t_word **head, t_word *new)
 	while (node->next)
 		node = node->next;
 	node->next = new;
+	new->next = NULL;
 	return ;
 }
 
