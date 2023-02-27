@@ -6,7 +6,7 @@
 #    By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 17:37:55 by gsaiago           #+#    #+#              #
-#    Updated: 2023/02/23 10:07:50 by gsaiago          ###   ########.fr        #
+#    Updated: 2023/02/26 20:42:17 by gsaiago          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,14 @@ CC = cc
 LIBFT_PATH = ../libft
 
 LIBFT = $(LIBFT_PATH)/libft.a
-CFLAGS = -Wall -Wextra -g
+CFLAGS = -g -Wall -Wextra
 
 LIBFT_LINK = -L$(LIBFT_PATH) -lft
 
 all: $(NAME)
 
 $(NAME): $(SRCS) $(LIBFT)
-	$(CC) $(CFLAGS) $(SRCS) $(LIBFT_LINK) -lreadline -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS) -o $(NAME) -lreadline $(LIBFT_LINK)
 
 $(LIBFT): 
 	make -C $(LIBFT_PATH)
