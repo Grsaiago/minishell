@@ -10,4 +10,11 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+typedef struct s_word
+{
+	char			*word;
+	unsigned int	flag;
+	struct s_word	*next;
+}	t_word;
+
 # endif
