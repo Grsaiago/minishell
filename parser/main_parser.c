@@ -44,3 +44,16 @@ int	ms_ismeta(char *c)
 		return (1);
 	return (0);
 }
+
+char	**ms_split(char *line)
+{
+	int		words;
+	char	**mat;
+
+	words = ms_count_words(line);
+	if (words)
+		mat = ft_calloc(sizeof(char *), (words + 1));
+	if (!mat)
+		return (NULL);
+	return (mat);
+}
