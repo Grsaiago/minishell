@@ -6,11 +6,12 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:50:10 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/02/27 18:53:40 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/05 23:04:52 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+char	*ms_unquote_words(char *line);
 
 t_word	*ms_lstnew(void *word)
 {
@@ -80,5 +81,17 @@ void	ms_lstclear(t_word **lst)
 		node = aux;
 	}
 	*lst = NULL;
+	return ;
+}
+
+void	ms_word_lst_flag_init(t_word *word)
+{
+	while (word)
+	{
+		if (ms_word_assign_flag(word->word))
+			word->flag = 1;
+		word->word = ms_unquote_words(word->word); // JUST FOR TESTING
+		word = word->next;
+	}
 	return ;
 }
