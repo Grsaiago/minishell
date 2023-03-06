@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_create_lex_list.c                               :+:      :+:    :+:   */
+/*   ms_create_word_lst.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:38:40 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/02/27 18:48:05 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/02/28 14:22:42 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,41 +32,6 @@ t_word	*ms_create_word_lst(char *line)
 			line++;
 	}
 	return (word_lst);
-}
-
-int	get_word_len(char *line)
-{
-	int	word_len;
-
-	if (ms_ismeta(line))
-		return (ms_ismeta(line));
-	word_len = 0;
-	while (*line && !ms_ismeta(line) && !ft_isspace(*line))
-	{
-		line++;
-		word_len++;
-	}
-	return (word_len);
-}
-
-int	ms_ismeta(char *c)
-{
-	if ((c[0] == '<' && c[1] == '<') || (c[0] == '>' && c[1] == '>'))
-		return (2);
-	else if (*c == '|') //*c == '>' || *c == '<')
-		return (1);
-	return (0);
-}
-
-void	ms_word_lst_flag_init(t_word *word)
-{
-	while (word)
-	{
-		if (ms_word_assign_flag(word->word))
-			word->flag = 1;
-		word = word->next;
-	}
-	return ;
 }
 
 int	ms_word_assign_flag(char *word)
