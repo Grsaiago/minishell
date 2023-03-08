@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/02/27 18:53:35 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/07 16:34:06 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int		ms_word_assign_flag(char *word);
 int		ms_ismeta(char *c);
 int		get_word_len(char *line);
 int		ms_count_words(char *line);
+int		ms_find_next_quotes(char *line);
+char	*ms_unquote_words(char *line);
 
 /* free functions */
 void	ms_lstclear(t_word **lst);

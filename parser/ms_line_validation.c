@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:34:30 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/02/28 11:39:58 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/07 16:40:48 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 int	ms_validate_quote_ammount(char *line)
 {
-	int	single_quotes;
-	int	double_quotes;
+	int	quote_distance;
 
 	if (!line)
 		return (0);
-	single_quotes = 0;
-	double_quotes = 0;
+	quote_distance = 0;
 	while (*line)
 	{
-		if (*line == '\'')
-			single_quotes++;
-		else if (*line == '\"')
-			double_quotes++;
-		line++;
+		if (*line == '\'' || *line == '\"')
+		{
+			quote_distance = ms_find_next_quotes(line);
+			if (quote_distance == -1)
+				return (1);
+			line += quote_distance + 2;
+		}
+		else
+			line++;
 	}
-	if ((single_quotes % 2 != 0) || (double_quotes % 2 != 0))
-		return (1);
 	return (0);
 }
