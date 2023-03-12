@@ -6,11 +6,13 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:10:10 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/07 16:44:41 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/12 17:20:00 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+void	ms_null_start_end_quotes(char *line);
+char	*ms_remove_quotes(char *line, int flag);
 
 int	ms_find_next_quotes(char *line)
 {
@@ -32,30 +34,56 @@ int	ms_find_next_quotes(char *line)
 	return (next_quote_distance);
 }
 
-char	*ms_unquote_words(char *line)
+char	*ms_remove_quotes(char *line, int flag)
 {
 	char	*ret_word;
 	int		i;
-	int		last_position;
+	int		len;
 
 	if (!line)
 		return (NULL);
+	len = ft_strlen(line);
 	ret_word = NULL;
 	i = 0;
-	last_position = 0;
-	while (line[i])
+	printf("Debug: A string antes do ms_null_start_end_quotes:\n %s\n", line); // debug
+	ms_null_start_end_quotes(line);
+	printf("Debug: A string depois do ms_null_start_end_quotes\n"); // debug
+	write(1, line, len); // debug
+	write (1, "\n", 1); //debug
+	while (!line[i] && i < len)
+		i++;
+	while(i < len)
 	{
-		if (line[i] == '\'' || line[i] == '\"')
-		{
-			if (last_position == 0)
-				last_position++;
-			ret_word = ft_strjoin(ret_word, ft_substr(&line[i], last_position, ms_find_next_quotes(&line[i])), 3);
-			last_position += i + ms_find_next_quotes(&line[i]) + 1;
-		}
-		else
+		ret_word = ft_strjoin(ret_word, &line[i], 1);
+		i += ft_strlen(&line[i]) + 1;
+		while (!line[i] && i < len)
 			i++;
 	}
+	if (flag)
+		free(line);
 	return (ret_word);
+}
+
+void	ms_null_start_end_quotes(char *line)
+{
+	int	next_quotes;
+
+	if (!line)
+		return ;
+	while (*line)
+	{
+		if (*line == '\'' || *line == '\"')
+		{
+			next_quotes = ms_find_next_quotes(line) + 1;
+			*line = '\0';
+			line += next_quotes;
+			*line = '\0';
+			line++;
+		}
+		else
+			line++;
+	}
+	return ;
 }
 
 int	get_word_len(char *line)
