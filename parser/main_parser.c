@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/12 17:21:14 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/12 23:44:00 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,34 @@ void	debug_func(t_word *word_lst)
 	return ;
 }
 
+/* main test */
 int	main(void)
 {
 	char	*line;
-	//t_word	*word_lst;
+	t_word	*word_lst;
 
-	//word_lst = NULL;
+	word_lst = NULL;
+	while (42)
+	{
+		line = readline("$> ");
+		if (!ft_strncmp(line, "q", 2))
+		{
+			free(line);
+			return (0);
+		}
+		if (ms_parser(line, &word_lst))
+			ft_putstr_fd("Error on parser\n", 3);
+		debug_func(word_lst);
+		ms_lstclear(&word_lst);
+	}
+	return (0);
+}
+
+/* test for quote remove
+int	main(void)
+{
+	char	*line;
+
 	while (42)
 	{
 		line = readline("$> ");
@@ -44,13 +66,9 @@ int	main(void)
 			return (0);
 		}
 		line = ms_remove_quotes(line, 1);
-		/*
-		if (ms_parser(line, &word_lst))
-			ft_putstr_fd("Error on parser\n", 3);
-		debug_func(word_lst);
-		ms_lstclear(&word_lst);
-		*/
-		free(line); // debug
+		free(line);
 	}
 	return (0);
+
 }
+*/
