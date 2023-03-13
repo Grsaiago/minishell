@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:10:10 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/12 17:20:00 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/12 21:05:10 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ char	*ms_remove_quotes(char *line, int flag)
 	len = ft_strlen(line);
 	ret_word = NULL;
 	i = 0;
+	if (!ft_strchr(line, '\'') || !ft_strchr(line, '\"'))
+		return (line);
 	printf("Debug: A string antes do ms_null_start_end_quotes:\n %s\n", line); // debug
 	ms_null_start_end_quotes(line);
 	printf("Debug: A string depois do ms_null_start_end_quotes\n"); // debug
