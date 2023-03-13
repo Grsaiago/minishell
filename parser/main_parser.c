@@ -6,13 +6,14 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/12 23:44:00 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/13 18:08:02 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 int	ms_parser(char *line, t_word **word_lst);
 char	*ms_remove_quotes(char *line, int flag);
+int		ms_get_len_after_expansion(char *line);
 
 void	debug_func(t_word *word_lst)
 {
@@ -29,7 +30,26 @@ void	debug_func(t_word *word_lst)
 	return ;
 }
 
-/* main test */
+/* test for variable expansion */
+int	main(void)
+{
+	char	*line;
+
+	while (42)
+	{
+		line = readline("$> ");
+		if (!ft_strncmp(line, "q", 2))
+		{
+			free(line);
+			return (0);
+		}
+		ms_get_len_after_expansion(line);
+		free(line);
+	}
+	return (0);
+}
+
+/* main test
 int	main(void)
 {
 	char	*line;
@@ -51,6 +71,7 @@ int	main(void)
 	}
 	return (0);
 }
+*/
 
 /* test for quote remove
 int	main(void)
