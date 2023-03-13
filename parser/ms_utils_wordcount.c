@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:10:10 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/12 21:05:10 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/12 22:45:14 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	ms_find_next_quotes(char *line)
 
 	if (!line || !*line)
 		return (0);
-	next_quote_distance = 0;
 	quote = *line;
 	line++;
+	next_quote_distance = 1;
 	while (*line != quote)
 	{
 		if (!*line)
@@ -76,7 +76,7 @@ void	ms_null_start_end_quotes(char *line)
 	{
 		if (*line == '\'' || *line == '\"')
 		{
-			next_quotes = ms_find_next_quotes(line) + 1;
+			next_quotes = ms_find_next_quotes(line);
 			*line = '\0';
 			line += next_quotes;
 			*line = '\0';
@@ -99,8 +99,8 @@ int	get_word_len(char *line)
 	{
 		if (*line == '\'' || *line == '\"')
 		{
-			word_len += ms_find_next_quotes(line) + 2;
-			line += ms_find_next_quotes(line) + 2;
+			word_len += ms_find_next_quotes(line) + 1;
+			line += ms_find_next_quotes(line) + 1;
 		}
 		else
 		{
