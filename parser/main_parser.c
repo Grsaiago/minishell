@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/13 18:08:02 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/14 17:51:15 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 int	ms_parser(char *line, t_word **word_lst);
 char	*ms_remove_quotes(char *line, int flag);
 int		ms_get_len_after_expansion(char *line);
+char	*ms_expand_env(char *line);
 
 void	debug_func(t_word *word_lst)
 {
@@ -30,7 +31,7 @@ void	debug_func(t_word *word_lst)
 	return ;
 }
 
-/* test for variable expansion */
+/* test for variable expansion
 int	main(void)
 {
 	char	*line;
@@ -43,11 +44,12 @@ int	main(void)
 			free(line);
 			return (0);
 		}
-		ms_get_len_after_expansion(line);
+		printf("Lenght da linha > %ld\nRetorno da ms_get_len_after_expansion > %d\n", ft_strlen(line), ms_get_len_after_expansion(line));
 		free(line);
 	}
 	return (0);
 }
+*/
 
 /* main test
 int	main(void)
@@ -73,7 +75,7 @@ int	main(void)
 }
 */
 
-/* test for quote remove
+/* test for quote remove */
 int	main(void)
 {
 	char	*line;
@@ -86,10 +88,11 @@ int	main(void)
 			free(line);
 			return (0);
 		}
+		line = ms_expand_env(line);
+		printf("line depois de env exp > %s\n", line); // debug
 		line = ms_remove_quotes(line, 1);
+		printf("line depois de remove quotes> %s\n", line); // debug
 		free(line);
 	}
 	return (0);
-
 }
-*/
