@@ -2,6 +2,7 @@
 int	ms_get_env_name_len(char *line);
 int	ms_get_len_after_expansion(char *line);
 char	*ms_expand_env(char *line);
+int		ms_validate_env_name(char *line);
 
 char	*ms_expand_env(char *line)
 {
@@ -24,7 +25,7 @@ char	*ms_expand_env(char *line)
 	{
 		if (line[i] == '\"')
 			flag = !(flag & 1);
-		if (line[i] == '$' && flag)
+		if (line[i] == '$' && flag && !ms_validate_env_name(line))
 		{
 			env = ft_substr(&line[i], 1, ms_get_env_name_len(&line[i]));
 			ft_memcpy(&ret_line[j], getenv(env), ft_strlen(getenv(env)));
@@ -56,7 +57,7 @@ int	ms_get_len_after_expansion(char *line)
 			final_len += ms_find_next_quotes(line) + 2;
 			line += ms_find_next_quotes(line) + 1;
 		}
-		else if (*line == '$')
+		else if (*line == '$' && !ms_validate_env_name(line))
 		{
 			env_word = ft_substr(line, 1, ms_get_env_name_len(line));
 			final_len += ft_strlen(getenv(env_word));
@@ -70,6 +71,13 @@ int	ms_get_len_after_expansion(char *line)
 		}
 	}
 	return (final_len);
+}
+
+int	ms_validate_env_name(char *line)
+{
+	if (!line || *line != '$' || !ft_isalnum(line[1]))
+		return (1);
+	return (0);
 }
 
 int	ms_get_env_name_len(char *line)
