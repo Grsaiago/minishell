@@ -2,25 +2,27 @@
 int	ms_get_env_name_len(char *line);
 int	ms_get_len_after_expansion(char *line);
 char	*ms_expand_env(char *line);
+void	ms_expand_env_util(char *line, int i, int j, char *ret_line);
 int		ms_validate_env_name(char *line);
 
 char	*ms_expand_env(char *line)
 {
 	char	*ret_line;
-	char	*env;
-	int		final_len;
-	int		flag;
-	int		i;
-	int		j;
 
-
-	i = 0;
-	j = 0;
-	flag = 1;
-	final_len = ms_get_len_after_expansion(line);
-	ret_line = ft_calloc(final_len + 1, sizeof(char));
+	ret_line = ft_calloc(ms_get_len_after_expansion(line) + 1, sizeof(char));
 	if (!ret_line)
 		return (NULL);
+	ms_expand_env_util(line, 0, 0, ret_line);
+	free(line);
+	return (ret_line);
+}
+
+void	ms_expand_env_util(char *line, int i, int j, char *ret_line)
+{
+	char	*env;
+	char	flag;
+
+	flag = 1;
 	while (line[i])
 	{
 		if (line[i] == '\'')
@@ -40,8 +42,7 @@ char	*ms_expand_env(char *line)
 			j++;
 		}
 	}
-	free(line);
-	return (ret_line);
+	return ;
 }
 
 int	ms_get_len_after_expansion(char *line)
