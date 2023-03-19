@@ -6,13 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:10:10 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/14 15:33:13 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/18 23:04:54 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-void	ms_null_start_end_quotes(char *line);
-char	*ms_remove_quotes(char *line, int flag);
 
 int	ms_find_next_quotes(char *line)
 {

@@ -1,9 +1,4 @@
 #include "minishell.h"
-int		ms_get_env_name_len(char *line);
-int		ms_get_len_after_expansion(char *line);
-char	*ms_expand_env(char *line);
-void	ms_expand_env_util(char *line, int i, int j, char *ret_line);
-int		ms_validate_env_name(char *line);
 
 char	*ms_expand_env(char *line)
 {

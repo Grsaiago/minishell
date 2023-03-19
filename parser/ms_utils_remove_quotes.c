@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ms_utils_remove_quotes.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/18 23:04:39 by gsaiago           #+#    #+#             */
+/*   Updated: 2023/03/18 23:04:40 by gsaiago          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-/* daqui pra baixo tudo certin ok ?????? NÃO MEXE CARAIO*/
 char	*ms_remove_quotes(char *line, int flag)
 {
 	char	*ret_word;

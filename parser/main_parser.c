@@ -6,15 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/14 17:51:15 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/18 23:05:08 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-int	ms_parser(char *line, t_word **word_lst);
-char	*ms_remove_quotes(char *line, int flag);
-int		ms_get_len_after_expansion(char *line);
-char	*ms_expand_env(char *line);
 
 void	debug_func(t_word *word_lst)
 {
@@ -51,7 +47,6 @@ int	main(void)
 }
 */
 
-/* main test
 int	main(void)
 {
 	char	*line;
@@ -73,9 +68,8 @@ int	main(void)
 	}
 	return (0);
 }
-*/
 
-/* test for quote remove */
+/* test for quote remove
 int	main(void)
 {
 	char	*line;
@@ -96,3 +90,4 @@ int	main(void)
 	}
 	return (0);
 }
+*/
