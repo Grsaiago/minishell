@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/18 23:05:08 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/19 15:47:54 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	main(void)
 }
 */
 
+/* main test */
 int	main(void)
 {
 	char	*line;
@@ -69,7 +70,7 @@ int	main(void)
 	return (0);
 }
 
-/* test for quote remove
+/*
 int	main(void)
 {
 	char	*line;
