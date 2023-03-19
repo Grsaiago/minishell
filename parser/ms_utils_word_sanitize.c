@@ -16,16 +16,16 @@ char	*ms_expand_env(char *line)
 
 	i = 0;
 	j = 0;
-	flag = 0;
+	flag = 1;
 	final_len = ms_get_len_after_expansion(line);
 	ret_line = ft_calloc(final_len + 1, sizeof(char));
 	if (!ret_line)
 		return (NULL);
 	while (line[i])
 	{
-		if (line[i] == '\"')
-			flag = !(flag & 1);
-		if (line[i] == '$' && flag && !ms_validate_env_name(line))
+		if (line[i] == '\'')
+			flag ^= 1;
+		if (line[i] == '$' && flag && !ms_validate_env_name(&line[i]))
 		{
 			env = ft_substr(&line[i], 1, ms_get_env_name_len(&line[i]));
 			ft_memcpy(&ret_line[j], getenv(env), ft_strlen(getenv(env)));
