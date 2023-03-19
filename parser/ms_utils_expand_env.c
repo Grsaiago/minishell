@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:08:52 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/19 18:18:20 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/19 19:57:33 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,39 +87,4 @@ int	ms_get_len_after_expansion(char *line)
 		}
 	}
 	return (final_len);
-}
-
-int	ms_get_expanded_env_len(char *line)
-{
-	char	*env_word;
-	int		len;
-
-	env_word = ft_substr(line, 1, ms_get_env_name_len(line));
-	len = ft_strlen(env_word);
-	if (env_word)
-		free(env_word);
-	return (len);
-}
-
-int	ms_validate_env_name(char *line)
-{
-	if (!line || *line != '$' || !ft_isalnum(line[1]))
-		return (1);
-	return (0);
-}
-
-int	ms_get_env_name_len(char *line)
-{
-	int	word_len;
-
-	if (!line)
-		return (0);
-	word_len = 0;
-	line++;
-	while (line && *line && ft_isalpha(*line))
-	{
-		word_len++;
-		line++;
-	}
-	return (word_len);
 }
