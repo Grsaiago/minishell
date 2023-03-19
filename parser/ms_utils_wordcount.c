@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:10:10 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/18 23:04:54 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/18 23:09:22 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	ms_find_next_quotes(char *line)
 	}
 	return (next_quote_distance);
 }
-
 
 int	get_word_len(char *line)
 {
@@ -60,7 +59,7 @@ int	ms_ismeta(char *c)
 {
 	if ((c[0] == '<' && c[1] == '<') || (c[0] == '>' && c[1] == '>'))
 		return (2);
-	else if (*c == '|') //*c == '>' || *c == '<')
+	else if (*c == '|')
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:42:31 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/18 23:01:54 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/18 23:06:57 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,3 @@ int	ms_sanitize_words_on_lst(t_word *node)
 	}
 	return (0);
 }
-

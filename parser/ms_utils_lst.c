@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:50:10 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/18 22:54:25 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/18 23:07:33 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ms_lst_remove_if(t_word **head)
 	return ;
 }
 
-void	ms_lstclear(t_word **lst) 
+void	ms_lstclear(t_word **lst)
 {
 	void	*aux;
 	t_word	*node;

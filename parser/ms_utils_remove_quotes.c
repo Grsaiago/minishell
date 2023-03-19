@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:04:39 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/18 23:04:40 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/18 23:06:44 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ms_remove_quotes(char *line, int flag)
 	ms_null_start_end_quotes(line);
 	while (!line[i] && i < len)
 		i++;
-	while(i < len)
+	while (i < len)
 	{
 		ret_word = ft_strjoin(ret_word, &line[i], 1);
 		i += ft_strlen(&line[i]) + 1;

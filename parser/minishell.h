@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/18 23:03:51 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/18 23:08:38 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,4 @@ char	*ms_remove_quotes(char *line, int flag);
 void	ms_null_start_end_quotes(char *line);
 /* free */
 void	ms_lstclear(t_word **lst);
-
-# endif
+#endif
