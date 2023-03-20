@@ -6,12 +6,15 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 23:02:38 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/19 23:24:04 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:34:57 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-char **create_mat_from_lst(t_word *node);
+char 	**create_mat_from_lst(t_word *node);
+char	*ms_check_bin(char *cmd);
+char 	**ms_create_mat_from_lst(t_word *node);
+int		ms_bin_exec(t_word *node);
 
 void	debug_func(t_word *word_lst, char **mat)
 {
@@ -36,7 +39,7 @@ void	debug_func(t_word *word_lst, char **mat)
 int	main(void)
 {
 	char	*line;
-	char	**mat;
+//	char	**mat;
 	t_word	*word_lst;
 
 	word_lst = NULL;
@@ -50,10 +53,10 @@ int	main(void)
 		}
 		if (ms_parser(line, &word_lst))
 			ft_putstr_fd("Error on parser\n", 3);
-		mat = create_mat_from_lst(word_lst);
-		debug_func(word_lst, mat);
+		//debug_func(word_lst, mat);
+		ms_bin_exec(word_lst);
 		ms_lstclear(&word_lst);
-		ft_free_mat(mat);
+		//ft_free_mat(mat);
 	}
 	return (0);
 }
