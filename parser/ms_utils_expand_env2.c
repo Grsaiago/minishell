@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 19:57:14 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/19 19:57:22 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/20 14:16:46 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ms_get_expanded_env_len(char *line)
 	int		len;
 
 	env_word = ft_substr(line, 1, ms_get_env_name_len(line));
-	len = ft_strlen(env_word);
+	len = ft_strlen(getenv(env_word));
 	if (env_word)
 		free(env_word);
 	return (len);
