@@ -6,14 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:33:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/20 18:39:02 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/20 18:48:42 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-char	*ms_check_bin(char *cmd);
-char 	**ms_create_mat_from_lst(t_word *node);
-int		ms_bin_exec(t_word *node);
 
 int	ms_bin_exec(t_word *node)
 {
@@ -78,7 +75,7 @@ char	*ms_check_bin(char *cmd)
 	return (NULL);
 }
 
-char **ms_create_mat_from_lst(t_word *node)
+char	**ms_create_mat_from_lst(t_word *node)
 {
 	t_word				*aux;
 	char				**mat;
