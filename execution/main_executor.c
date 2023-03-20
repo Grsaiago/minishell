@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 23:02:38 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/19 23:07:53 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/19 23:24:04 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	main(void)
 		mat = create_mat_from_lst(word_lst);
 		debug_func(word_lst, mat);
 		ms_lstclear(&word_lst);
+		ft_free_mat(mat);
 	}
 	return (0);
 }

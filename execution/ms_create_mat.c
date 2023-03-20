@@ -17,11 +17,11 @@ char **create_mat_from_lst(t_word *node)
 		aux = aux->next;
 		mat_positions++;
 	}
-	mat = ft_calloc(mat_positions + 1, sizeof(char *));
+	mat = ft_calloc(mat_positions + 2, sizeof(char *));
 	if (!mat)
 		return (NULL);
 	mat[0] = ft_strdup("minishell", 0);
-	while (++i < mat_positions)
+	while (++i < mat_positions + 1)
 	{
 		mat[i] = ft_strdup(node->word, 0);
 		node = node->next;
