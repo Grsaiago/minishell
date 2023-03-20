@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:38:40 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/02/28 14:22:42 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/18 23:07:59 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_word	*ms_create_word_lst(char *line)
 	int		word_len;
 	t_word	*new_word;
 	t_word	*word_lst;
-
 
 	word_lst = NULL;
 	while (ft_isspace(*line))
@@ -39,7 +38,7 @@ int	ms_word_assign_flag(char *word)
 	while (*word)
 	{
 		if (*word == '>' || *word == '<')
-			return(1);
+			return (1);
 		word++;
 	}
 	return (0);
