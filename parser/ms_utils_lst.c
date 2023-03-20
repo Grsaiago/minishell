@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:50:10 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/12 16:54:19 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/19 16:52:58 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,29 @@ void	ms_lst_remove_if(t_word **head)
 	return ;
 }
 
-void	ms_lstclear(t_word **lst) 
+void	ms_lst_remove_empty_word(t_word **head)
+{
+	t_word	*node;
+
+	if (!head || !*head)
+		return ;
+	node = *head;
+	if (!node->word || !node->word[0])
+	{
+		*head = node->next;
+		if (node->word)
+			free(node->word);
+		free(node);
+		ms_lst_remove_if(head);
+	}
+	node = *head;
+	if (!head || !*head)
+		return ;
+	ms_lst_remove_empty_word(&node->next);
+	return ;
+}
+
+void	ms_lstclear(t_word **lst)
 {
 	void	*aux;
 	t_word	*node;
@@ -83,6 +105,7 @@ void	ms_lstclear(t_word **lst)
 	return ;
 }
 
+/*
 void	ms_word_lst_flag_init(t_word *word)
 {
 	while (word)
@@ -94,3 +117,4 @@ void	ms_word_lst_flag_init(t_word *word)
 	}
 	return ;
 }
+*/

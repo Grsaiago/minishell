@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 19:12:34 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/06/01 14:11:50 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/19 16:09:48 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlen(const char *c)
 {
 	size_t	i;
 
+	if (!c)
+		return (0);
 	i = 0;
 	while (c[i])
 		i++;

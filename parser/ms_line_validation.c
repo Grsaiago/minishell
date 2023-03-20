@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:34:30 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/12 22:43:03 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/18 22:30:01 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ms_validate_quote_ammount(char *line)
 	int	quote_distance;
 
 	if (!line)
-		return (0);
+		return (1);
 	quote_distance = 0;
 	while (*line)
 	{

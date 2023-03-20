@@ -3,9 +3,9 @@
 char **create_mat_from_lst(t_word *node)
 {
 	t_word				*aux;
-	unsigned int		i;
-	unsigned int		mat_positions;
 	char				**mat;
+	unsigned int		mat_positions;
+	unsigned int		i;
 
 	if (!node)
 		return (NULL);
@@ -17,7 +17,14 @@ char **create_mat_from_lst(t_word *node)
 		aux = aux->next;
 		mat_positions++;
 	}
-	
-
-
+	mat = ft_calloc(mat_positions + 1, sizeof(char *));
+	if (!mat)
+		return (NULL);
+	mat[0] = ft_strdup("minishell", 0);
+	while (++i < mat_positions)
+	{
+		mat[i] = ft_strdup(node->word, 0);
+		node = node->next;
+	}
+	return (mat);
 }
