@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/19 19:59:51 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/19 22:30:05 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ typedef struct s_word
 /* flags for words */
 # define MS_WORD 1
 # define MS_PIPE 2
-# define MS_REDIRECT 3
-# define MS_HEREDOC 4
-# define MS_APPEND 5
+# define MS_REDIRECT_IN 3
+# define MS_REDIRECT_OUT 4
+# define MS_HEREDOC 5
+# define MS_APPEND 6
 /* lst */
 t_word	*ms_lstnew(void *word);
 void	ms_lstadd_back(t_word **lst, t_word *new);
