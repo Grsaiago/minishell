@@ -17,7 +17,7 @@ char **create_mat_from_lst(t_word *node)
 		aux = aux->next;
 		mat_positions++;
 	}
-	mat = ft_calloc(mat_positions + 2, sizeof(char *));
+	mat = ft_calloc(mat_positions + 1, sizeof(char *));
 	if (!mat)
 		return (NULL);
 	mat[0] = ft_strdup("minishell", 0);
