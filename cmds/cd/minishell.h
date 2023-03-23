@@ -6,13 +6,13 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/20 18:49:01 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/22 22:23:09 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-# include "../libft/libft.h"
+# include "../../libft/libft.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
