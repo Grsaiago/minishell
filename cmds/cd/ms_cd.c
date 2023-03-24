@@ -6,40 +6,26 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 23:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/23 00:27:38 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/24 11:34:49 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ms_cd_go_back_one_dir(void);
-
 void	ms_cd(int ac, char **av)
 {
-	int	error;
-	char	*cwd; // debug
-
-	error = 0;
-	cwd = getcwd(NULL, 0); // debug
-	printf("pwd > %s\n", cwd);// debug
-	free(cwd); // debug
 	if (ac > 2)
 	{
 		printf("minishell: cd: Too many arguments\n");
 		// modificar a global de erro
 		return ;
 	}
-	else if (!ft_strncmp(av[1], "..", 3))
-		error = ms_cd_go_back_one_dir();
-	else if (!ft_strncmp(av[1], ".", 2))
-	if (error)
-		printf("minishell: cd: An unexpected error occured\n");
-	cwd = getcwd(NULL, 0); // debug
-	printf("pwd > %s\n", cwd);// debug
-	free(cwd); // debug
+	if (chdir(av[1]) == -1 && errno == ENOENT)
+		printf("minishell: cd: No such file or directory\n");
 	return ;
 }
 
+/*
 int	ms_cd_go_back_one_dir(void)
 {
 	char	*prev_dir;
@@ -68,3 +54,4 @@ int	ms_cd_go_back_one_dir(void)
 	free(curr_dir);
 	return (0);
 }
+*/
