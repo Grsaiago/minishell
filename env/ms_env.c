@@ -11,5 +11,6 @@ int	ms_env(void)
 		printf("%s\n", environ[i]);
 		i++;
 	}
+	//settar a variável int de saída
 	return (0);
 }
