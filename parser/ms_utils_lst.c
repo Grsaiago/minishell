@@ -21,6 +21,9 @@ t_word	*ms_lstnew(void *word)
 		return (NULL);
 	new->word = word;
 	new->flag = 0;
+	new->pid = 0;
+	new->fd_in = 0;
+	new->fd_out = 1;
 	new->next = NULL;
 	return (new);
 }

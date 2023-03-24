@@ -29,6 +29,9 @@ typedef struct s_word
 	char			*word;
 	unsigned int	flag;
 	struct s_word	*next;
+	int				fd_in;
+	int				fd_out;
+	pid_t			pid;
 }	t_word;
 
 /* flags for words */

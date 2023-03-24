@@ -11,10 +11,12 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 char 	**create_mat_from_lst(t_word *node);
 char	*ms_check_bin(char *cmd);
 char 	**ms_create_mat_from_lst(t_word *node);
 int		ms_bin_exec(t_word *node);
+void	ms_wait_cmds(t_word *node);
 
 void	debug_func(t_word *word_lst, char **mat)
 {
@@ -55,6 +57,7 @@ int	main(void)
 			ft_putstr_fd("Error on parser\n", 3);
 		//debug_func(word_lst, mat);
 		ms_bin_exec(word_lst);
+		ms_wait_cmds(word_lst);
 		ms_lstclear(&word_lst);
 		//ft_free_mat(mat);
 	}

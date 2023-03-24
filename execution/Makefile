@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = executor 
+NAME = executor
 
 SRCS = $(wildcard *.c)\
 	   ../parser/ms_parser.c \

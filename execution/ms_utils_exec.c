@@ -17,19 +17,17 @@ int	ms_bin_exec(t_word *node)
 	char		*cmd;
 	char		**mat;
 	extern char	**environ;
-	pid_t		pid;
 
 	cmd = ms_check_bin(node->word);
 	if (!cmd)
 		return (1);
-	pid = fork();
-	if (pid == 0)
+	node->pid = fork();
+	if (node->pid == 0)
 	{
 		mat = ms_create_mat_from_lst(node);
 		execve(cmd, mat, environ);
 		return (0);
 	}
-	waitpid(pid, NULL, 0);
 	free(cmd);
 	return (0);
 }
@@ -101,4 +99,17 @@ char	**ms_create_mat_from_lst(t_word *node)
 		node = node->next;
 	}
 	return (mat);
+}
+
+void	ms_wait_cmds(t_word *node)
+{
+	if (!node)
+		return ;
+	while (node)
+	{
+		if (node->pid)
+			waitpid(node->pid, NULL, 0);
+		node = node->next;
+	}
+	return ;
 }
