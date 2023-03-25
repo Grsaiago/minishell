@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 23:02:38 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/20 15:34:57 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/25 00:14:47 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	main(void)
 		if (ms_parser(line, &word_lst))
 			ft_putstr_fd("Error on parser\n", 3);
 		//debug_func(word_lst, mat);
-		ms_bin_exec(word_lst);
-		ms_wait_cmds(word_lst);
+		if (!ms_bin_exec(word_lst))
+			ms_wait_cmds(word_lst);
 		ms_lstclear(&word_lst);
 		//ft_free_mat(mat);
 	}

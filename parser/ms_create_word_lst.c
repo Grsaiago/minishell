@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:38:40 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/18 23:07:59 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/24 23:36:47 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ t_word	*ms_create_word_lst(char *line)
 	int		word_len;
 	t_word	*new_word;
 	t_word	*word_lst;
+	t_list	*env_lst;
 
+	if (!line)
+		return (NULL);
+	env_lst = ms_create_env_lst();
 	word_lst = NULL;
 	while (ft_isspace(*line))
 		line++;
@@ -25,6 +29,7 @@ t_word	*ms_create_word_lst(char *line)
 	{
 		word_len = get_word_len(line);
 		new_word = ms_lstnew(ft_substr(line, 0, word_len));
+		new_word->env_lst = env_lst;
 		ms_lstadd_back(&word_lst, new_word);
 		line += word_len;
 		while (ft_isspace(*line))
