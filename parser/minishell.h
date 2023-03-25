@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/19 22:30:05 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/24 23:36:46 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ typedef struct s_word
 {
 	char			*word;
 	unsigned int	flag;
-	struct s_word	*next;
 	int				fd_in;
 	int				fd_out;
 	pid_t			pid;
+	struct s_list	*env_lst;
+	struct s_word	*next;
 }	t_word;
 
 /* flags for words */
@@ -46,6 +47,7 @@ void	ms_lst_remove_if(t_word **head);
 int		ms_clean_words_and_init_flags_on_lst(t_word **node);
 void	ms_lst_remove_empty_word(t_word **head);
 int		ms_flag_word(t_word *node);
+t_list	*ms_create_env_lst(void);
 /* parse */
 int		ms_parser(char *line, t_word **word_lst);
 /* lexx */

@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:33:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/20 18:48:42 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/24 23:58:52 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	ms_wait_cmds(t_word *node)
 		return ;
 	while (node)
 	{
-		if (node->pid)
+		if (node->pid != 0)
 			waitpid(node->pid, NULL, 0);
 		node = node->next;
 	}

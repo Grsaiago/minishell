@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/20 18:49:01 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/25 00:14:29 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ typedef struct s_word
 {
 	char			*word;
 	unsigned int	flag;
-	struct s_word	*next;
 	int				fd_in;
 	int				fd_out;
 	pid_t			pid;
+	struct s_list	*env_lst;
+	struct s_word	*next;
 }	t_word;
 
 /* flags for words */

@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/20 18:49:01 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/25 00:36:42 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <string.h>
 # include <locale.h>
 # include <signal.h>
+# include <errno.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <readline/readline.h>
@@ -28,6 +29,10 @@ typedef struct s_word
 {
 	char			*word;
 	unsigned int	flag;
+	int				fd_in;
+	int				fd_out;
+	pid_t			pid;
+	struct s_list	*env_lst;
 	struct s_word	*next;
 }	t_word;
 
@@ -45,6 +50,7 @@ void	ms_lst_remove_if(t_word **head);
 int		ms_clean_words_and_init_flags_on_lst(t_word **node);
 void	ms_lst_remove_empty_word(t_word **head);
 int		ms_flag_word(t_word *node);
+t_list	*ms_create_env_lst(void);
 /* parse */
 int		ms_parser(char *line, t_word **word_lst);
 /* lexx */
