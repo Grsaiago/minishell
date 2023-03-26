@@ -6,19 +6,19 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:33:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/24 23:58:52 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/26 12:18:08 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ms_bin_exec(t_word *node)
+int	ms_bin_exec(t_word *node, t_list *env)
 {
 	char		*cmd;
 	char		**mat;
 	extern char	**environ;
 
-	cmd = ms_check_bin(node->word);
+	cmd = ms_check_bin(node->word, env);
 	if (!cmd)
 		return (1);
 	node->pid = fork();
@@ -32,7 +32,7 @@ int	ms_bin_exec(t_word *node)
 	return (0);
 }
 
-char	*ms_check_bin(char *cmd)
+char	*ms_check_bin(char *cmd, t_list *env)
 {
 	char	*path_cmd;
 	char	**path;
@@ -56,7 +56,7 @@ char	*ms_check_bin(char *cmd)
 	}
 	free(path_cmd);
 	i = -1;
-	path = ft_split(getenv("PATH"), ':');
+	path = ft_split(ms_getenv_lst(env, "PATH"), ':');
 	while (path[++i])
 	{
 		path_cmd = ft_strjoin(path[i], cmd, 0);
