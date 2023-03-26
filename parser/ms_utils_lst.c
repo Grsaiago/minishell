@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:50:10 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/24 23:59:41 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/26 12:10:26 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,19 +93,10 @@ void	ms_lstclear(t_word **lst)
 {
 	void	*aux;
 	t_word	*node;
-	t_list	*env_node;
 
 	if (!lst)
 		return ;
 	node = *lst;
-	env_node = node->env_lst;
-	while (env_node)
-	{
-		aux = env_node->next;
-		free(env_node->content);
-		free(env_node);
-		env_node = aux;
-	}
 	while (node)
 	{
 		aux = node->next;
