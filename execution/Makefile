@@ -6,7 +6,7 @@
 #    By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 23:00:31 by gsaiago           #+#    #+#              #
-#    Updated: 2023/03/24 23:44:10 by gsaiago          ###   ########.fr        #
+#    Updated: 2023/03/26 11:34:39 by gsaiago          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS = $(wildcard *.c)\
 	   ../parser/ms_utils_expand_env2.c \
 	   ../parser/ms_utils_remove_quotes.c \
 	   ../parser/ms_utils_lst.c \
+	   ../parser/ms_getenv_lst.c \
 	   ../libft/ft_split.c\
 
 CC = cc 

@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/25 00:36:42 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/26 11:51:03 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	ms_lst_remove_empty_word(t_word **head);
 int		ms_flag_word(t_word *node);
 t_list	*ms_create_env_lst(void);
 /* parse */
-int		ms_parser(char *line, t_word **word_lst);
+int		ms_parser(char *line, t_word **word_lst, t_list *env);
 /* lexx */
-t_word	*ms_create_word_lst(char *line);
+t_word	*ms_create_word_lst(char *line, t_list *env_lst);
 void	ms_word_lst_flag_init(t_word *word);
 int		ms_word_assign_flag(char *word);
 int		ms_ismeta(char *c);
@@ -63,6 +63,7 @@ int		ms_count_words(char *line);
 int		ms_find_next_quotes(char *line);
 int		ms_validate_quote_ammount(char *line);
 /* env expansion */
+char	*ms_getenv_lst(t_list *env_node, char *env);
 char	*ms_expand_env(char *line);
 int		ms_get_expanded_env_len(char *line);
 void	ms_expand_env_util(char *line, int i, int j, char *ret_line);

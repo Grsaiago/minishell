@@ -6,13 +6,13 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:42:31 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/19 22:30:47 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/26 11:51:15 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ms_parser(char *line, t_word **word_lst)
+int	ms_parser(char *line, t_word **word_lst, t_list *env)
 {
 	*word_lst = NULL;
 	if (ms_validate_quote_ammount(line))
@@ -21,7 +21,7 @@ int	ms_parser(char *line, t_word **word_lst)
 		free(line);
 		return (1);
 	}
-	*word_lst = ms_create_word_lst(line);
+	*word_lst = ms_create_word_lst(line, env);
 	if (!word_lst)
 		return (1);
 	if (ms_clean_words_and_init_flags_on_lst(word_lst))
