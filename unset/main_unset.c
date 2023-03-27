@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 23:02:38 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/27 18:05:19 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/27 19:42:31 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char 	**ms_create_mat_from_lst(t_word *node);
 int		ms_bin_exec(t_word *node, t_list *env);
 void	ms_wait_cmds(t_word *node);
 void	ms_delete_env(t_list **node, char *ref);
-int		ms_unset(t_word *node);
+int	ms_unset(t_word *node, t_list **env);
 
 void	debug_func(t_word *word_lst, char **mat)
 {
@@ -44,7 +44,7 @@ int	main(void)
 {
 	char	*line;
 	t_list	*env;
-	t_list	*aux;
+	t_list	*print_env;
 	t_word	*word_lst;
 
 	word_lst = NULL;
@@ -60,14 +60,14 @@ int	main(void)
 		}
 		if (ms_parser(line, &word_lst, env))
 			ft_putstr_fd("Error on parser\n", 3);
-		ms_unset(word_lst);
-		env = word_lst->next->env_lst;
-		while (env)
+		ms_unset(word_lst, &env);
+		printf("%p\n\n", env);
+		print_env = env;
+		while (print_env)
 		{
-			printf("%s\n", (char *)env->content);
-			env = env->next;
+			printf("%s\n", print_env->content);
+			print_env = print_env->next;
 		}
-		env = word_lst->next->env_lst;
 		ms_lstclear(&word_lst);
 	}
 	return (0);

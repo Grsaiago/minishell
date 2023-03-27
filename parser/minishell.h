@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/27 10:47:37 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/27 19:06:58 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_word
 	int				fd_in;
 	int				fd_out;
 	pid_t			pid;
+	struct s_word	*head;
 	struct s_list	*env_lst;
 	struct s_word	*next;
 }	t_word;
