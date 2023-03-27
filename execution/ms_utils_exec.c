@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:33:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/26 12:18:08 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/27 11:26:01 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ char	*ms_check_bin(char *cmd, t_list *env)
 		return (path_cmd);
 	}
 	free(path_cmd);
-	i = -1;
+	i = 0;
 	path = ft_split(ms_getenv_lst(env, "PATH"), ':');
-	while (path[++i])
+	while (path[i])
 	{
 		path_cmd = ft_strjoin(path[i], cmd, 0);
 		if (access(path_cmd, F_OK | X_OK) == 0)
@@ -67,6 +67,7 @@ char	*ms_check_bin(char *cmd, t_list *env)
 			return (path_cmd);
 		}
 		free(path_cmd);
+		i++;
 	}
 	free(cmd);
 	ft_free_mat(path);
