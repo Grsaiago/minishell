@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/26 12:25:25 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/27 10:47:37 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ int		ms_find_next_quotes(char *line);
 int		ms_validate_quote_ammount(char *line);
 /* env expansion */
 char	*ms_getenv_lst(t_list *env_node, char *env);
-char	*ms_expand_env(char *line);
-int		ms_get_expanded_env_len(char *line);
-void	ms_expand_env_util(char *line, int i, int j, char *ret_line);
-void	ms_expand_env_util2(char *line, char *ret_line, int *i, int *j);
-int		ms_get_len_after_expansion(char *line);
+char	*ms_expand_env(char *line, t_list *env);
+int		ms_get_expanded_env_len(char *line, t_list *env);
+void	ms_expand_env_util(char *line, int i, int j, char *ret_line, t_list *env);
+void	ms_expand_env_util2(char *line, char *ret_line, int *i, int *j, t_list *env);
+int		ms_get_len_after_expansion(char *line, t_list *env);
 int		ms_get_env_name_len(char *line);
 int		ms_validate_env_name(char *line);
 /* remove quotes */

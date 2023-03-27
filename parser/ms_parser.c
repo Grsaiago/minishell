@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:42:31 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/26 11:51:15 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/27 10:49:06 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ms_clean_words_and_init_flags_on_lst(t_word **lst)
 		if (node->word)
 		{
 			node->flag = ms_flag_word(node);
-			node->word = ms_expand_env(node->word);
+			node->word = ms_expand_env(node->word, node->env_lst);
 			node->word = ms_remove_quotes(node->word, 1);
 		}
 		node = node->next;
