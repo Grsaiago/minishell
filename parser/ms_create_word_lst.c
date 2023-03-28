@@ -6,11 +6,12 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:38:40 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/26 11:51:54 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/27 19:17:05 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+void	ms_head_init(t_word *head);
 
 t_word	*ms_create_word_lst(char *line, t_list *env_lst)
 {
@@ -33,18 +34,23 @@ t_word	*ms_create_word_lst(char *line, t_list *env_lst)
 		while (ft_isspace(*line))
 			line++;
 	}
+	ms_head_init(word_lst);
 	return (word_lst);
 }
 
-int	ms_word_assign_flag(char *word)
+void	ms_head_init(t_word *head)
 {
-	while (*word)
+	t_word	*aux;
+
+	if (!head)
+		return ;
+	aux = head;
+	while (aux)
 	{
-		if (*word == '>' || *word == '<')
-			return (1);
-		word++;
+		aux->head = head;
+		aux = aux->next;
 	}
-	return (0);
+	return ;
 }
 
 /*
