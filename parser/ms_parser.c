@@ -6,11 +6,13 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:42:31 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/27 10:49:06 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/29 15:07:10 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+int	ms_redirect_out(t_word *node);
+int	ms_do_redirections(t_word **word_lst);
 
 int	ms_parser(char *line, t_word **word_lst, t_list *env)
 {
@@ -19,13 +21,15 @@ int	ms_parser(char *line, t_word **word_lst, t_list *env)
 	{
 		printf("Syntax error: There is an unclosed quote\n");
 		free(line);
-		return (1);
+		return (-1);
 	}
 	*word_lst = ms_create_word_lst(line, env);
 	if (!word_lst)
-		return (1);
+		return (-1);
 	if (ms_clean_words_and_init_flags_on_lst(word_lst))
-		return (1);
+		return (-1);
+	if (ms_do_redirections(word_lst))
+		return (-1);
 	free(line);
 	return (0);
 }
@@ -35,7 +39,7 @@ int	ms_clean_words_and_init_flags_on_lst(t_word **lst)
 	t_word	*node;
 
 	if (!lst || !*lst)
-		return (1);
+		return (-1);
 	node = *lst;
 	while (node)
 	{

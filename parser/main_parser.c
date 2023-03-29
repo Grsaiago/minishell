@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/26 11:52:44 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/29 15:51:51 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	debug_func(t_word *word_lst)
 	printf ("Execução No: %d\n", exec_times);
 	while (word_lst)
 	{
-		printf("Node word > %s\nNode flag > %d\n", word_lst->word, word_lst->flag); //debug
+		printf("Node word > %s\nNode flag > %d\nNode fd_in > %d\nNode fd_out : %d\n", word_lst->word, word_lst->flag, word_lst->fd_in, word_lst->fd_out); //debug
 		printf("---------------\n");
 		word_lst = word_lst->next;
 	}

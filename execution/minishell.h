@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/27 19:07:34 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/29 14:56:18 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <locale.h>
 # include <signal.h>
 # include <errno.h>
+# include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <readline/readline.h>
@@ -37,13 +38,17 @@ typedef struct s_word
 	struct s_word	*next;
 }	t_word;
 
-/* flags for words */
-# define MS_WORD 1
-# define MS_PIPE 2
-# define MS_REDIRECT_IN 3
-# define MS_REDIRECT_OUT 4
-# define MS_HEREDOC 5
-# define MS_APPEND 6
+/* value for tokens */
+enum u_token
+{
+	MS_WORD = 1,
+	MS_PIPE = 2,
+	MS_REDIRECT_IN = 4,
+	MS_REDIRECT_OUT = 8,
+	MS_APPEND = 16,
+	MS_HEREDOC = 32,
+};
+
 /* lst */
 t_word	*ms_lstnew(void *word);
 void	ms_lstadd_back(t_word **lst, t_word *new);
