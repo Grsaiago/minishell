@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/30 21:12:04 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/31 18:13:09 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,48 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+/*
+union u_token
+{
+	struct s_word		*token_word;
+	struct s_pipe 		*token_pipe;
+	struct s_redirect	*token_redirect;
+	struct s_appen		*token_append;
+	struct s_heredoc	*token_heredoc;
+}	u_token;
+
+typedef struct s_pipe
+{
+	int				pipe[2];
+	struct s_node	*node;
+}	t_pipe;
+
+typedef struct s_node
+{
+	char			*word;
+	char			flag;
+	struct s_node	*next;
+	union u_token	*token;
+} t_node;
+
+typedef struct s_cmd
+{
+	int				fd_in;
+	int				fd_out;
+	pid_t			pid;
+	struct s_node	*head;
+	struct s_list	*env_lst;
+	struct s_node	*node;
+} t_cmd;
+*/
+
 typedef struct s_word
 {
 	char			*word;
 	unsigned int	flag;
 	int				fd_in;
 	int				fd_out;
+	int				pipe[2];
 	pid_t			pid;
 	struct s_word	*head;
 	struct s_list	*env_lst;
@@ -38,7 +74,7 @@ typedef struct s_word
 }	t_word;
 
 /* value for tokens */
-enum u_token
+enum e_token
 {
 	MS_WORD = 1,
 	MS_PIPE = 2,
