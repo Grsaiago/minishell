@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:33:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/29 14:38:36 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/30 22:48:50 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ int	ms_bin_exec(t_word *node, t_list *env)
 	if (!cmd)
 		return (1);
 	node->pid = fork();
+	int out = dup(STDOUT_FILENO);
 	if (node->pid == 0)
 	{
-		if(node->fd_out != 1)
-			dup2(1, node->fd_out);
+		if (node->fd_out != 1 && dup2(node->fd_out, STDOUT_FILENO) == 1)
+			write (out, "Deu certo\n", 10);
 		mat = ms_create_mat_from_lst(node);
 		execve(cmd, mat, environ);
 		return (0);

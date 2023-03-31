@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 23:02:38 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/29 13:57:44 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/30 21:25:38 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*ms_check_bin(char *cmd, t_list *env);
 char 	**ms_create_mat_from_lst(t_word *node);
 int		ms_bin_exec(t_word *node, t_list *env);
 void	ms_wait_cmds(t_word *node);
+int		ms_do_redirections(t_word **word_lst);
 
 void	debug_func(t_word *word_lst, char **mat)
 {
