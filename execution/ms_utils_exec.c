@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:33:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/01 16:27:18 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/04 05:34:17 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	ms_bin_exec(t_word *node, t_list *env)
 	{
 		if (node->fd_out != STDOUT_FILENO) 
 			dup2(node->fd_out, STDOUT_FILENO);
+		if (node->fd_in != STDIN_FILENO)
+			dup2(node->fd_in, STDIN_FILENO);
 		mat = ms_create_mat_from_lst(node);
 		execve(cmd, mat, environ);
 		return (0);
