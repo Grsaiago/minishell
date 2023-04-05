@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 23:02:38 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/30 21:25:38 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/05 13:42:33 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,22 @@ int		ms_bin_exec(t_word *node, t_list *env);
 void	ms_wait_cmds(t_word *node);
 int		ms_do_redirections(t_word **word_lst);
 
+void	debug_flag_enum(int num)
+{
+	if (num == MS_WORD)
+		printf("Node Flag > MS_WORD\n");
+	else if (num == MS_PIPE)
+		printf("Node Flag > MS_PIPE\n");
+	else if (num == MS_REDIRECT_IN)
+		printf("Node Flag > MS_REDIRECT_IN\n");
+	else if (num == MS_REDIRECT_OUT)
+		printf("Node Flag > MS_REDIRECT_OUT\n");
+	else if (num == MS_APPEND)
+		printf("Node Flag > MS_APPEND\n");
+	else if (num == MS_HEREDOC)
+		printf("Node Flag > MS_HEREDOC\n");
+	return ;
+}
 void	debug_func(t_word *word_lst, char **mat)
 {
 	static int	exec_times = 0;
@@ -28,7 +44,8 @@ void	debug_func(t_word *word_lst, char **mat)
 	while (word_lst)
 	{
 		printf("NODE %d\n", i);
-		printf("Node word > %s\nNode flag > %d\n", word_lst->word, word_lst->flag); //debug
+		printf("Node word > %s\n", word_lst->word); //debug
+		debug_flag_enum(word_lst->flag);
 		word_lst = word_lst->next;
 		printf("---------------\n");
 		i++;

@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/31 18:16:46 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/05 11:17:36 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ enum u_token
 	MS_PIPE = 2,
 	MS_REDIRECT_IN = 4,
 	MS_REDIRECT_OUT = 8,
-	MS_APPEND = 16,
-	MS_HEREDOC = 32,
+	MS_REDIRECT_FILE = 16,
+	MS_APPEND = 32,
+	MS_HEREDOC = 64,
 };
 
 /* lst */
@@ -55,7 +56,7 @@ void	ms_lstadd_back(t_word **lst, t_word *new);
 void	ms_lst_remove_if(t_word **head);
 int		ms_clean_words_and_init_flags_on_lst(t_word **node);
 void	ms_lst_remove_empty_word(t_word **head);
-int		ms_flag_word(t_word *node);
+int		ms_flag_word(char *word, int last_flag);
 t_list	*ms_create_env_lst(void);
 /* parse */
 int		ms_parser(char *line, t_word **word_lst, t_list *env);
