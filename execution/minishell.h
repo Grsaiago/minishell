@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/27 19:07:34 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/03/31 18:32:44 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,45 @@
 # include <locale.h>
 # include <signal.h>
 # include <errno.h>
-# include <sys/types.h>
+# include <fcntl.h>
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+/*
+union u_token
+{
+	struct s_word		*token_word;
+	struct s_pipe 		*token_pipe;
+	struct s_redirect	*token_redirect;
+	struct s_appen		*token_append;
+	struct s_heredoc	*token_heredoc;
+}	u_token;
+
+typedef struct s_pipe
+{
+	int				pipe[2];
+	struct s_node	*node;
+}	t_pipe;
+
+typedef struct s_node
+{
+	char			*word;
+	char			flag;
+	struct s_node	*next;
+	union u_token	*token;
+} t_node;
+
+typedef struct s_cmd
+{
+	int				fd_in;
+	int				fd_out;
+	pid_t			pid;
+	struct s_node	*head;
+	struct s_list	*env_lst;
+	struct s_node	*node;
+} t_cmd;
+*/
 
 typedef struct s_word
 {
@@ -31,19 +66,24 @@ typedef struct s_word
 	unsigned int	flag;
 	int				fd_in;
 	int				fd_out;
+	int				pipe[2];
 	pid_t			pid;
 	struct s_word	*head;
 	struct s_list	*env_lst;
 	struct s_word	*next;
 }	t_word;
 
-/* flags for words */
-# define MS_WORD 1
-# define MS_PIPE 2
-# define MS_REDIRECT_IN 3
-# define MS_REDIRECT_OUT 4
-# define MS_HEREDOC 5
-# define MS_APPEND 6
+/* value for tokens */
+enum e_token
+{
+	MS_WORD = 1,
+	MS_PIPE = 2,
+	MS_REDIRECT_IN = 4,
+	MS_REDIRECT_OUT = 8,
+	MS_APPEND = 16,
+	MS_HEREDOC = 32,
+};
+
 /* lst */
 t_word	*ms_lstnew(void *word);
 void	ms_lstadd_back(t_word **lst, t_word *new);

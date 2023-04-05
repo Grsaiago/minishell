@@ -6,13 +6,14 @@
 #    By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 17:37:55 by gsaiago           #+#    #+#              #
-#    Updated: 2023/02/26 20:42:17 by gsaiago          ###   ########.fr        #
+#    Updated: 2023/03/29 15:08:09 by gsaiago          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = parser
 
-SRCS = $(wildcard *.c)
+SRCS = $(wildcard *.c) \
+	   ../execution/ms_redirects.c \
 
 CC = cc 
 
