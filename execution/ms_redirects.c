@@ -6,12 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 12:26:04 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/04 22:44:24 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/05 10:59:49 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-void	ms_reattribute_in_out(t_word *node, int fd, int in_out);
 
 int	ms_redirect_in(t_word *node)
 {
@@ -24,8 +23,16 @@ int	ms_redirect_in(t_word *node)
 		{
 			if (!access(node->next->word, F_OK | R_OK))
 				head->fd_in = open(node->next->word, O_RDWR);
-			if (head->fd_in == -1)
+			else
+			{
+				printf("Error: No such file as '%s'\n", node->next->word);
 				return (-1);
+			}
+			if (head->fd_in == -1)
+			{
+				printf("Error: Failed to open '%s' file\n", node->next->word);
+				return (-1);
+			}
 		}
 		node = node->next;
 	}
