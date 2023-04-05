@@ -6,13 +6,15 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:42:31 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/29 15:07:10 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/04 23:10:53 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 int	ms_redirect_out(t_word *node);
 int	ms_do_redirections(t_word **word_lst);
+int	ms_analyse_syntax(t_word *word_lst);
+int	ms_analyze_pipe_syntax(t_word *word_lst);
 
 int	ms_parser(char *line, t_word **word_lst, t_list *env)
 {
@@ -27,6 +29,8 @@ int	ms_parser(char *line, t_word **word_lst, t_list *env)
 	if (!word_lst)
 		return (-1);
 	if (ms_clean_words_and_init_flags_on_lst(word_lst))
+		return (-1);
+	if (ms_analyse_syntax(*word_lst))
 		return (-1);
 	if (ms_do_redirections(word_lst))
 		return (-1);
@@ -74,5 +78,54 @@ int	ms_flag_word(t_word *node)
 		return (MS_REDIRECT_IN);
 	else if (ft_strncmp(node->word, ">", 2) == 0)
 		return (MS_REDIRECT_OUT);
+	/*
+	 * else if (last_flag == MS_REDIRECT_OUT || last_flag == MS_REDIRECT_IN)
+	 * 			return (MS_REDIR_FILE);
+	 */
 	return (MS_WORD);
+}
+
+int	ms_analyse_syntax(t_word *word_lst)
+{
+	t_word	*node;
+
+	if (!word_lst)
+		return (-1);
+	node = word_lst;
+	if (ms_analyze_pipe_syntax(word_lst))
+		return (-1);
+	while (42)
+	{
+		if (node->flag == MS_WORD)
+			break;
+		node = node->next;
+		if (!node)
+		{
+			printf("Syntax error: There is no command\n");
+			return (-1);
+		}
+	}
+	return (0);
+}
+
+int	ms_analyze_pipe_syntax(t_word *word_lst)
+{
+	t_word	*node;
+	int		last_flag;
+
+	if (!word_lst)
+		return (-1);
+	node = word_lst;
+	last_flag = MS_PIPE;
+	while (node)
+	{
+		if (last_flag == MS_PIPE && node->flag == MS_PIPE)
+		{
+			printf("Syntax error: Incorrect use of pipes\n");
+			return (-1);
+		}
+		last_flag = node->flag;
+		node = node->next;
+	}
+	return (0);
 }
