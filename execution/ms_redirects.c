@@ -6,14 +6,14 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 12:26:04 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/04 05:36:09 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/04 22:44:24 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 void	ms_reattribute_in_out(t_word *node, int fd, int in_out);
 
-int	ms_redirect_cmd_in(t_word *node)
+int	ms_redirect_in(t_word *node)
 {
 	t_word	*head;
 
@@ -25,17 +25,14 @@ int	ms_redirect_cmd_in(t_word *node)
 			if (!access(node->next->word, F_OK | R_OK))
 				head->fd_in = open(node->next->word, O_RDWR);
 			if (head->fd_in == -1)
-			{
-				//print erro;
 				return (-1);
-			}
 		}
 		node = node->next;
 	}
 	return (0);
 }
 
-int	ms_redirect_cmd_out(t_word *node)
+int	ms_redirect_out(t_word *node)
 {
 	t_word	*head;
 
@@ -48,10 +45,7 @@ int	ms_redirect_cmd_out(t_word *node)
 				close(head->fd_out);
 			head->fd_out = open(node->next->word, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 			if (head->fd_out == -1)
-			{
-				//print erro;
 				return (-1);
-			}
 		}
 		node = node->next;
 	}
@@ -69,7 +63,7 @@ int	ms_do_redirections(t_word **word_lst)
 	node = *word_lst;
 	while (node)
 	{
-		if (ms_redirect_cmd_in(node) || ms_redirect_cmd_out(node))
+		if (ms_redirect_in(node) || ms_redirect_out(node))
 			return (-1);
 		while (node && node->flag != MS_PIPE)
 			node = node->next;
