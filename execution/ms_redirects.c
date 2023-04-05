@@ -52,7 +52,10 @@ int	ms_redirect_out(t_word *node)
 				close(head->fd_out);
 			head->fd_out = open(node->next->word, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 			if (head->fd_out == -1)
+			{
+				//print erro;
 				return (-1);
+			}
 		}
 		node = node->next;
 	}
