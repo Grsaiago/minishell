@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 19:13:04 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/06/15 21:14:17 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/05 17:16:30 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	unsigned int	i;
 
 	i = 0;
+	if (!s1 || !s2)
+		return (-1);
 	while ((s1[i] || s2[i]) && i < n)
 	{
 		if (s1[i] != s2[i])
