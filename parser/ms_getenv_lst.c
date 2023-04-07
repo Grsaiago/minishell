@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 10:50:34 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/27 11:03:34 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/07 18:05:13 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ char	*ms_getenv_lst(t_list *env_node, char *env)
 		free(env_key);
 		env_node = env_node->next;
 	}
+	if (!env_node)
+		return (NULL);
 	if (env_line)
 		env_line = ft_strchr(env_line, '=') + 1;
 	return (env_line);
