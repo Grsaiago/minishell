@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/05 13:49:00 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/07 17:47:54 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,34 @@ void	debug_func(t_word *word_lst)
 	return ;
 }
 
-/* main test */
+#ifdef STEP
+int	main(void)
+{
+	char	*line;
+	t_list	*env_lst;
+
+	env_lst = ms_create_env_lst();
+	while (42)
+	{
+		line = readline("$> ");
+		if (!ft_strncmp(line, "q", 2))
+		{
+			free(line);
+			ft_lstclear(&env_lst, free);
+			return (0);
+		}
+		line = ms_expand_env(line, env_lst);
+		printf("Line after expand_env > %s\n", line);
+		line = ms_remove_quotes(line, 1);
+		printf("Line after ms_remove_quotes > %s\n", line);
+		free(line);
+	}
+	return (0);
+}
+
+#endif
+
+#ifdef MAIN
 int	main(void)
 {
 	char	*line;
@@ -72,3 +99,5 @@ int	main(void)
 	}
 	return (0);
 }
+
+#endif
