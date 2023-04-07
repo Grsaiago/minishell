@@ -51,7 +51,7 @@ int	ms_redirect_out(t_word *node)
 	t_word	*head;
 
 	head = node;
-	while (head->flag != MS_WORD)
+  while (head->flag != MS_WORD)
 		head = head->next;
 	while (node && node->flag != MS_PIPE) 
 	{
