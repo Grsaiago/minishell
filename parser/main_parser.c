@@ -6,11 +6,30 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/29 15:51:51 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/05 13:49:00 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	debug_flag_enum(int num)
+{
+	if (num == MS_WORD)
+		printf("Node Flag > MS_WORD\n");
+	else if (num == MS_PIPE)
+		printf("Node Flag > MS_PIPE\n");
+	else if (num == MS_REDIRECT_IN)
+		printf("Node Flag > MS_REDIRECT_IN\n");
+	else if (num == MS_REDIRECT_OUT)
+		printf("Node Flag > MS_REDIRECT_OUT\n");
+	else if (num == MS_REDIRECT_FILE)
+		printf("Node Flag > MS_REDIRECT_FILE\n");
+	else if (num == MS_APPEND)
+		printf("Node Flag > MS_APPEND\n");
+	else if (num == MS_HEREDOC)
+		printf("Node Flag > MS_HEREDOC\n");
+	return ;
+}
 
 void	debug_func(t_word *word_lst)
 {
@@ -19,33 +38,14 @@ void	debug_func(t_word *word_lst)
 	printf ("Execução No: %d\n", exec_times);
 	while (word_lst)
 	{
-		printf("Node word > %s\nNode flag > %d\nNode fd_in > %d\nNode fd_out : %d\n", word_lst->word, word_lst->flag, word_lst->fd_in, word_lst->fd_out); //debug
+		debug_flag_enum(word_lst->flag);
+		printf("Node word > %s\nNode fd_in > %d\nNode fd_out : %d\n", word_lst->word, word_lst->fd_in, word_lst->fd_out); //debug
 		printf("---------------\n");
 		word_lst = word_lst->next;
 	}
 	exec_times++;
 	return ;
 }
-
-/* test for variable expansion
-int	main(void)
-{
-	char	*line;
-
-	while (42)
-	{
-		line = readline("$> ");
-		if (!ft_strncmp(line, "q", 2))
-		{
-			free(line);
-			return (0);
-		}
-		printf("Lenght da linha > %ld\nRetorno da ms_get_len_after_expansion > %d\n", ft_strlen(line), ms_get_len_after_expansion(line));
-		free(line);
-	}
-	return (0);
-}
-*/
 
 /* main test */
 int	main(void)
@@ -62,35 +62,13 @@ int	main(void)
 		if (!ft_strncmp(line, "q", 2))
 		{
 			free(line);
+			ft_lstclear(&env_lst, free);
 			return (0);
 		}
 		if (ms_parser(line, &word_lst, env_lst))
-			ft_putstr_fd("Error on parser\n", 3);
+			printf("Error on parser\n");
 		debug_func(word_lst);
 		ms_lstclear(&word_lst);
 	}
 	return (0);
 }
-
-/*
-int	main(void)
-{
-	char	*line;
-
-	while (42)
-	{
-		line = readline("$> ");
-		if (!ft_strncmp(line, "q", 2))
-		{
-			free(line);
-			return (0);
-		}
-		line = ms_expand_env(line);
-		printf("line depois de env exp > %s\n", line); // debug
-		line = ms_remove_quotes(line, 1);
-		printf("line depois de remove quotes> %s\n", line); // debug
-		free(line);
-	}
-	return (0);
-}
-*/
