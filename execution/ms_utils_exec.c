@@ -6,21 +6,21 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:33:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/04 05:34:17 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/07 15:26:13 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ms_bin_exec(t_word *node, t_list *env)
+int	ms_bin_exec(t_word *node, t_list *env_lst)
 {
 	char		*cmd;
 	char		**mat;
-	extern char	**environ;
+	char		**env_mat;
 
-	cmd = ms_check_bin(node->word, env);
+	cmd = ms_check_bin(node->word, env_lst);
 	if (!cmd)
-		return (1);
+		return (-1);
 	node->pid = fork();
 	if (node->pid == 0)
 	{
@@ -28,8 +28,9 @@ int	ms_bin_exec(t_word *node, t_list *env)
 			dup2(node->fd_out, STDOUT_FILENO);
 		if (node->fd_in != STDIN_FILENO)
 			dup2(node->fd_in, STDIN_FILENO);
-		mat = ms_create_mat_from_lst(node);
-		execve(cmd, mat, environ);
+		mat = ms_get_cmd_mat_from_node(node);
+		env_mat = ft_lsttochrmat(env_lst);
+		execve(cmd, mat, env_mat);
 		return (0);
 	}
 	free(cmd);
@@ -78,7 +79,7 @@ char	*ms_check_bin(char *cmd, t_list *env)
 	return (NULL);
 }
 
-char	**ms_create_mat_from_lst(t_word *node)
+char	**ms_get_cmd_mat_from_node(t_word *node)
 {
 	t_word				*aux;
 	char				**mat;
