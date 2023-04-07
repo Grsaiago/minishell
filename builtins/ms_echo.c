@@ -1,25 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ms_echo.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/07 16:20:44 by gsaiago           #+#    #+#             */
+/*   Updated: 2023/04/07 16:20:45 by gsaiago          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int	ms_echo(int ac, char **av)
+int	ms_echo(t_word *node)
 {
-	int	newline;
-	int	i;
+	uint8_t	newline;
 
 	newline = 1;
-	i = 1;
-	if (ac > 2)
+	if (node->next)
 	{
-		if (!ft_strncmp(av[1], "-n", 3))
+		if (!ft_strncmp(node->next->word, "-n", 3))
 		{
 			newline = 0;
-			i++;
+			node = node->next;
 		}
-		while (av[i])
+		while (node && node->flag != MS_PIPE)
 		{
-			printf("%s", av[i]);
-			i++;
-			if (av[i])
-				printf(" ");
+			ft_putstr_fd(node->word, node->fd_out);
+			node = node->next;
+			if (node && node->flag != MS_PIPE)
+				ft_putstr_fd(" ", node->fd_out);
 		}
 	}
 	if (newline)

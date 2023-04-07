@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:20:19 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/07 15:43:56 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/07 17:03:09 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ms_export(t_word *node)
 	i = 1;
 	while (av[i])
 	{
-		if (ft_strchr(av[i], '='))
+		if (av[i][0] != '=' && ft_strchr(av[i], '='))
 		{
 			env_name = ft_substr(av[i], 0, ft_strchr(av[i], '=') - av[i]);
 			env_node = ms_getenv_node(node->env_lst, env_name);

@@ -6,24 +6,57 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 23:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/24 11:34:49 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/07 17:03:08 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ms_cd(int ac, char **av)
+int	ms_cd(t_word *node)
 {
-	if (ac > 2)
+	char	*pwd;
+
+	if (node->next && node->next->next->flag != MS_WORD)
 	{
-		printf("minishell: cd: Too many arguments\n");
-		// modificar a global de erro
-		return ;
+		ft_putstr_fd("minishell: cd: Too many arguments\n", node->fd_out);
+		return (1);
 	}
-	if (chdir(av[1]) == -1 && errno == ENOENT)
-		printf("minishell: cd: No such file or directory\n");
-	return ;
+	pwd = getcwd(NULL, 0);
+	if (chdir(node->next->word) == -1)
+	{
+		ft_putstr_fd("minishell: cd: no such file or dir\n", node->fd_out);
+		free(pwd);
+		return (1);
+	}
+	if (ms_update_env(node->env_lst, "OLDPWD=", pwd) != 0)
+		return (1);
+	free(pwd);
+	pwd = getcwd(NULL, 0);
+	if (ms_update_env(node->env_lst, "PWD=", pwd) != 0)
+		return (1);
+	free(pwd);
+	return (0);
 }
+
+int	ms_update_env(t_list *env_lst, char *ref, char *newvalue)
+{
+	while (env_lst)
+	{
+		if (ft_strncmp(ref, env_lst->content, ft_strlen(ref) == 0))
+		{
+			free(env_lst->content);
+			env_lst->content = ft_strjoin(ref, newvalue, 0);
+			if (!env_lst->content)
+				return (1);
+		}
+		env_lst = env_lst->next;
+	}
+	return (0);
+}
+
+/* IMPLEMENT
+ * change the ms_export to be able to update the PWD var in ENV
+ */
 
 /*
 int	ms_cd_go_back_one_dir(void)
