@@ -75,6 +75,7 @@ int	main(void)
 #endif
 
 #ifdef MAIN
+
 int	main(void)
 {
 	char	*line;

@@ -11,7 +11,9 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 int	ms_heredoc(t_word *node);
+
 
 int	ms_redirect_in(t_word *node)
 {
@@ -51,7 +53,7 @@ int	ms_redirect_out(t_word *node)
 	t_word	*head;
 
 	head = node;
-	while (head->flag != MS_WORD)
+	while (head && head->flag != MS_WORD && head->flag != MS_PIPE)
 		head = head->next;
 	while (node && node->flag != MS_PIPE)
 	{
@@ -91,7 +93,7 @@ int	ms_do_redirections(t_word **word_lst)
 	return (error);
 }
 
-int	ms_heredoc(t_word *node)
+int	ms_heredoc(t_word* node)
 {
 	int		fd[2];
 	char	*line;
