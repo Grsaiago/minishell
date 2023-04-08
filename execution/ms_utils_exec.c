@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:33:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/07 15:26:13 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/08 14:45:38 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ms_bin_exec(t_word *node, t_list *env_lst)
 	node->pid = fork();
 	if (node->pid == 0)
 	{
-		if (node->fd_out != STDOUT_FILENO) 
+		if (node->fd_out != STDOUT_FILENO)
 			dup2(node->fd_out, STDOUT_FILENO);
 		if (node->fd_in != STDIN_FILENO)
 			dup2(node->fd_in, STDIN_FILENO);

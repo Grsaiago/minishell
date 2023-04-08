@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_utils_remove_quotes.c                           :+:      :+:    :+:   */
+/*   ms_remove_quotes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:04:39 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/18 23:06:44 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/08 14:44:34 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	ms_null_start_end_quotes(char *line);
 
 char	*ms_remove_quotes(char *line, int flag)
 {
@@ -40,7 +42,7 @@ char	*ms_remove_quotes(char *line, int flag)
 	return (ret_word);
 }
 
-void	ms_null_start_end_quotes(char *line)
+static void	ms_null_start_end_quotes(char *line)
 {
 	int	next_quotes;
 

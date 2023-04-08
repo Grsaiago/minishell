@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:50:10 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/26 12:10:26 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/08 14:40:20 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,68 +46,6 @@ void	ms_lstadd_back(t_word **lst, t_word *new)
 	return ;
 }
 
-void	ms_lst_remove_if(t_word **head)
-{
-	t_word	*node;
-
-	if (!head || !*head)
-		return ;
-	node = *head;
-	if (node->flag)
-	{
-		*head = node->next;
-		free(node->word);
-		free(node);
-		ms_lst_remove_if(head);
-	}
-	node = *head;
-	if (!head || !*head)
-		return ;
-	ms_lst_remove_if(&node->next);
-	return ;
-}
-
-void	ms_lst_remove_empty_word(t_word **head)
-{
-	t_word	*node;
-
-	if (!head || !*head)
-		return ;
-	node = *head;
-	if (!node->word || !node->word[0])
-	{
-		*head = node->next;
-		if (node->word)
-			free(node->word);
-		free(node);
-		ms_lst_remove_if(head);
-	}
-	node = *head;
-	if (!head || !*head)
-		return ;
-	ms_lst_remove_empty_word(&node->next);
-	return ;
-}
-
-void	ms_lstclear(t_word **lst)
-{
-	void	*aux;
-	t_word	*node;
-
-	if (!lst)
-		return ;
-	node = *lst;
-	while (node)
-	{
-		aux = node->next;
-		free(node->word);
-		free(node);
-		node = aux;
-	}
-	*lst = NULL;
-	return ;
-}
-
 t_list	*ms_create_env_lst(void)
 {
 	extern char	**environ;
@@ -130,17 +68,3 @@ t_list	*ms_create_env_lst(void)
 	}
 	return (head);
 }
-
-/*
-void	ms_word_lst_flag_init(t_word *word)
-{
-	while (word)
-	{
-		if (ms_word_assign_flag(word->word))
-			word->flag = 1;
-	//	word->word = ms_unquote_words(word->word); // JUST FOR TESTING
-		word = word->next;
-	}
-	return ;
-}
-*/

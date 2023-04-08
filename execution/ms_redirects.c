@@ -6,12 +6,12 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 12:26:04 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/05 17:32:32 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/08 14:48:43 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-int	ms_heredoc(t_word* node);
+int	ms_heredoc(t_word *node);
 
 int	ms_redirect_in(t_word *node)
 {
@@ -51,15 +51,16 @@ int	ms_redirect_out(t_word *node)
 	t_word	*head;
 
 	head = node;
-  while (head->flag != MS_WORD)
+	while (head->flag != MS_WORD)
 		head = head->next;
-	while (node && node->flag != MS_PIPE) 
+	while (node && node->flag != MS_PIPE)
 	{
 		if (node->flag == MS_REDIRECT_OUT)
 		{
 			if (head->fd_out != STDOUT_FILENO)
 				close(head->fd_out);
-			head->fd_out = open(node->next->word, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+			head->fd_out = open(node->next->word,
+					O_WRONLY | O_CREAT | O_TRUNC, 0777);
 			if (head->fd_out == -1)
 				return (-1);
 		}
@@ -90,7 +91,7 @@ int	ms_do_redirections(t_word **word_lst)
 	return (error);
 }
 
-int	ms_heredoc(t_word* node)
+int	ms_heredoc(t_word *node)
 {
 	int		fd[2];
 	char	*line;

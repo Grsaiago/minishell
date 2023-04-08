@@ -6,11 +6,12 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:42:31 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/07 19:35:50 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/08 14:44:18 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 int	ms_redirect_out(t_word *node);
 int	ms_do_redirections(t_word **word_lst);
 int	ms_analyse_syntax(t_word *word_lst);
@@ -29,7 +30,7 @@ int	ms_parser(char *line, t_word **word_lst, t_list *env)
 	*word_lst = ms_create_word_lst(line, env);
 	if (!word_lst)
 		return (-1);
-	if (ms_clean_words_and_init_flags_on_lst(word_lst))
+	if (ms_analyse_lexx(word_lst))
 		return (-1);
 	if (ms_analyse_syntax(*word_lst))
 		return (-1);
@@ -39,7 +40,7 @@ int	ms_parser(char *line, t_word **word_lst, t_list *env)
 	return (0);
 }
 
-int	ms_clean_words_and_init_flags_on_lst(t_word **lst)
+int	ms_analyse_lexx(t_word **lst)
 {
 	t_word	*node;
 	int		last_flag;
@@ -63,25 +64,6 @@ int	ms_clean_words_and_init_flags_on_lst(t_word **lst)
 	return (0);
 }
 
-int	ms_flag_word(char *word, int last_flag)
-{
-	if (!word)
-		return (-1);
-	if (ft_strncmp(word, "|", 2) == 0)
-		return (MS_PIPE);
-	else if (ft_strncmp(word, "<<", 3) == 0)
-		return (MS_HEREDOC);
-	else if (ft_strncmp(word, ">>", 3) == 0)
-		return (MS_APPEND);
-	else if (ft_strncmp(word, "<", 2) == 0)
-		return (MS_REDIRECT_IN);
-	else if (ft_strncmp(word, ">", 2) == 0)
-		return (MS_REDIRECT_OUT);
-	else if (last_flag == MS_REDIRECT_OUT || last_flag == MS_REDIRECT_IN)
-		return (MS_REDIRECT_FILE);
-	return (MS_WORD);
-}
-
 int	ms_analyse_syntax(t_word *word_lst)
 {
 	if (!word_lst)
@@ -90,51 +72,5 @@ int	ms_analyse_syntax(t_word *word_lst)
 		return (-1);
 	else if (ms_analyze_redirect_syntax(word_lst))
 		return (-1);
-	return (0);
-}
-
-int	ms_analyze_pipe_syntax(t_word *word_lst)
-{
-	t_word	*node;
-	int		last_flag;
-
-	if (!word_lst)
-		return (-1);
-	node = word_lst;
-	last_flag = MS_PIPE;
-	while (node)
-	{
-		if ((last_flag == MS_PIPE && node->flag == MS_PIPE)
-				|| (!node->next && node->flag == MS_PIPE))
-		{
-			printf("Syntax error: Incorrect use of pipes\n");
-			return (-1);
-		}
-		last_flag = node->flag;
-		node = node->next;
-	}
-	return (0);
-}
-
-int	ms_analyze_redirect_syntax(t_word *word_lst)
-{
-	t_word	*node;
-
-	if (!word_lst)
-		return (-1);
-	node = word_lst;
-	while (node)
-	{
-		if (node->flag == MS_REDIRECT_IN || node->flag == MS_REDIRECT_OUT
-				|| node->flag == MS_HEREDOC || node->flag == MS_APPEND)
-		{
-			if (!node->next || node->next->flag != MS_REDIRECT_FILE)
-			{
-				printf("Syntax error: error on '%s'\n", node->word);
-				return (-1);
-			}
-		}
-		node = node->next;
-	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/07 17:05:21 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/08 14:44:55 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ enum u_token
 t_word	*ms_lstnew(void *word);
 void	ms_lstadd_back(t_word **lst, t_word *new);
 void	ms_lst_remove_if(t_word **head);
-int		ms_clean_words_and_init_flags_on_lst(t_word **node);
+int		ms_analyse_lexx(t_word **node);
 void	ms_lst_remove_empty_word(t_word **head);
 int		ms_flag_word(t_word *node);
 t_list	*ms_create_env_lst(void);
@@ -80,7 +80,6 @@ int		ms_get_env_name_len(char *line);
 int		ms_validate_env_name(char *line);
 /* remove quotes */
 char	*ms_remove_quotes(char *line, int flag);
-void	ms_null_start_end_quotes(char *line);
 /* builtins */
 int		ms_cd(t_word *node);
 int		ms_update_env(t_list *env_lst, char *ref, char *newvalue);

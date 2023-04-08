@@ -6,12 +6,13 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:38:40 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/27 19:17:05 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/08 14:43:57 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-void	ms_head_init(t_word *head);
+
+static void	ms_head_init(t_word *head);
 
 t_word	*ms_create_word_lst(char *line, t_list *env_lst)
 {
@@ -38,7 +39,59 @@ t_word	*ms_create_word_lst(char *line, t_list *env_lst)
 	return (word_lst);
 }
 
-void	ms_head_init(t_word *head)
+int	get_word_len(char *line)
+{
+	int	word_len;
+
+	if (ms_ismeta(line))
+		return (ms_ismeta(line));
+	word_len = 0;
+	while (*line && !ms_ismeta(line) && !ft_isspace(*line))
+	{
+		if (*line == '\'' || *line == '\"')
+		{
+			word_len += ms_find_next_quotes(line) + 1;
+			line += ms_find_next_quotes(line) + 1;
+		}
+		else
+		{
+			word_len++;
+			line++;
+		}
+	}
+	return (word_len);
+}
+
+int	ms_ismeta(char *c)
+{
+	if ((c[0] == '<' && c[1] == '<') || (c[0] == '>' && c[1] == '>'))
+		return (2);
+	else if (*c == '|' || *c == '>' || *c == '<')
+		return (1);
+	return (0);
+}
+
+int	ms_find_next_quotes(char *line)
+{
+	char	quote;
+	int		next_quote_distance;
+
+	if (!line || !*line)
+		return (0);
+	quote = *line;
+	line++;
+	next_quote_distance = 1;
+	while (*line != quote)
+	{
+		if (!*line)
+			return (-1);
+		next_quote_distance++;
+		line++;
+	}
+	return (next_quote_distance);
+}
+
+static void	ms_head_init(t_word *head)
 {
 	t_word	*aux;
 

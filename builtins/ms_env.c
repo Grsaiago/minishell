@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 00:42:32 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/25 00:45:02 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/08 14:50:02 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ms_env(t_word *node)
 
 	if (node)
 		env = node->env_lst;
-	else 
+	else
 		env = NULL;
 	while (env)
 	{
