@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/08 15:54:31 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/08 17:07:47 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 # include "../libft/libft.h"
 # include <unistd.h>
+# include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -85,6 +86,17 @@ enum e_token
 	MS_HEREDOC = 64,
 };
 
+enum e_builtins
+{
+	MS_ECHO = 256,
+	MS_CD = 512,
+	MS_PWD = 1024,
+	MS_EXPORT = 2048,
+	MS_UNSET = 4096,
+	MS_ENV = 8192,
+	MS_EXIT = 16384,
+};
+
 /* lst */
 t_word	*ms_lstnew(void *word);
 void	ms_lstadd_back(t_word **lst, t_word *new);
@@ -118,7 +130,7 @@ char	*ms_remove_quotes(char *line, int flag);
 /* exec*/
 char	*ms_check_bin(char *cmd, t_list *env);
 char	**ms_get_cmd_mat_from_node(t_word *node);
-int		ms_bin_exec(t_word *node, t_list *env);
+int		ms_bin_exec(t_word *node);
 /* free */
 void	ms_lstclear(t_word **lst);
 #endif

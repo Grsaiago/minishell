@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/08 15:51:52 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/08 16:55:32 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_word
 }	t_word;
 
 /* value for tokens */
-enum u_token
+enum e_token
 {
 	MS_WORD = 1,
 	MS_PIPE = 2,
@@ -83,6 +83,17 @@ enum u_token
 	MS_REDIRECT_OUT = 8,
 	MS_APPEND = 16,
 	MS_HEREDOC = 32,
+};
+
+enum e_builtins
+{
+	MS_ECHO = 256,
+	MS_CD = 512,
+	MS_PWD = 1024,
+	MS_EXPORT = 2048,
+	MS_UNSET = 4096,
+	MS_ENV = 8192,
+	MS_EXIT = 16384,
 };
 
 /* lst */

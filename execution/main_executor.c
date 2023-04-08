@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 23:02:38 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/05 13:42:33 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/08 18:11:11 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char 	**create_mat_from_lst(t_word *node);
 char	*ms_check_bin(char *cmd, t_list *env);
 char 	**ms_create_mat_from_lst(t_word *node);
-int		ms_bin_exec(t_word *node, t_list *env);
 void	ms_wait_cmds(t_word *node);
 int		ms_do_redirections(t_word **word_lst);
 
@@ -75,7 +74,7 @@ int	main(void)
 		}
 		if (ms_parser(line, &word_lst, env))
 			ft_putstr_fd("Error on parser\n", 3);
-		if (!ms_bin_exec(word_lst, env))
+		if (!ms_bin_exec(word_lst))
 			ms_wait_cmds(word_lst);
 		ms_lstclear(&word_lst);
 	}
