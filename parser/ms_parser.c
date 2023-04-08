@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:42:31 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/05 13:52:29 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/07 19:35:50 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,11 +125,12 @@ int	ms_analyze_redirect_syntax(t_word *word_lst)
 	node = word_lst;
 	while (node)
 	{
-		if (node->flag == MS_REDIRECT_IN || node->flag == MS_REDIRECT_OUT)
+		if (node->flag == MS_REDIRECT_IN || node->flag == MS_REDIRECT_OUT
+				|| node->flag == MS_HEREDOC || node->flag == MS_APPEND)
 		{
 			if (!node->next || node->next->flag != MS_REDIRECT_FILE)
 			{
-				printf("Syntax error: error on '>'\n");
+				printf("Syntax error: error on '%s'\n", node->word);
 				return (-1);
 			}
 		}

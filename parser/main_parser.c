@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/07 17:47:54 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/07 19:38:32 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,12 @@ int	main(void)
 			return (0);
 		}
 		if (ms_parser(line, &word_lst, env_lst))
+		{
+			free(line);
 			printf("Error on parser\n");
-		debug_func(word_lst);
+		}
+		else
+			debug_func(word_lst);
 		ms_lstclear(&word_lst);
 	}
 	return (0);
