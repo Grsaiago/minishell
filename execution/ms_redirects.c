@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 12:26:04 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/08 18:06:01 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/08 18:35:31 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,24 +71,11 @@ int	ms_redirect_out(t_word *node)
 	return (0);
 }
 
-int	ms_do_redirections(t_word **word_lst)
+int	ms_do_redirections(t_word *node)
 {
-	t_word	*node;
-	int		error;
-
-	if (!word_lst || !*word_lst)
-		return (-1);
-	error = 0;
-	node = *word_lst;
-	while (node)
-	{
-		if (ms_redirect_in(node) || ms_redirect_out(node))
+	if (!node)
+		return (0);
+	if (ms_redirect_in(node) || ms_redirect_out(node))
 			return (-1);
-		while (node && node->flag != MS_PIPE)
-			node = node->next;
-		if (node)
-			node = node->next;
-	}
-	//clear_redirects
-	return (error);
+	return (0);
 }

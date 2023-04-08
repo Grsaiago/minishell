@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:40:13 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/08 18:22:16 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/08 18:41:38 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,21 @@ int	ms_executor(t_word **lst)
 	flag = 1;
 	while (node)
 	{
-		if (ms_do_redirections(&node) == 1)
+		if (ms_do_redirections(&node) != 0)
 			return (1);
-		//clean_sentence_redirections(node, lst flag);
-		//flag = 0;
+		// reatribuir os node->head se o primeiro nó (aka nó atual por conta da flag) != node->head
+		// clean_sentence_redirections(node, lst, &flag);
+		// isso aqui em baixo vai ficar no final da clen_sentence_redirections
+		// if (flag && node != *lst)
+		// {
+		//	node = *lst;
+		//	while (node)
+		//	{
+		//		node->head = *lst;
+		//		node = node->next;
+		//	}
+		//	flag = 0;
+		// }
 		builtin = is_builtin(node->word);
 		if (!builtin)
 			ms_bin_exec(node);
