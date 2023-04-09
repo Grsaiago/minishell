@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/27 19:08:01 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/07 16:51:46 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 # define MINISHELL_H
 # include "../libft/libft.h"
 # include <unistd.h>
+# include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <locale.h>
 # include <signal.h>
 # include <errno.h>
+# include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <readline/readline.h>
@@ -37,13 +39,17 @@ typedef struct s_word
 	struct s_word	*next;
 }	t_word;
 
-/* flags for words */
-# define MS_WORD 1
-# define MS_PIPE 2
-# define MS_REDIRECT_IN 3
-# define MS_REDIRECT_OUT 4
-# define MS_HEREDOC 5
-# define MS_APPEND 6
+/* value for tokens */
+enum u_token
+{
+	MS_WORD = 1,
+	MS_PIPE = 2,
+	MS_REDIRECT_IN = 4,
+	MS_REDIRECT_OUT = 8,
+	MS_APPEND = 16,
+	MS_HEREDOC = 32,
+};
+
 /* lst */
 t_word	*ms_lstnew(void *word);
 void	ms_lstadd_back(t_word **lst, t_word *new);
@@ -75,9 +81,18 @@ int		ms_validate_env_name(char *line);
 /* remove quotes */
 char	*ms_remove_quotes(char *line, int flag);
 void	ms_null_start_end_quotes(char *line);
+/* builtins */
+int		ms_cd(t_word *node);
+int		ms_update_env(t_list *env_lst, char *ref, char *newvalue);
+int		ms_echo(t_word *node);
+int		ms_env(t_word *node);
+int		ms_export(t_word *node);
+int		ms_pwd(t_word *node);
+int		ms_unset(t_word *node, t_list **env);
+void	ms_delete_env(t_list **node, char *ref);
 /* exec*/
 char	*ms_check_bin(char *cmd, t_list *env);
-char	**ms_create_mat_from_lst(t_word *node);
+char	**ms_get_cmd_mat_from_node(t_word *node);
 int		ms_bin_exec(t_word *node, t_list *env);
 /* free */
 void	ms_lstclear(t_word **lst);

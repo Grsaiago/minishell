@@ -6,7 +6,7 @@
 #    By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/31 18:35:35 by gsaiago           #+#    #+#              #
-#    Updated: 2023/03/22 23:13:27 by gsaiago          ###   ########.fr        #
+#    Updated: 2023/04/07 15:15:24 by gsaiago          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRCS =  ft_isalpha.c\
 		ft_putnbr.c\
 		ft_putchar.c\
 		ft_free_mat.c\
+		ft_lsttochrmat.c\
 		ft_mat_size.c\
 		smartptr.c\
 

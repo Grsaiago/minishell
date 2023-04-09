@@ -6,26 +6,29 @@
 #    By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 23:00:31 by gsaiago           #+#    #+#              #
-#    Updated: 2023/03/23 00:08:22 by gsaiago          ###   ########.fr        #
+#    Updated: 2023/04/07 15:34:29 by gsaiago          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cd 
+NAME = testBuiltins
 
 SRCS = $(wildcard *.c)\
-	   ../../parser/ms_parser.c \
-	   ../../parser/ms_line_validation.c \
-	   ../../parser/ms_utils_wordcount.c \
-	   ../../parser/ms_create_word_lst.c \
-	   ../../parser/ms_utils_expand_env.c \
-	   ../../parser/ms_utils_expand_env2.c \
-	   ../../parser/ms_utils_remove_quotes.c \
-	   ../../parser/ms_utils_lst.c \
-	   ../../execution/ms_utils_exec.c\
+	   ../execution/ms_redirects.c \
+	   ../execution/ms_utils_exec.c \
+	   ../parser/ms_parser.c \
+	   ../parser/ms_line_validation.c \
+	   ../parser/ms_utils_wordcount.c \
+	   ../parser/ms_create_word_lst.c \
+	   ../parser/ms_utils_expand_env.c \
+	   ../parser/ms_utils_expand_env2.c \
+	   ../parser/ms_utils_remove_quotes.c \
+	   ../parser/ms_utils_lst.c \
+	   ../parser/ms_getenv_lst.c \
+	   ../libft/ft_strncmp.c\
 
 CC = cc 
 
-LIBFT_PATH = ../../libft
+LIBFT_PATH = ../libft
 
 LIBFT = $(LIBFT_PATH)/libft.a
 CFLAGS = -g -Wall -Wextra

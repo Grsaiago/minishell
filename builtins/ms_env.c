@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_pwd.c                                           :+:      :+:    :+:   */
+/*   ms_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 11:54:02 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/24 11:57:43 by gsaiago          ###   ########.fr       */
+/*   Created: 2023/03/25 00:42:32 by gsaiago           #+#    #+#             */
+/*   Updated: 2023/04/08 14:50:02 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int	ms_pwd(int ac, char **av)
+int	ms_env(t_word *node)
 {
-	char	*cwd;
+	t_list	*env;
 
-	cwd = getcwd(NULL, 0);
-	if (!cwd)
-		return (-1);
-	printf("%s\n",cwd);
-	free(cwd);
-	//atualizar status de saída
+	if (node)
+		env = node->env_lst;
+	else
+		env = NULL;
+	while (env)
+	{
+		printf("%s\n", (char *)env->content);
+		env = env->next;
+	}
+	//settar a variável int de saída
 	return (0);
 }

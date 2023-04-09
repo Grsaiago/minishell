@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:20:19 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/27 14:38:48 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/07 17:03:09 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	ms_export(t_word *node)
 	char	*env_name;
 	int		i;
 
-	av = ms_create_mat_from_lst(node);
+	av = ms_get_cmd_mat_from_node(node);
 	if (!av)
 		return (-1);
 	i = 1;
 	while (av[i])
 	{
-		if (ft_strchr(av[i], '='))
+		if (av[i][0] != '=' && ft_strchr(av[i], '='))
 		{
 			env_name = ft_substr(av[i], 0, ft_strchr(av[i], '=') - av[i]);
 			env_node = ms_getenv_node(node->env_lst, env_name);
@@ -72,36 +72,4 @@ char	**ms_getenv_node(t_list *env_node, char *env)
 		env_node = env_node->next;
 	}
 	return (env_line_ptr);
-}
-
-int	main(void)
-{
-	char	*line;
-	t_list	*env;
-	t_word	*word_lst;
-	t_list	*env_aux;
-
-	word_lst = NULL;
-	env = ms_create_env_lst();
-	while (42)
-	{
-		line = readline("$> ");
-		if (!ft_strncmp(line, "q", 2))
-		{
-			ft_lstclear(&env, free);
-			free(line);
-			return (0);
-		}
-		if (ms_parser(line, &word_lst, env))
-			return (-1);
-		ms_export(word_lst);
-		env_aux = env;
-		while (env_aux)
-		{
-			printf("%s\n", (char *)env_aux->content);
-			env_aux = env_aux->next;
-		}
-		ms_lstclear(&word_lst);
-	}
-	return (0);
 }

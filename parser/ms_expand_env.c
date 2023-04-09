@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_utils_expand_env.c                              :+:      :+:    :+:   */
+/*   ms_expand_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:08:52 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/27 10:48:34 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/08 14:41:50 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ char	*ms_expand_env(char *line, t_list *env)
 {
 	char	*ret_line;
 
-	ret_line = ft_calloc(ms_get_len_after_expansion(line, env) + 1, sizeof(char));
+	ret_line = ft_calloc(ms_get_len_after_expansion(line, env) + 1,
+			sizeof(char));
 	if (ret_line)
 		ms_expand_env_util(line, 0, 0, ret_line, env);
 	free(line);

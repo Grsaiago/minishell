@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/29 14:56:42 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/08 15:51:52 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 # include "../libft/libft.h"
 # include <unistd.h>
+# include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -25,6 +26,41 @@
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+/*
+union u_token
+{
+	struct s_word		*token_word;
+	struct s_pipe 		*token_pipe;
+	struct s_redirect	*token_redirect;
+	struct s_appen		*token_append;
+	struct s_heredoc	*token_heredoc;
+}	u_token;
+
+typedef struct s_pipe
+{
+	int				pipe[2];
+	struct s_node	*node;
+}	t_pipe;
+
+typedef struct s_node
+{
+	char			*word;
+	char			flag;
+	struct s_node	*next;
+	union u_token	*token;
+} t_node;
+
+typedef struct s_cmd
+{
+	int				fd_in;
+	int				fd_out;
+	pid_t			pid;
+	struct s_node	*head;
+	struct s_list	*env_lst;
+	struct s_node	*node;
+} t_cmd;
+*/
 
 typedef struct s_word
 {
@@ -53,7 +89,7 @@ enum u_token
 t_word	*ms_lstnew(void *word);
 void	ms_lstadd_back(t_word **lst, t_word *new);
 void	ms_lst_remove_if(t_word **head);
-int		ms_clean_words_and_init_flags_on_lst(t_word **node);
+int		ms_analyse_lexx(t_word **node);
 void	ms_lst_remove_empty_word(t_word **head);
 int		ms_flag_word(t_word *node);
 t_list	*ms_create_env_lst(void);
@@ -79,10 +115,18 @@ int		ms_get_env_name_len(char *line);
 int		ms_validate_env_name(char *line);
 /* remove quotes */
 char	*ms_remove_quotes(char *line, int flag);
-void	ms_null_start_end_quotes(char *line);
+/* builtins */
+int		ms_cd(t_word *node);
+int		ms_update_env(t_list *env_lst, char *ref, char *newvalue);
+int		ms_echo(t_word *node);
+int		ms_env(t_word *node);
+int		ms_export(t_word *node);
+int		ms_pwd(t_word *node);
+int		ms_unset(t_word *node, t_list **env);
+void	ms_delete_env(t_list **node, char *ref);
 /* exec*/
 char	*ms_check_bin(char *cmd, t_list *env);
-char	**ms_create_mat_from_lst(t_word *node);
+char	**ms_get_cmd_mat_from_node(t_word *node);
 int		ms_bin_exec(t_word *node, t_list *env);
 /* free */
 void	ms_lstclear(t_word **lst);

@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:22:00 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/27 19:46:19 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/07 16:26:28 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ms_unset(t_word *node, t_list **env)
 	char	**av;
 	int		i;
 
-	av = ms_create_mat_from_lst(node);
+	av = ms_get_cmd_mat_from_node(node);
 	if (!av)
 		return (-1);
 	i = 1;
@@ -65,9 +65,3 @@ void	ms_delete_env(t_list **node, char *ref)
 	free(env_key);
 	return ;
 }
-
-// When the node to be deleted is the first one (WSLENV on lldb), the function
-// works as it was supposed to, however, the node->env_lst content of all nodes
-// is not updated, which creates a segfault when we try to access them.
-// A possible solution is to have a pointer to the beginning of the list
-// in all nodes, and create an aux function that updates all node->env_lst vars.

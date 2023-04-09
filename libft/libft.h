@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:23:47 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/27 19:18:35 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/07 15:16:45 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ char			*ft_gnl(int valid, int fd, char *sptr);
 char			*get_next_line(int fd);
 /* expanded libft */
 void			ft_free_mat(char **mat);
+char			**ft_lsttochrmat(t_list *node);
 int				ft_mat_size(char **mat);
 /* SMART POINTERS */
 /* Ussage: <variable_name>__attribute__((cleanup(free_call))); */
