@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:40:13 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/08 18:41:38 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/11 19:04:03 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ms_executor(t_word **lst)
 			ms_bin_exec(node);
 		else
 			ms_builtin_exec(node, builtin);
-		while(node && node->flag != MS_WORD)
+		while(node && node->flag != MS_PIPE)
 			node = node->next;
 		//go_to_next_cmd;
 	}
@@ -69,7 +69,6 @@ void	ms_builtin_exec(t_word *node, uint16_t builtin)
 	standardout = dup(STDOUT_FILENO);
 	dup2(node->fd_in, STDIN_FILENO);
 	dup2(node->fd_out, STDOUT_FILENO);
-	/*
 	if (builtin == MS_ECHO)
 		*node->exit_status = ms_echo(node);
 	else if (builtin == MS_CD)
@@ -83,8 +82,10 @@ void	ms_builtin_exec(t_word *node, uint16_t builtin)
 	else if (builtin == MS_EXIT)
 		*node->exit_status = ms_exit(node);
 	return ;
-	*/
-	node->
+	dup2(standardin, node->fd_in);
+	dup2(standardout, node->fd_out);
+	node->fd_in = STDIN_FILENO;
+	node->fd_out = STDOUT_FILENO;
 }
 
 int	is_builtin(char *word)
