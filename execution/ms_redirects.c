@@ -60,6 +60,7 @@ int	ms_redirect_out(t_word *node)
 			else
 				head->fd_out = open(node->next->word,
 					O_WRONLY | O_CREAT | O_APPEND, 0777);
+
 			if (head->fd_out == -1)
 			{
 				//print erro;
@@ -78,4 +79,31 @@ int	ms_do_redirections(t_word *node)
 	if (ms_redirect_in(node) || ms_redirect_out(node))
 			return (-1);
 	return (0);
+}
+
+int	ms_heredoc(t_word* node)
+{
+	int		fd[2];
+	char	*line;
+	int		len;
+
+	if (pipe(fd) == -1)
+		return (-1);
+	line = NULL;
+	len = ft_strlen(node->next->word);
+	while (ft_strncmp(line, node->next->word, len) != 0)
+	{
+		if (line)
+		{
+			write (fd[1], line, ft_strlen(line));
+			free(line);
+			line = NULL;
+		}
+		write(STDOUT_FILENO, "> ", 2);
+		line = get_next_line(STDIN_FILENO);
+	}
+	if (line)
+		free(line);
+	close (fd[1]);
+	return (fd[0]);
 }
