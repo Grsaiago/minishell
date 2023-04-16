@@ -6,19 +6,19 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:33:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/08 14:45:38 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/08 17:07:27 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ms_bin_exec(t_word *node, t_list *env_lst)
+int	ms_bin_exec(t_word *node)
 {
 	char		*cmd;
 	char		**mat;
 	char		**env_mat;
 
-	cmd = ms_check_bin(node->word, env_lst);
+	cmd = ms_check_bin(node->word, node->env_lst);
 	if (!cmd)
 		return (-1);
 	node->pid = fork();
@@ -29,7 +29,7 @@ int	ms_bin_exec(t_word *node, t_list *env_lst)
 		if (node->fd_in != STDIN_FILENO)
 			dup2(node->fd_in, STDIN_FILENO);
 		mat = ms_get_cmd_mat_from_node(node);
-		env_mat = ft_lsttochrmat(env_lst);
+		env_mat = ft_lsttochrmat(node->env_lst);
 		execve(cmd, mat, env_mat);
 		return (0);
 	}
