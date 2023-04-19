@@ -6,7 +6,7 @@
 #    By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 23:00:31 by gsaiago           #+#    #+#              #
-#    Updated: 2023/04/08 15:57:31 by gsaiago          ###   ########.fr        #
+#    Updated: 2023/04/18 22:10:40 by gsaiago          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,12 @@ SRCS = $(wildcard *.c)\
 	   ../parser/ms_remove_quotes.c \
 	   ../parser/ms_utils_lst.c \
 	   ../parser/ms_utils_free.c \
+	   ../builtins/ms_cd.c \
+	   ../builtins/ms_echo.c \
+	   ../builtins/ms_env.c \
+	   ../builtins/ms_pwd.c \
+	   ../builtins/ms_unset.c \
+	   ../builtins/ms_export.c \
 
 CC = cc 
 

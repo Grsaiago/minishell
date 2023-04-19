@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 23:02:38 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/08 18:11:11 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/18 22:20:31 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,18 @@ char	*ms_check_bin(char *cmd, t_list *env);
 char 	**ms_create_mat_from_lst(t_word *node);
 void	ms_wait_cmds(t_word *node);
 int		ms_do_redirections(t_word **word_lst);
+int		ms_executor(t_word **lst);
+/* */
+int		is_builtin(char *word);
+void	ms_builtin_exec(t_word *node, uint16_t builtin);
+char	*ms_check_bin(char *cmd, t_list *env);
+char	**ms_get_cmd_mat_from_node(t_word *node);
+void	ms_wait_cmds(t_word *node);
+/*redirections*/
+int		ms_do_redirections(t_word **word_lst);
+int		ms_redirect_in(t_word *node);
+int		ms_redirect_out(t_word *node);
+int		ms_heredoc(t_word *node);
 
 void	debug_flag_enum(int num)
 {
@@ -34,6 +46,7 @@ void	debug_flag_enum(int num)
 		printf("Node Flag > MS_HEREDOC\n");
 	return ;
 }
+
 void	debug_func(t_word *word_lst, char **mat)
 {
 	static int	exec_times = 0;
@@ -55,6 +68,8 @@ void	debug_func(t_word *word_lst, char **mat)
 	return ;
 }
 
+int	g_exit_status;
+
 int	main(void)
 {
 	char	*line;
@@ -74,8 +89,9 @@ int	main(void)
 		}
 		if (ms_parser(line, &word_lst, env))
 			ft_putstr_fd("Error on parser\n", 3);
-		if (!ms_bin_exec(word_lst))
-			ms_wait_cmds(word_lst);
+		if (ms_executor(&word_lst))
+			return (0);
+		ms_wait_cmds(word_lst);
 		ms_lstclear(&word_lst);
 	}
 	return (0);

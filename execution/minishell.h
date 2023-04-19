@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/08 17:07:47 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/18 22:01:11 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,15 @@ int		ms_validate_env_name(char *line);
 t_word	*ms_get_next_command(t_word *node);
 /* remove quotes */
 char	*ms_remove_quotes(char *line, int flag);
+/* builtins */
+int		ms_cd(t_word *node);
+int		ms_update_env(t_list *env_lst, char *ref, char *newvalue);
+int		ms_echo(t_word *node);
+int		ms_env(t_word *node);
+int		ms_export(t_word *node);
+int		ms_pwd(t_word *node);
+int		ms_unset(t_word *node, t_list **env);
+void	ms_delete_env(t_list **node, char *ref);
 /* exec*/
 char	*ms_check_bin(char *cmd, t_list *env);
 char	**ms_get_cmd_mat_from_node(t_word *node);
