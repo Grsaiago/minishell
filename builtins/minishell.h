@@ -12,6 +12,7 @@
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+# include "../libft/libft.h"
 # include <unistd.h>
 # include <stdint.h>
 # include <stdio.h>
@@ -25,7 +26,6 @@
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "../libft/libft.h"
 
 typedef struct s_word
 {

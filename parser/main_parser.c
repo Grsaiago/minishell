@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+int	ms_pipe(t_word *node);
 
 void	debug_flag_enum(int num)
 {
@@ -99,7 +100,7 @@ int	main(void)
 			printf("Error on parser\n");
 		}
 		else
-			debug_func(word_lst);
+      debug_func(word_lst);
 		ms_lstclear(&word_lst);
 	}
 	return (0);

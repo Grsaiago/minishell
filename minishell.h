@@ -62,6 +62,41 @@ typedef struct s_cmd
 } t_cmd;
 */
 
+/*
+union u_token
+{
+	struct s_word		*token_word;
+	struct s_pipe 		*token_pipe;
+	struct s_redirect	*token_redirect;
+	struct s_appen		*token_append;
+	struct s_heredoc	*token_heredoc;
+}	u_token;
+
+typedef struct s_pipe
+{
+	int				pipe[2];
+	struct s_node	*node;
+}	t_pipe;
+
+typedef struct s_node
+{
+	char			*word;
+	char			flag;
+	struct s_node	*next;
+	union u_token	*token;
+} t_node;
+
+typedef struct s_cmd
+{
+	int				fd_in;
+	int				fd_out;
+	pid_t			pid;
+	struct s_node	*head;
+	struct s_list	*env_lst;
+	struct s_node	*node;
+} t_cmd;
+*/
+
 typedef struct s_word
 {
 	char			*word;
