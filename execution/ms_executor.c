@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:40:13 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/19 12:36:37 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/19 16:51:50 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,34 +24,25 @@ int		ms_heredoc(t_word *node);
 int		ms_pipe(t_word *node);
 void	ms_close_sentence_fd(t_word *node);
 void	ms_close_all_fd(t_word *node);
+t_word	*clean_sentence_redirections(t_word **lst, int flag);
 
 int	ms_executor(t_word **lst)
 {
 	uint16_t	builtin;
-//	uint8_t		flag;
+	uint8_t		flag;
 	t_word		*node;
 
 	node = *lst;
-//	flag = 1;
-	if (ms_pipe(node) != 0)
-		return (1);
+	flag = 0;
+	ms_pipe(node);
 	while (node)
 	{
 		if (ms_do_redirections(node) != 0)
 			return (1);
-		// reatribuir os node->head se o primeiro nó (aka nó atual por conta da flag) != node->head
-		// clean_sentence_redirections(node, lst, &flag);
-		// isso aqui em baixo vai ficar no final da clen_sentence_redirections
-		// if (flag && node != *lst)
-		// {
-		//	node = *lst;
-		//	while (node)
-		//	{
-		//		node->head = *lst;
-		//		node = ms_get_nex_command(node);
-		//	}
-		//	flag = 0;
-		// }
+		if (!flag)
+			node = clean_sentence_redirections(lst, 1);
+		else
+			clean_sentence_redirections(&node, 0);
 		builtin = is_builtin(node->word);
 		if (!builtin)
 			ms_bin_exec(node);
@@ -59,6 +50,7 @@ int	ms_executor(t_word **lst)
 			ms_builtin_exec(node, builtin);
 		ms_close_sentence_fd(node);
 		node = ms_get_next_command(node);
+		flag++;
 	}
 	return (0);
 }
@@ -147,4 +139,23 @@ void	ms_close_sentence_fd(t_word *node)
 		node = node->next;	
 	}
 	return ;
+}
+
+t_word	*clean_sentence_redirections(t_word **lst, int flag)
+{
+	t_word	*ref;
+	t_word	*aux;
+
+	ref = *lst;
+	ms_lst_remove_if(lst);
+	if (flag && *lst && *lst != ref)
+	{
+		aux = *lst;
+		while (aux)
+		{
+			aux->head = *lst;
+			aux = aux->next;
+		}
+	}
+	return (*lst);
 }
