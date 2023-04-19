@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:40:13 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/18 23:07:58 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/19 12:36:37 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ms_redirect_out(t_word *node);
 int		ms_heredoc(t_word *node);
 int		ms_pipe(t_word *node);
 void	ms_close_sentence_fd(t_word *node);
-
+void	ms_close_all_fd(t_word *node);
 
 int	ms_executor(t_word **lst)
 {
