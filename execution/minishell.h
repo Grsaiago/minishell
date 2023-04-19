@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/18 22:01:11 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/18 22:43:26 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ typedef struct s_word
 	unsigned int	flag;
 	int				fd_in;
 	int				fd_out;
-	int				pipe[2];
 	pid_t			pid;
 	struct s_word	*head;
 	struct s_list	*env_lst;

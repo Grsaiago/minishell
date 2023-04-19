@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:40:13 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/18 22:30:05 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/18 23:07:58 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,16 @@ void	ms_builtin_exec(t_word *node, uint16_t builtin)
 	int			standardout;
 	extern int	g_exit_status;
 
-	standardin = dup(STDIN_FILENO);
-	standardout = dup(STDOUT_FILENO);
-	dup2(node->fd_in, STDIN_FILENO);
-	dup2(node->fd_out, STDOUT_FILENO);
+	if (node->fd_in != STDIN_FILENO)
+	{
+		standardin = dup(STDIN_FILENO);
+		dup2(node->fd_in, STDIN_FILENO);
+	}
+	else if (node->fd_out != STDOUT_FILENO)
+	{
+		standardout = dup(STDOUT_FILENO);
+		dup2(node->fd_out, STDOUT_FILENO);
+	}
 	if (builtin == MS_ECHO)
 		g_exit_status = ms_echo(node);
 	else if (builtin == MS_CD)
@@ -87,11 +93,19 @@ void	ms_builtin_exec(t_word *node, uint16_t builtin)
 	else if (builtin == MS_EXIT)
 		exit_status = ms_exit(node);
 		*/
+	if (node->fd_in != STDIN_FILENO)
+	{
+		close(node->fd_in);
+		node->fd_in = STDIN_FILENO;
+		dup2(standardin, node->fd_in);
+	}
+	else if (node->fd_out != STDOUT_FILENO)
+	{
+		close(node->fd_out);
+		node->fd_out = STDOUT_FILENO;
+		dup2(standardout, node->fd_out);
+	}
 	return ;
-	dup2(standardin, node->fd_in);
-	dup2(standardout, node->fd_out);
-	node->fd_in = STDIN_FILENO;
-	node->fd_out = STDOUT_FILENO;
 }
 
 int	is_builtin(char *word)
