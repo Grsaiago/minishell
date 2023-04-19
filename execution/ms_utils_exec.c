@@ -6,11 +6,12 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:33:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/08 17:07:27 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/19 12:35:57 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+void	ms_close_all_fd(t_word *node);
 
 int	ms_bin_exec(t_word *node)
 {
@@ -28,6 +29,7 @@ int	ms_bin_exec(t_word *node)
 			dup2(node->fd_out, STDOUT_FILENO);
 		if (node->fd_in != STDIN_FILENO)
 			dup2(node->fd_in, STDIN_FILENO);
+		ms_close_all_fd(node->head);
 		mat = ms_get_cmd_mat_from_node(node);
 		env_mat = ft_lsttochrmat(node->env_lst);
 		execve(cmd, mat, env_mat);

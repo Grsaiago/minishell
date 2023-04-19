@@ -6,13 +6,12 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/08 17:07:47 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/19 11:41:44 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-# include "../libft/libft.h"
 # include <unistd.h>
 # include <stdint.h>
 # include <stdio.h>
@@ -25,6 +24,7 @@
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include "../libft/libft.h"
 
 /*
 union u_token
@@ -67,7 +67,6 @@ typedef struct s_word
 	unsigned int	flag;
 	int				fd_in;
 	int				fd_out;
-	int				pipe[2];
 	pid_t			pid;
 	struct s_word	*head;
 	struct s_list	*env_lst;
@@ -125,8 +124,18 @@ void	ms_expand_env_util2(char *line, char *ret_line, int *i, int *j, t_list *env
 int		ms_get_len_after_expansion(char *line, t_list *env);
 int		ms_get_env_name_len(char *line);
 int		ms_validate_env_name(char *line);
+t_word	*ms_get_next_command(t_word *node);
 /* remove quotes */
 char	*ms_remove_quotes(char *line, int flag);
+/* builtins */
+int		ms_cd(t_word *node);
+int		ms_update_env(t_list *env_lst, char *ref, char *newvalue);
+int		ms_echo(t_word *node);
+int		ms_env(t_word *node);
+int		ms_export(t_word *node);
+int		ms_pwd(t_word *node);
+int		ms_unset(t_word *node, t_list **env);
+void	ms_delete_env(t_list **node, char *ref);
 /* exec*/
 char	*ms_check_bin(char *cmd, t_list *env);
 char	**ms_get_cmd_mat_from_node(t_word *node);

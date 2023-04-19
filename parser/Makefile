@@ -6,7 +6,7 @@
 #    By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 17:37:55 by gsaiago           #+#    #+#              #
-#    Updated: 2023/04/11 19:49:06 by gsaiago          ###   ########.fr        #
+#    Updated: 2023/04/07 17:53:30 by gsaiago          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,8 @@ NAME = parser
 
 STEP_NAME = step_parser
 
-SRCS = $(wildcard *.c)\
-	   ../execution/ms_redirects.c\
-	   ../execution/ms_pipe.c\
+SRCS = $(wildcard *.c) \
+	   ../execution/ms_redirects.c \
 
 CC = cc 
 

@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:20:44 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/07 16:20:45 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/18 23:05:22 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int	ms_echo(t_word *node)
 {
 	uint8_t	newline;
+	t_word	*head;
 
+	head = node;
 	newline = 1;
 	if (node->next)
 	{
@@ -24,17 +26,17 @@ int	ms_echo(t_word *node)
 			newline = 0;
 			node = node->next;
 		}
+		node = node->next;
 		while (node && node->flag != MS_PIPE)
 		{
-			ft_putstr_fd(node->word, node->fd_out);
+			ft_putstr_fd(node->word, head->fd_out);
 			node = node->next;
 			if (node && node->flag != MS_PIPE)
-				ft_putstr_fd(" ", node->fd_out);
+				ft_putchar_fd(' ', head->fd_out);
 		}
 	}
 	if (newline)
-		printf("\n");
-	//status de saída global
+		ft_putchar_fd('\n', head->fd_out);
 	return (0);
 }
 

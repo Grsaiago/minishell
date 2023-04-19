@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/11 19:49:25 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/07 19:38:32 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,7 @@ int	main(void)
 			printf("Error on parser\n");
 		}
 		else
-		{
-			ms_pipe(word_lst);
-			debug_func(word_lst);
-		}
+      debug_func(word_lst);
 		ms_lstclear(&word_lst);
 	}
 	return (0);
