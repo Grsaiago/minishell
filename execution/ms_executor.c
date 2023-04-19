@@ -44,7 +44,7 @@ int	ms_executor(t_word **lst)
 		//	while (node)
 		//	{
 		//		node->head = *lst;
-		//		node = node->next;
+		//		node = ms_get_nex_command(node);
 		//	}
 		//	flag = 0;
 		// }
@@ -53,9 +53,7 @@ int	ms_executor(t_word **lst)
 			ms_bin_exec(node);
 		else
 			ms_builtin_exec(node, builtin);
-		while(node && node->flag != MS_PIPE)
-			node = node->next;
-		//go_to_next_cmd;
+		node = ms_get_next_command(node);
 	}
 	return (0);
 }
@@ -107,6 +105,11 @@ int	is_builtin(char *word)
 
 t_word	*ms_get_next_command(t_word *node)
 {
-
-
+	while (node)
+	{
+		if (node->flag == MS_PIPE)
+			return (node->next);
+		node = node->next;	
+	}
+	return (node);
 }

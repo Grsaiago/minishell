@@ -125,6 +125,7 @@ void	ms_expand_env_util2(char *line, char *ret_line, int *i, int *j, t_list *env
 int		ms_get_len_after_expansion(char *line, t_list *env);
 int		ms_get_env_name_len(char *line);
 int		ms_validate_env_name(char *line);
+t_word	*ms_get_next_command(t_word *node);
 /* remove quotes */
 char	*ms_remove_quotes(char *line, int flag);
 /* exec*/
