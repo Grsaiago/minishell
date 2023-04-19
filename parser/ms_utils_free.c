@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_utils_lst2.c                                    :+:      :+:    :+:   */
+/*   ms_utils_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 14:39:12 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/08 14:40:21 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/19 16:04:42 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	ms_lst_remove_if(t_word **head)
 {
 	t_word	*node;
 
-	if (!head || !*head)
+	if (!head || !*head || (*head)->flag == MS_PIPE)
 		return ;
 	node = *head;
-	if (node->flag)
+	if (node->flag != MS_WORD)
 	{
 		*head = node->next;
 		free(node->word);
@@ -68,7 +68,7 @@ void	ms_lst_remove_if(t_word **head)
 		ms_lst_remove_if(head);
 	}
 	node = *head;
-	if (!head || !*head)
+	if (!head || !*head || (*head)->flag == MS_PIPE)
 		return ;
 	ms_lst_remove_if(&node->next);
 	return ;

@@ -140,6 +140,7 @@ void	ms_delete_env(t_list **node, char *ref);
 char	*ms_check_bin(char *cmd, t_list *env);
 char	**ms_get_cmd_mat_from_node(t_word *node);
 int		ms_bin_exec(t_word *node);
+int		ms_heredoc(t_word* node);
 /* free */
 void	ms_lstclear(t_word **lst);
 #endif

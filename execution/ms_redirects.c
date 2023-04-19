@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 12:26:04 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/08 18:35:31 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/19 15:11:05 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	ms_redirect_in(t_word *node)
 				return (-1);
 			}
 		}
+		else if (node->flag == MS_HEREDOC)
+			head->fd_in = ms_heredoc(node);
 		node = node->next;
 	}
 	return (0);
@@ -69,6 +71,33 @@ int	ms_redirect_out(t_word *node)
 		node = node->next;
 	}
 	return (0);
+}
+
+int	ms_heredoc(t_word* node)
+{
+	int		fd[2];
+	char	*line;
+	int		len;
+
+	if (pipe(fd) == -1)
+		return (-1);
+	line = NULL;
+	len = ft_strlen(node->next->word);
+	while (ft_strncmp(line, node->next->word, len) != 0)
+	{
+		if (line)
+		{
+			write (fd[1], line, ft_strlen(line));
+			free(line);
+			line = NULL;
+		}
+		write(STDOUT_FILENO, "> ", 2);
+		line = get_next_line(STDIN_FILENO);
+	}
+	if (line)
+		free(line);
+	close (fd[1]);
+	return (fd[0]);
 }
 
 int	ms_do_redirections(t_word *node)
