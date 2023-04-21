@@ -14,6 +14,7 @@
 
 int	ms_env(t_word *node)
 {
+	extern int	g_exit_status;
 	t_list	*env;
 
 	if (node)
@@ -22,9 +23,11 @@ int	ms_env(t_word *node)
 		env = NULL;
 	while (env)
 	{
-		printf("%s\n", (char *)env->content);
+		ft_putstr_fd(env->content, node->fd_out);
+		ft_putchar_fd('\n', node->fd_out);
 		env = env->next;
 	}
-	//settar a variável int de saída
+	ft_putchar_fd('\n', node->fd_out);
+	g_exit_status = 0;
 	return (0);
 }
