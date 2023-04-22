@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 23:02:38 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/19 17:51:33 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/22 16:56:47 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,3 @@ int	main(void)
 	}
 	return (0);
 }
-rl_replace_line
-rl_on_new_line
-
-
-iotcl pra jogar o \n no input com fake input (TIOCSTI).
