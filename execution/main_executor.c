@@ -96,8 +96,8 @@ int	main(void)
 	}
 	return (0);
 }
-rl_replace_line
-rl_on_new_line
+//rl_replace_line
+//rl_on_new_line
 
 
-iotcl pra jogar o \n no input com fake input (TIOCSTI).
+//iotcl pra jogar o \n no input com fake input (TIOCSTI).

@@ -22,9 +22,9 @@ int	ms_env(t_word *node)
 		env = NULL;
 	while (env)
 	{
-		printf("%s\n", (char *)env->content);
+		ft_putstr_fd(env->content, node->fd_out);
+		ft_putchar_fd('\n', node->fd_out);
 		env = env->next;
 	}
-	//settar a variável int de saída
 	return (0);
 }

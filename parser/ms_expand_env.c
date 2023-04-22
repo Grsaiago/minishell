@@ -80,7 +80,6 @@ int	ms_get_len_after_expansion(char *line, t_list *env)
 			must_expand ^= 1;
 		if (*line == '$' && must_expand && !ms_validate_env_name(line))
 		{
-			ms_exit_status_ret(line + 1);	
 			final_len += ms_get_expanded_env_len(line, env);
 			line += ms_get_env_name_len(line) + 1;
 		}
