@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/19 11:41:58 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/22 17:16:53 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <sys/types.h>
+# include <sys/ioctl.h>
 # include <sys/wait.h>
+# include <termios.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
@@ -116,8 +118,9 @@ enum e_token
 	MS_PIPE = 2,
 	MS_REDIRECT_IN = 4,
 	MS_REDIRECT_OUT = 8,
-	MS_APPEND = 16,
-	MS_HEREDOC = 32,
+	MS_REDIRECT_FILE = 16,
+	MS_APPEND = 32,
+	MS_HEREDOC = 64,
 };
 
 enum e_builtins
@@ -159,6 +162,7 @@ void	ms_expand_env_util2(char *line, char *ret_line, int *i, int *j, t_list *env
 int		ms_get_len_after_expansion(char *line, t_list *env);
 int		ms_get_env_name_len(char *line);
 int		ms_validate_env_name(char *line);
+t_word	*ms_get_next_command(t_word *node);
 /* remove quotes */
 char	*ms_remove_quotes(char *line, int flag);
 /* builtins */
@@ -171,9 +175,22 @@ int		ms_pwd(t_word *node);
 int		ms_unset(t_word *node, t_list **env);
 void	ms_delete_env(t_list **node, char *ref);
 /* exec*/
+int		ms_executor(t_word **lst);
+void	ms_builtin_exec(t_word *node, uint16_t builtin);
+int		is_builtin(char *word);
+int		ms_bin_exec(t_word *node, t_list *env);
 char	*ms_check_bin(char *cmd, t_list *env);
 char	**ms_get_cmd_mat_from_node(t_word *node);
-int		ms_bin_exec(t_word *node, t_list *env);
+void	ms_close_sentence_fd(t_word *node);
+void	ms_close_all_fd(t_word *node);
+t_word	*clean_sentence_redirections(t_word **lst, int flag);
+void	ms_wait_cmds(t_word *node);
+/* redirections */
+int		ms_do_redirections(t_word *word_lst);
+int		ms_redirect_in(t_word *node);
+int		ms_redirect_out(t_word *node);
+int		ms_heredoc(t_word* node);
+int		ms_pipe(t_word *node);
 /* free */
 void	ms_lstclear(t_word **lst);
 #endif
