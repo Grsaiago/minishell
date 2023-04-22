@@ -14,7 +14,6 @@
 
 int	ms_env(t_word *node)
 {
-	extern int	g_exit_status;
 	t_list	*env;
 
 	if (node)
@@ -28,6 +27,5 @@ int	ms_env(t_word *node)
 		env = env->next;
 	}
 	ft_putchar_fd('\n', node->fd_out);
-	g_exit_status = 0;
 	return (0);
 }
