@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 12:26:04 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/19 15:11:05 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/22 18:15:31 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,22 +77,21 @@ int	ms_heredoc(t_word* node)
 {
 	int		fd[2];
 	char	*line;
-	int		len;
 
 	if (pipe(fd) == -1)
 		return (-1);
 	line = NULL;
-	len = ft_strlen(node->next->word);
-	while (ft_strncmp(line, node->next->word, len) != 0)
+	while (42)
 	{
-		if (line)
+		line = readline("> ");
+		if (!line || !ft_strncmp(node->next->word, line, ft_strlen(line) + 1))
+			break ;
+		else if (line)
 		{
 			write (fd[1], line, ft_strlen(line));
+			write (fd[1], "\n", 1);
 			free(line);
-			line = NULL;
 		}
-		write(STDOUT_FILENO, "> ", 2);
-		line = get_next_line(STDIN_FILENO);
 	}
 	if (line)
 		free(line);

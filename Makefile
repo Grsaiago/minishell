@@ -6,7 +6,7 @@
 #    By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/22 17:02:28 by gsaiago           #+#    #+#              #
-#    Updated: 2023/04/22 17:07:53 by gsaiago          ###   ########.fr        #
+#    Updated: 2023/04/22 17:29:17 by gsaiago          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ CC = cc
 LIBFT_PATH = ./libft
 
 LIBFT = $(LIBFT_PATH)/libft.a
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra 
 
 LIBFT_LINK = -L$(LIBFT_PATH) -lft
 
