@@ -6,7 +6,8 @@
 #    By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/22 17:02:28 by gsaiago           #+#    #+#              #
-#    Updated: 2023/04/22 17:29:17 by gsaiago          ###   ########.fr        #
+#    Updated: 2023/04/22 20:09:31 by gsaiago          ###   ########.fr        #
+=======
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +35,7 @@ SRCS =	./ms_main.c \
 		./builtins/ms_pwd.c \
 		./builtins/ms_unset.c \
 		./builtins/ms_export.c \
+		./builtins/ms_exit.c \
 		
 CC = cc 
 	

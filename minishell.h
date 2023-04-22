@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/22 17:16:53 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/22 20:20:36 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void	ms_lstadd_back(t_word **lst, t_word *new);
 void	ms_lst_remove_if(t_word **head);
 int		ms_analyse_lexx(t_word **node);
 void	ms_lst_remove_empty_word(t_word **head);
-int		ms_flag_word(t_word *node);
+int		ms_flag_word(char *word, int last_flag);
 t_list	*ms_create_env_lst(void);
 /* parse */
 int		ms_parser(char *line, t_word **word_lst, t_list *env);
@@ -153,6 +153,10 @@ int		get_word_len(char *line);
 int		ms_count_words(char *line);
 int		ms_find_next_quotes(char *line);
 int		ms_validate_quote_ammount(char *line);
+/* syntax */
+int	ms_analyse_syntax(t_word *word_lst);
+int	ms_analyze_pipe_syntax(t_word *word_lst);
+int	ms_analyze_redirect_syntax(t_word *word_lst);
 /* env expansion */
 char	*ms_getenv_lst(t_list *env_node, char *env);
 char	*ms_expand_env(char *line, t_list *env);
@@ -174,9 +178,11 @@ int		ms_export(t_word *node);
 int		ms_pwd(t_word *node);
 int		ms_unset(t_word *node, t_list **env);
 void	ms_delete_env(t_list **node, char *ref);
+__attribute__((noreturn))
+void	ms_exit(t_word **word, t_list **env_lst);
 /* exec*/
-int		ms_executor(t_word **lst);
-void	ms_builtin_exec(t_word *node, uint16_t builtin);
+int		ms_executor(t_word **lst, t_list **env_lst);
+void	ms_builtin_exec(t_word *node, t_list **env_lst, uint16_t builtin);
 int		is_builtin(char *word);
 int		ms_bin_exec(t_word *node, t_list *env);
 char	*ms_check_bin(char *cmd, t_list *env);

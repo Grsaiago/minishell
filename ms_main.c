@@ -6,13 +6,15 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 18:56:53 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/22 18:20:02 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/22 20:02:43 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 void	ms_set_sighandle(void);
 void	ms_sigint_handle(int signal);
+__attribute__((noreturn))
+void	ms_exit(t_word **word, t_list **env_lst);
 
 int	g_exit_status;
 
@@ -31,13 +33,11 @@ int	main(void)
 		if (!line)
 		{
 			ft_putstr_fd("Minishell: Logging out\n",STDOUT_FILENO);
-			//chamar o builtin exit
-			//free em tudo e exit;
-			return (0);
+			ms_exit(&word_lst, &env);
 		}
 		if (ms_parser(line, &word_lst, env))
 			ft_putstr_fd("Error on parser\n", 3);
-		if (ms_executor(&word_lst))
+		if (ms_executor(&word_lst, &env))
 			return (0);
 		ms_wait_cmds(word_lst);
 		ms_lstclear(&word_lst);
