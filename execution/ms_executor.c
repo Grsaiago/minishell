@@ -6,27 +6,13 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:40:13 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/19 16:51:50 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/22 20:22:00 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-int		is_builtin(char *word);
-void	ms_builtin_exec(t_word *node, uint16_t builtin);
-char	*ms_check_bin(char *cmd, t_list *env);
-char	**ms_get_cmd_mat_from_node(t_word *node);
-void	ms_wait_cmds(t_word *node);
-/*redirections*/
-int		ms_do_redirections(t_word *word_lst);
-int		ms_redirect_in(t_word *node);
-int		ms_redirect_out(t_word *node);
-int		ms_heredoc(t_word *node);
-int		ms_pipe(t_word *node);
-void	ms_close_sentence_fd(t_word *node);
-void	ms_close_all_fd(t_word *node);
-t_word	*clean_sentence_redirections(t_word **lst, int flag);
+#include "../minishell.h"
 
-int	ms_executor(t_word **lst)
+int	ms_executor(t_word **lst, t_list **env_lst)
 {
 	uint16_t	builtin;
 	uint8_t		flag;
@@ -45,9 +31,9 @@ int	ms_executor(t_word **lst)
 			clean_sentence_redirections(&node, 0);
 		builtin = is_builtin(node->word);
 		if (!builtin)
-			ms_bin_exec(node);
+			ms_bin_exec(node, *env_lst);
 		else
-			ms_builtin_exec(node, builtin);
+			ms_builtin_exec(node, env_lst, builtin);
 		ms_close_sentence_fd(node);
 		node = ms_get_next_command(node);
 		flag++;
@@ -55,7 +41,7 @@ int	ms_executor(t_word **lst)
 	return (0);
 }
 
-void	ms_builtin_exec(t_word *node, uint16_t builtin)
+void	ms_builtin_exec(t_word *node, t_list **env_lst, uint16_t builtin)
 {
 	extern int	g_exit_status;
 
@@ -70,9 +56,9 @@ void	ms_builtin_exec(t_word *node, uint16_t builtin)
 	else if (builtin == MS_ENV)
 		g_exit_status = ms_env(node);
 	else if (builtin == MS_UNSET)
-		g_exit_status = ms_unset(node);
+		g_exit_status = ms_unset(node, env_lst);
 	else if (builtin == MS_EXIT)
-		g_exit_status = ms_exit(node);
+		ms_exit(&node->head, &node->env_lst);
 	return ;
 }
 

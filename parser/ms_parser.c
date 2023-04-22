@@ -6,17 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:42:31 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/08 17:31:57 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/22 20:16:21 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-int	ms_redirect_out(t_word *node);
-int	ms_do_redirections(t_word **word_lst);
-int	ms_analyse_syntax(t_word *word_lst);
-int	ms_analyze_pipe_syntax(t_word *word_lst);
-int	ms_analyze_redirect_syntax(t_word *word_lst);
+#include "../minishell.h"
 
 int	ms_parser(char *line, t_word **word_lst, t_list *env)
 {
