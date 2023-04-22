@@ -26,6 +26,5 @@ int	ms_env(t_word *node)
 		ft_putchar_fd('\n', node->fd_out);
 		env = env->next;
 	}
-	ft_putchar_fd('\n', node->fd_out);
 	return (0);
 }
