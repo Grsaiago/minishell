@@ -6,7 +6,7 @@
 #    By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/22 17:02:28 by gsaiago           #+#    #+#              #
-#    Updated: 2023/04/22 20:09:31 by gsaiago          ###   ########.fr        #
+#    Updated: 2023/04/22 20:57:15 by gsaiago          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 
 SRCS =	./ms_main.c \
 		./parser/ms_parser.c \
-		./parser/ms_analyze_lexx.c \
+		./parser/ms_flag_words.c \
 		./parser/ms_analyze_syntax.c \
 		./parser/ms_create_word_lst.c \
 		./parser/ms_expand_env.c \

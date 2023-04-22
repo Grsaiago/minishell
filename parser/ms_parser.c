@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:42:31 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/22 20:31:57 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/22 20:53:36 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,7 @@ int	ms_parser(char *line, t_word **word_lst, t_list *env)
 		return (-1);
 	}
 	*word_lst = ms_create_word_lst(line, env);
-	if (!word_lst)
-		err = 1;
-	if (!err)
-		err = ms_analyze_lexx(word_lst);
-	if (!err) 
-		err = ms_analyze_syntax(*word_lst);
+	err = ms_lexxer(*word_lst);
 	add_history(line);
 	free(line);
 	return (err);

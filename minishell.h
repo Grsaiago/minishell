@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/22 20:20:36 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/22 20:53:36 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,13 +138,12 @@ enum e_builtins
 t_word	*ms_lstnew(void *word);
 void	ms_lstadd_back(t_word **lst, t_word *new);
 void	ms_lst_remove_if(t_word **head);
-int		ms_analyse_lexx(t_word **node);
+int		ms_analyze_lexx(t_word **node);
 void	ms_lst_remove_empty_word(t_word **head);
 int		ms_flag_word(char *word, int last_flag);
 t_list	*ms_create_env_lst(void);
-/* parse */
+/* parser */
 int		ms_parser(char *line, t_word **word_lst, t_list *env);
-/* lexx */
 t_word	*ms_create_word_lst(char *line, t_list *env_lst);
 void	ms_word_lst_flag_init(t_word *word);
 int		ms_word_assign_flag(char *word);
@@ -153,10 +152,12 @@ int		get_word_len(char *line);
 int		ms_count_words(char *line);
 int		ms_find_next_quotes(char *line);
 int		ms_validate_quote_ammount(char *line);
-/* syntax */
-int	ms_analyse_syntax(t_word *word_lst);
-int	ms_analyze_pipe_syntax(t_word *word_lst);
-int	ms_analyze_redirect_syntax(t_word *word_lst);
+/* lexx */
+int		ms_lexxer(t_word *word_lst);
+int		ms_analyze_lexx(t_word **lst);
+int		ms_analyze_syntax(t_word *word_lst);
+int		ms_analyze_pipe_syntax(t_word *word_lst);
+int		ms_analyze_redirect_syntax(t_word *word_lst);
 /* env expansion */
 char	*ms_getenv_lst(t_list *env_node, char *env);
 char	*ms_expand_env(char *line, t_list *env);
