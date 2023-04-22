@@ -57,20 +57,8 @@ int	ms_executor(t_word **lst)
 
 void	ms_builtin_exec(t_word *node, uint16_t builtin)
 {
-	int			standardin;
-	int			standardout;
 	extern int	g_exit_status;
 
-	if (node->fd_in != STDIN_FILENO)
-	{
-		standardin = dup(STDIN_FILENO);
-		dup2(node->fd_in, STDIN_FILENO);
-	}
-	else if (node->fd_out != STDOUT_FILENO)
-	{
-		standardout = dup(STDOUT_FILENO);
-		dup2(node->fd_out, STDOUT_FILENO);
-	}
 	if (builtin == MS_ECHO)
 		g_exit_status = ms_echo(node);
 	else if (builtin == MS_CD)
@@ -79,24 +67,12 @@ void	ms_builtin_exec(t_word *node, uint16_t builtin)
 		g_exit_status = ms_pwd(node);
 	else if (builtin == MS_EXPORT)
 		g_exit_status = ms_export(node);
-	/*
+	else if (builtin == MS_ENV)
+		g_exit_status = ms_env(node);
 	else if (builtin == MS_UNSET)
-		exit_status = ms_unset(node);
+		g_exit_status = ms_unset(node);
 	else if (builtin == MS_EXIT)
-		exit_status = ms_exit(node);
-		*/
-	if (node->fd_in != STDIN_FILENO)
-	{
-		close(node->fd_in);
-		node->fd_in = STDIN_FILENO;
-		dup2(standardin, node->fd_in);
-	}
-	else if (node->fd_out != STDOUT_FILENO)
-	{
-		close(node->fd_out);
-		node->fd_out = STDOUT_FILENO;
-		dup2(standardout, node->fd_out);
-	}
+		g_exit_status = ms_exit(node);
 	return ;
 }
 
@@ -114,6 +90,8 @@ int	is_builtin(char *word)
 		return (MS_UNSET);
 	else if (ft_strncmp(word, "exit", 5) == 0)
 		return (MS_EXIT);
+	else if (ft_strncmp(word, "env", 4) == 0)
+		return (MS_ENV);
 	return (0);
 }
 
