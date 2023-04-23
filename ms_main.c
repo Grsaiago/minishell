@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 18:56:53 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/22 20:02:43 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/22 21:19:36 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ int	main(void)
 			ms_exit(&word_lst, &env);
 		}
 		if (ms_parser(line, &word_lst, env))
-			ft_putstr_fd("Error on parser\n", 3);
-		if (ms_executor(&word_lst, &env))
-			return (0);
+		{
+			ms_lstclear(&word_lst);
+			continue ;
+		}
+		ms_executor(&word_lst, &env);
 		ms_wait_cmds(word_lst);
 		ms_lstclear(&word_lst);
 	}

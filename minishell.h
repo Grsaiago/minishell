@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/22 20:53:36 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/22 21:24:58 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ int		ms_count_words(char *line);
 int		ms_find_next_quotes(char *line);
 int		ms_validate_quote_ammount(char *line);
 /* lexx */
-int		ms_lexxer(t_word *word_lst);
+int		ms_lexxer(t_word **word_lst);
 int		ms_analyze_lexx(t_word **lst);
 int		ms_analyze_syntax(t_word *word_lst);
 int		ms_analyze_pipe_syntax(t_word *word_lst);
@@ -184,7 +184,7 @@ void	ms_exit(t_word **word, t_list **env_lst);
 /* exec*/
 int		ms_executor(t_word **lst, t_list **env_lst);
 void	ms_builtin_exec(t_word *node, t_list **env_lst, uint16_t builtin);
-int		is_builtin(char *word);
+int		is_builtin(t_word *node);
 int		ms_bin_exec(t_word *node, t_list *env);
 char	*ms_check_bin(char *cmd, t_list *env);
 char	**ms_get_cmd_mat_from_node(t_word *node);
