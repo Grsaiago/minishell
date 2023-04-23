@@ -25,7 +25,7 @@ int	ms_parser(char *line, t_word **word_lst, t_list *env)
 		return (-1);
 	}
 	*word_lst = ms_create_word_lst(line, env);
-	err = ms_lexxer(word_lst);
+  err = ms_lexxer(word_lst);
 	if (line[0])
 		add_history(line);
 	free(line);
