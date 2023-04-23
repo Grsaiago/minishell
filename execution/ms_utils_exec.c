@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:33:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/19 16:48:33 by kefernan         ###   ########.fr       */
+/*   Updated: 2023/04/22 21:30:23 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ms_bin_exec(t_word *node)
 	char		**mat;
 	char		**env_mat;
 
+	if (!node)
+		return (0);
 	cmd = ms_check_bin(node->word, node->env_lst);
 	if (!cmd)
 		return (-1);

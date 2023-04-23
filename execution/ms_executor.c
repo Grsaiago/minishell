@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:40:13 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/22 20:22:00 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/22 21:25:18 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ms_executor(t_word **lst, t_list **env_lst)
 			node = clean_sentence_redirections(lst, 1);
 		else
 			clean_sentence_redirections(&node, 0);
-		builtin = is_builtin(node->word);
+		builtin = is_builtin(node);
 		if (!builtin)
 			ms_bin_exec(node, *env_lst);
 		else
@@ -62,21 +62,23 @@ void	ms_builtin_exec(t_word *node, t_list **env_lst, uint16_t builtin)
 	return ;
 }
 
-int	is_builtin(char *word)
+int	is_builtin(t_word *node)
 {
-	if (ft_strncmp(word, "echo", 5) == 0)
+	if (!node)
+		return (0);
+	if (ft_strncmp(node->word, "echo", 5) == 0)
 		return (MS_ECHO);
-	else if (ft_strncmp(word, "cd", 3) == 0)
+	else if (ft_strncmp(node->word, "cd", 3) == 0)
 		return (MS_CD);
-	else if (ft_strncmp(word, "pwd", 4) == 0)
+	else if (ft_strncmp(node->word, "pwd", 4) == 0)
 		return (MS_PWD);
-	else if (ft_strncmp(word, "export", 7) == 0)
+	else if (ft_strncmp(node->word, "export", 7) == 0)
 		return (MS_EXPORT);
-	else if (ft_strncmp(word, "unset", 6) == 0)
+	else if (ft_strncmp(node->word, "unset", 6) == 0)
 		return (MS_UNSET);
-	else if (ft_strncmp(word, "exit", 5) == 0)
+	else if (ft_strncmp(node->word, "exit", 5) == 0)
 		return (MS_EXIT);
-	else if (ft_strncmp(word, "env", 4) == 0)
+	else if (ft_strncmp(node->word, "env", 4) == 0)
 		return (MS_ENV);
 	return (0);
 }
