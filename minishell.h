@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/22 21:24:58 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/24 20:02:41 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ void	ms_exit(t_word **word, t_list **env_lst);
 int		ms_executor(t_word **lst, t_list **env_lst);
 void	ms_builtin_exec(t_word *node, t_list **env_lst, uint16_t builtin);
 int		is_builtin(t_word *node);
-int		ms_bin_exec(t_word *node, t_list *env);
+int		ms_bin_exec(t_word *node, t_list *env_lst);
 char	*ms_check_bin(char *cmd, t_list *env);
 char	**ms_get_cmd_mat_from_node(t_word *node);
 void	ms_close_sentence_fd(t_word *node);
@@ -199,5 +199,5 @@ int		ms_redirect_out(t_word *node);
 int		ms_heredoc(t_word* node);
 int		ms_pipe(t_word *node);
 /* free */
-void	ms_lstclear(t_word **lst);
+void	ms_lstclear(t_word **lst, int flag);
 #endif

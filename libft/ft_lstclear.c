@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:49:04 by gsaiago           #+#    #+#             */
-/*   Updated: 2022/09/19 09:53:27 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/23 15:36:23 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 	void	*aux;
 	t_list	*node;
 
-	if (!lst)
+	if (!lst || !*lst)
 		return ;
 	node = *lst;
 	while (node)

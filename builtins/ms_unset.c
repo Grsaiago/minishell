@@ -6,11 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:22:00 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/22 20:09:05 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/23 16:22:43 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	ms_delete_env(t_list **node, char *ref);
 

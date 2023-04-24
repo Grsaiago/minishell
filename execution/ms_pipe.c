@@ -6,11 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 19:11:09 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/19 12:36:25 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/23 16:24:18 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 void	ms_close_all_fd(t_word *node);
 
 int	ms_pipe(t_word *node)

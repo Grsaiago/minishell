@@ -6,17 +6,17 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 14:39:12 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/22 21:14:34 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/24 20:04:13 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	ms_lst_remove_empty_word(t_word **head)
 {
 	t_word	*node;
 
-	if (!head || !*head)
+	if (!head || !(*head))
 		return ;
 	node = *head;
 	if (!node->word || !node->word[0])
@@ -34,12 +34,12 @@ void	ms_lst_remove_empty_word(t_word **head)
 	return ;
 }
 
-void	ms_lstclear(t_word **lst)
+void	ms_lstclear(t_word **lst, int flag)
 {
-	void	*aux;
+	t_word	*aux;
 	t_word	*node;
 
-	if (!lst || !*lst)
+	if (!lst || !(*lst))
 		return ;
 	node = *lst;
 	while (node)
@@ -49,7 +49,8 @@ void	ms_lstclear(t_word **lst)
 		free(node);
 		node = aux;
 	}
-	*lst = NULL;
+	if (flag)
+		*lst = NULL;
 	return ;
 }
 

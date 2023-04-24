@@ -6,14 +6,14 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:33:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/22 21:30:23 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/23 16:26:51 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 void	ms_close_all_fd(t_word *node);
 
-int	ms_bin_exec(t_word *node)
+int	ms_bin_exec(t_word *node, t_list *env_lst)
 {
 	char		*cmd;
 	char		**mat;
@@ -21,7 +21,7 @@ int	ms_bin_exec(t_word *node)
 
 	if (!node)
 		return (0);
-	cmd = ms_check_bin(node->word, node->env_lst);
+	cmd = ms_check_bin(node->word, env_lst);
 	if (!cmd)
 		return (-1);
 	node->pid = fork();
