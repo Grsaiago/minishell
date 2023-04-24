@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:40:13 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/23 16:35:35 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/24 20:21:22 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	ms_executor(t_word **lst, t_list **env_lst)
 	uint16_t	builtin;
 	uint8_t		flag;
 	t_word		*node;
+	t_word		**aux;
 
 	node = *lst;
 	flag = 0;
@@ -28,7 +29,7 @@ int	ms_executor(t_word **lst, t_list **env_lst)
 		if (!flag)
 			node = clean_sentence_redirections(lst, 1);
 		else
-			clean_sentence_redirections(&node, 0);
+			node = clean_sentence_redirections(aux, 0);
 		builtin = is_builtin(node);
 		if (!builtin)
 			ms_bin_exec(node, *env_lst);
@@ -36,6 +37,7 @@ int	ms_executor(t_word **lst, t_list **env_lst)
 			ms_builtin_exec(node, env_lst, builtin);
 		ms_close_sentence_fd(node);
 		node = ms_get_next_command(node);
+		aux = &node->next;
 		flag++;
 	}
 	return (0);
