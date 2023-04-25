@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/19 18:34:43 by kefernan         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:34:43 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ void	ms_delete_env(t_list **node, char *ref);
 char	*ms_check_bin(char *cmd, t_list *env);
 char	**ms_get_cmd_mat_from_node(t_word *node);
 int		ms_bin_exec(t_word *node);
+void	ms_builtin_exec(t_word *node, t_list **env_lst, uint16_t builtin);
 int		ms_heredoc(t_word* node);
 /* free */
 void	ms_lstclear(t_word **lst);

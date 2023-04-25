@@ -6,17 +6,19 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:40:13 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/22 21:25:18 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/25 09:50:39 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+t_word **ms_get_next_cmd_addr(t_word *node);
 
 int	ms_executor(t_word **lst, t_list **env_lst)
 {
 	uint16_t	builtin;
 	uint8_t		flag;
 	t_word		*node;
+	t_word		**aux;
 
 	node = *lst;
 	flag = 0;
@@ -28,13 +30,14 @@ int	ms_executor(t_word **lst, t_list **env_lst)
 		if (!flag)
 			node = clean_sentence_redirections(lst, 1);
 		else
-			clean_sentence_redirections(&node, 0);
+			node = clean_sentence_redirections(aux, 0);
 		builtin = is_builtin(node);
 		if (!builtin)
 			ms_bin_exec(node, *env_lst);
 		else
 			ms_builtin_exec(node, env_lst, builtin);
 		ms_close_sentence_fd(node);
+		aux = ms_get_next_cmd_addr(node);
 		node = ms_get_next_command(node);
 		flag++;
 	}
@@ -124,4 +127,14 @@ t_word	*clean_sentence_redirections(t_word **lst, int flag)
 		}
 	}
 	return (*lst);
+}
+
+t_word **ms_get_next_cmd_addr(t_word *node)
+{
+	while (node && node->flag != MS_PIPE)
+		node = node->next;
+	if (node)
+		return (&node->next);
+	else
+		return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 18:56:53 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/22 21:19:36 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/24 20:03:46 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ void	ms_exit(t_word **word, t_list **env_lst);
 
 int	g_exit_status;
 
+void debug_func(void)
+{
+	printf("Tamanho de t_list > %ld\nTamanho de t_word > %ld\n", sizeof(t_list), sizeof(t_word));
+	return ;
+}
+
 int	main(void)
 {
 	char	*line;
@@ -27,6 +33,7 @@ int	main(void)
 	word_lst = NULL;
 	env = ms_create_env_lst();
 	ms_set_sighandle();
+	debug_func(); //debug
 	while (42)
 	{
 		line = readline("$> ");
@@ -37,12 +44,12 @@ int	main(void)
 		}
 		if (ms_parser(line, &word_lst, env))
 		{
-			ms_lstclear(&word_lst);
+			ms_lstclear(&word_lst, 1);
 			continue ;
 		}
 		ms_executor(&word_lst, &env);
 		ms_wait_cmds(word_lst);
-		ms_lstclear(&word_lst);
+		ms_lstclear(&word_lst, 1);
 	}
 	return (0);
 }

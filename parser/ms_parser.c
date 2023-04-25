@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:42:31 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/22 21:07:11 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/24 21:24:31 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ms_parser(char *line, t_word **word_lst, t_list *env)
 
 	err = 0;
 	*word_lst = NULL;
+	if (line[0])
+		add_history(line);
 	if (ms_validate_quote_ammount(line))
 	{
 		printf("Syntax error: There is an unclosed quote\n");
@@ -25,9 +27,7 @@ int	ms_parser(char *line, t_word **word_lst, t_list *env)
 		return (-1);
 	}
 	*word_lst = ms_create_word_lst(line, env);
-  err = ms_lexxer(word_lst);
-	if (line[0])
-		add_history(line);
+	err = ms_lexxer(word_lst);
 	free(line);
 	return (err);
 }

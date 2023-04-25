@@ -6,11 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 23:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/07 17:03:08 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/23 16:22:03 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	ms_cd(t_word *node)
 {
