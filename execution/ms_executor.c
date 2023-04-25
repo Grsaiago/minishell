@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:40:13 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/24 20:21:22 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/24 21:30:54 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ms_builtin_exec(t_word *node, t_list **env_lst, uint16_t builtin)
 	else if (builtin == MS_UNSET)
 		g_exit_status = ms_unset(node, env_lst);
 	else if (builtin == MS_EXIT)
-		ms_exit(&node->head, &node->env_lst);
+		ms_exit(node, &node->head, &node->env_lst);
 	return ;
 }
 
