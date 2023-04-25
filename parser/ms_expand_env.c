@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:08:52 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/25 11:53:17 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/25 13:34:29 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,25 @@ void	ms_expand_env_util(char *line, int i, int j, char *ret_line, t_list *env)
 
 void	ms_expand_env_util2(char *line, char *ret_line, int *i, int *j, t_list *env)
 {
-	char	*env_value;
-	int		env_len;
+	char			*env_value;
+	int				env_len;
+	extern int		g_exit_status;
 
-	env_value = ft_substr(&line[*i], 1, ms_get_env_name_len(&line[*i]));
-	env_len = ft_strlen(ms_getenv_lst(env, env_value));
-	ft_memcpy(&ret_line[*j], ms_getenv_lst(env, env_value), env_len);
+	if(line[1] == '?')
+	{
+		if (g_exit_status == 0)
+			env_len = 1;
+		else 
+			env_len = ms_count_decimal(g_exit_status);
+		env_value = ft_itoa(g_exit_status);
+		ft_memcpy(&ret_line[*j], env_value, env_len);
+	}
+	else
+	{
+		env_value = ft_substr(&line[*i], 1, ms_get_env_name_len(&line[*i]));
+		env_len = ft_strlen(ms_getenv_lst(env, env_value));
+		ft_memcpy(&ret_line[*j], ms_getenv_lst(env, env_value), env_len);
+	}
 	*i += ms_get_env_name_len(&line[*i]) + 1;
 	*j += env_len;
 	free(env_value);
