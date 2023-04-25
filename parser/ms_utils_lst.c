@@ -6,11 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:50:10 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/08 14:40:20 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/25 12:00:13 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 t_word	*ms_lstnew(void *word)
 {

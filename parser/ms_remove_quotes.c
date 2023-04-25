@@ -6,11 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:04:39 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/08 14:44:34 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/25 12:00:05 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 static void	ms_null_start_end_quotes(char *line);
 

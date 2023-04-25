@@ -6,11 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:38:40 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/08 14:43:57 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/25 11:59:23 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 static void	ms_head_init(t_word *head);
 

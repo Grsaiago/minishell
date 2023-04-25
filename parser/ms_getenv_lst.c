@@ -6,11 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 10:50:34 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/07 18:05:13 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/25 11:59:49 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 char	*ms_getenv_lst(t_list *env_node, char *env)
 {

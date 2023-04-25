@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/24 20:02:41 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/25 13:12:20 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,4 +200,6 @@ int		ms_heredoc(t_word* node);
 int		ms_pipe(t_word *node);
 /* free */
 void	ms_lstclear(t_word **lst, int flag);
+/* utils */
+int		ms_count_decimal(int n);
 #endif

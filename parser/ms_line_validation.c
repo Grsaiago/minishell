@@ -6,11 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:34:30 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/03/18 22:30:01 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/25 11:59:54 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	ms_validate_quote_ammount(char *line)
 {
