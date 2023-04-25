@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 19:57:14 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/25 13:37:24 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/25 18:00:58 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ms_get_expanded_env_len(char *line, t_list *env)
 {
 	char		*env_word;
 	int			len;
-	extern int	g_exit_status;
+	extern unsigned int	g_exit_status;
 
 	if (line && line[1] == '?')
 	{

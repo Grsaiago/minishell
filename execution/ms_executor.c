@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:40:13 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/25 09:50:39 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/25 18:00:58 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ms_executor(t_word **lst, t_list **env_lst)
 
 void	ms_builtin_exec(t_word *node, t_list **env_lst, uint16_t builtin)
 {
-	extern int	g_exit_status;
+	extern unsigned int	g_exit_status;
 
 	if (builtin == MS_ECHO)
 		g_exit_status = ms_echo(node);
