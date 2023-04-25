@@ -6,11 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:08:52 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/22 17:24:38 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/25 11:53:17 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 char	*ms_expand_env(char *line, t_list *env)
 {
