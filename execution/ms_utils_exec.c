@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:33:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/23 16:26:51 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/24 21:20:49 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ms_check_bin(char *cmd, t_list *env)
 	char	**path;
 	int		i;
 
-	if (!cmd)
+	if (!cmd || !ms_getenv_lst(env, "PATH"))
 		return (NULL);
 	if (cmd[0] == '/')
 	{
