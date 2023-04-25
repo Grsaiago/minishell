@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 18:56:53 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/24 21:30:25 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/24 20:03:46 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(void)
 		if (!line)
 		{
 			ft_putstr_fd("Minishell: Logging out\n",STDOUT_FILENO);
-			ms_exit(*word_lst, &word_lst, &env);
+			ms_exit(&word_lst, &env);
 		}
 		if (ms_parser(line, &word_lst, env))
 		{
