@@ -27,7 +27,7 @@
 # include <termios.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "../libft/libft.h"
+# include "./libft/libft.h"
 
 /*
 union u_token
@@ -111,6 +111,12 @@ typedef struct s_word
 	struct s_word	*next;
 }	t_word;
 
+typedef struct s_pos
+{
+	int	i;
+	int	j;
+}	t_pos;
+
 /* value for tokens */
 enum e_token
 {
@@ -162,8 +168,8 @@ int		ms_analyze_redirect_syntax(t_word *word_lst);
 char	*ms_getenv_lst(t_list *env_node, char *env);
 char	*ms_expand_env(char *line, t_list *env);
 int		ms_get_expanded_env_len(char *line, t_list *env);
-void	ms_expand_env_util(char *line, int i, int j, char *ret_line, t_list *env);
-void	ms_expand_env_util2(char *line, char *ret_line, int *i, int *j, t_list *env);
+void	ms_expand_env_util(char *line, char *ret_line, t_list *env);
+void	ms_expand_env_util2(char *line, char *ret_line, t_pos *aux, t_list *env);
 int		ms_get_len_after_expansion(char *line, t_list *env);
 int		ms_get_env_name_len(char *line);
 int		ms_validate_env_name(char *line);
