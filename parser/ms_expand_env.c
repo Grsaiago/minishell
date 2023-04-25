@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:08:52 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/25 13:34:29 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/25 18:00:58 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ms_expand_env_util2(char *line, char *ret_line, t_pos *aux, t_list *env)
 {
 	char			*env_value;
 	int				env_len;
-	extern int		g_exit_status;
+	extern unsigned int		g_exit_status;
 
 	if(line[1] == '?')
 	{
