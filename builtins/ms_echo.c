@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:20:44 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/23 16:22:12 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/26 15:26:38 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ms_echo(t_word *node)
 	newline = 1;
 	if (node->next)
 	{
-		if (!ft_strncmp(node->next->word, "-n", 3))
+		if (!ft_strncmp(node->next->word, "-n", 2))
 		{
 			newline = 0;
 			node = node->next;
