@@ -6,7 +6,7 @@
 #    By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/22 17:02:28 by gsaiago           #+#    #+#              #
-#    Updated: 2023/04/22 20:58:56 by gsaiago          ###   ########.fr        #
+#    Updated: 2023/04/26 18:11:01 by gsaiago          ###   ########.fr        #
 #    Updated: 2023/04/22 20:09:31 by gsaiago          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -28,6 +28,7 @@ SRCS =	./ms_main.c \
 		./execution/ms_executor.c \
 		./execution/ms_pipe.c \
 		./execution/ms_redirects.c \
+		./execution/ms_bin_exec.c \
 		./execution/ms_utils_exec.c \
 		./builtins/ms_cd.c \
 		./builtins/ms_echo.c \
