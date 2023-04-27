@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 18:56:53 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/25 17:55:41 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/27 11:27:56 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	ms_sigint_handle(int signal)
 			write(STDOUT_FILENO, "\n", 1);
 		rl_replace_line("", 1);
 		rl_on_new_line();
-		g_exit_status = 130;
+		g_exit_status = 1;
 	}
 	return ;
 }
