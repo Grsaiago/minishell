@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:55:48 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/25 20:24:50 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/27 18:45:26 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	ms_exit_err_check(t_word **lst)
 			&& node->next->next && node->next->next->flag == MS_WORD)
 	{
 			ft_putstr_fd("Minishell: Exit: Too many args\n", STDERR_FILENO);
-			return (g_exit_status = 1, 1);
+			return (g_exit_status = 1, 0);
 	}
 	else if (node->next && node->next->flag == MS_WORD)
 	{
@@ -51,16 +51,16 @@ static int	ms_exit_err_check(t_word **lst)
 		else
 		{
 			ft_putstr_fd("Minishell: Exit: Invalid number\n", STDERR_FILENO);
-			return (g_exit_status = 2, 1);
+			return (g_exit_status = 255, 0);
 		}
 	}
 	return (g_exit_status = 0, 0);
 }
 static int	ms_strisnum(char *str)
 {
-	if (!str)
+	if (!str || *str == '-')
 		return (2);
-	if (*str == '+' || *str == '-')
+	if (*str == '+') 
 		str++;
 	if (!*str)
 		return (1);
