@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 23:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/25 17:07:52 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/27 18:52:00 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,21 @@ static int	ms_cd_with_params(t_word *node)
 {
 	char	*pwd;
 
+	if (node && node->next && node->next->flag == MS_WORD
+			&& node->next->next && node->next->next->flag == MS_WORD)
+		return(ft_putstr_fd("Ms: cd: too many arguments\n", STDERR_FILENO), 1);
 	pwd = getcwd(NULL, 0);
 	if (chdir(node->next->word) == -1)
 	{
-		ft_putstr_fd("minishell: cd: no such file or dir\n", node->fd_out);
+		ft_putstr_fd("Ms: cd: no such file or dir\n", STDERR_FILENO);
 		free(pwd);
 		return (1);
 	}
 	if (ms_update_env(node->env_lst, "OLDPWD=", pwd) != 0)
+	{
+		free(pwd);
 		return (1);
+	}
 	free(pwd);
 	pwd = getcwd(NULL, 0);
 	if (ms_update_env(node->env_lst, "PWD=", pwd) != 0)
