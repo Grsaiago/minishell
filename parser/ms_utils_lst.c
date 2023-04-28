@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:50:10 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/25 12:00:13 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/28 15:59:50 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_word	*ms_lstnew(void *word)
 	new->pid = 0;
 	new->fd_in = 0;
 	new->fd_out = 1;
+	new->ret = -1;
 	new->next = NULL;
 	return (new);
 }
