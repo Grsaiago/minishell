@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:33:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/28 16:03:16 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/28 20:24:36 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ms_wait_cmds(t_word *node)
 	while (node)
 	{
 		if (node->ret >= 0)
-			g_exit_status = node->ret;
+			g_exit_status = WEXITSTATUS(node->ret);
 		node = node->next;
 	}
 

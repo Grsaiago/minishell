@@ -6,13 +6,37 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:06:24 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/27 13:58:12 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/28 18:55:24 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 static int	ms_check_bin_current_dir(char **cmd);
 static int	ms_check_bin_path(char **cmd, t_list *env);
+void	ms_bin_exec_pipe(t_word *node, t_list *env_lst);
+
+void	ms_bin_exec_pipe(t_word *node, t_list *env_lst)
+{
+	char		*cmd;
+	char		**mat;
+	char		**env_mat;
+
+	if (!node)
+		return ;
+	cmd = ms_check_bin(node->word, env_lst);
+	if (!cmd)
+		return ;
+	signal(SIGQUIT,SIG_DFL);
+	if (node->fd_out != STDOUT_FILENO)
+		dup2(node->fd_out, STDOUT_FILENO);
+	if (node->fd_in != STDIN_FILENO)
+		dup2(node->fd_in, STDIN_FILENO);
+	ms_close_all_fd(node->head);
+	mat = ms_get_cmd_mat_from_node(node);
+	env_mat = ft_lsttochrmat(node->env_lst);
+	execve(cmd, mat, env_mat);
+	return ;
+}
 
 int	ms_bin_exec(t_word *node, t_list *env_lst)
 {
