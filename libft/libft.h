@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:23:47 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/07 15:16:45 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 09:37:33 by kefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_meta
 /* libft bonus struct */
 typedef struct s_list
 {
-	char	*content;
+	char			*content;
 	struct s_list	*next;
 }	t_list;
 

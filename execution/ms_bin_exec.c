@@ -6,14 +6,15 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:06:24 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/28 18:55:24 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 08:55:47 by kefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
 static int	ms_check_bin_current_dir(char **cmd);
 static int	ms_check_bin_path(char **cmd, t_list *env);
-void	ms_bin_exec_pipe(t_word *node, t_list *env_lst);
+void		ms_bin_exec_pipe(t_word *node, t_list *env_lst);
 
 void	ms_bin_exec_pipe(t_word *node, t_list *env_lst)
 {
@@ -26,7 +27,7 @@ void	ms_bin_exec_pipe(t_word *node, t_list *env_lst)
 	cmd = ms_check_bin(node->word, env_lst);
 	if (!cmd)
 		return ;
-	signal(SIGQUIT,SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	if (node->fd_out != STDOUT_FILENO)
 		dup2(node->fd_out, STDOUT_FILENO);
 	if (node->fd_in != STDIN_FILENO)
@@ -52,7 +53,7 @@ int	ms_bin_exec(t_word *node, t_list *env_lst)
 	node->pid = fork();
 	if (node->pid == 0)
 	{
-		signal(SIGQUIT,SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		if (node->fd_out != STDOUT_FILENO)
 			dup2(node->fd_out, STDOUT_FILENO);
 		if (node->fd_in != STDIN_FILENO)
@@ -69,7 +70,7 @@ int	ms_bin_exec(t_word *node, t_list *env_lst)
 
 char	*ms_check_bin(char *cmd, t_list *env)
 {
-	if (!cmd) 
+	if (!cmd)
 		return (NULL);
 	if (cmd[0] == '/')
 	{
@@ -77,7 +78,7 @@ char	*ms_check_bin(char *cmd, t_list *env)
 			return (ft_strdup(cmd, 0));
 		else
 		{
-			return (ft_putstr_fd("Ms: cmd not found\n",STDERR_FILENO), NULL);
+			return (ft_putstr_fd("Ms: cmd not found\n", STDERR_FILENO), NULL);
 		}
 	}
 	cmd = ft_strjoin("/", cmd, 0);
@@ -99,7 +100,7 @@ static int	ms_check_bin_path(char **cmd, t_list *env)
 	if (!ms_getenv_lst(env, "PATH"))
 	{
 		g_exit_status = 127;
-		return (ft_putstr_fd("Ms: PATH unseted\n",STDERR_FILENO), 1);
+		return (ft_putstr_fd("Ms: PATH unseted\n", STDERR_FILENO), 1);
 	}
 	i = -1;
 	path = ft_split(ms_getenv_lst(env, "PATH"), ':');
@@ -110,11 +111,11 @@ static int	ms_check_bin_path(char **cmd, t_list *env)
 		{
 			ft_free_mat(path);
 			free(*cmd);
-			return (*cmd = path_cmd ,0);
+			return (*cmd = path_cmd, 0);
 		}
 		free(path_cmd);
 	}
-	ft_putstr_fd("Ms: Command not found\n",STDERR_FILENO);
+	ft_putstr_fd("Ms: Command not found\n", STDERR_FILENO);
 	return (ft_free_mat(path), g_exit_status = 127, 1);
 }
 

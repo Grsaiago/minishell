@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/28 15:58:59 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 09:24:53 by kefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,8 @@ char	*ms_getenv_lst(t_list *env_node, char *env);
 char	*ms_expand_env(char *line, t_list *env);
 int		ms_get_expanded_env_len(char *line, t_list *env);
 void	ms_expand_env_util(char *line, char *ret_line, t_list *env);
-void	ms_expand_env_util2(char *line, char *ret_line, t_pos *aux, t_list *env);
+void	ms_expand_env_util2(char *line, char *ret_line,
+			t_pos *aux, t_list *env);
 int		ms_get_len_after_expansion(char *line, t_list *env);
 int		ms_get_env_name_len(char *line);
 int		ms_validate_env_name(char *line);
@@ -202,7 +203,7 @@ void	ms_wait_cmds(t_word *node);
 int		ms_do_redirections(t_word *word_lst);
 int		ms_redirect_in(t_word *node);
 int		ms_redirect_out(t_word *node);
-int		ms_heredoc(t_word* node);
+int		ms_heredoc(t_word *node);
 int		ms_pipe(t_word *node);
 /* free */
 void	ms_lstclear(t_word **lst, int flag);

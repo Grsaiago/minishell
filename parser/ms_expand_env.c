@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:08:52 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/29 09:00:39 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 09:29:12 by kefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ms_expand_env_util(char *line, char *ret_line, t_list *env)
 	char	must_expand;
 	char	in_double_quotes;
 
-	aux = (t_pos){0};	
+	aux = (t_pos){0};
 	must_expand = 1;
 	in_double_quotes = 1;
 	while (line[aux.i])
@@ -39,7 +39,8 @@ void	ms_expand_env_util(char *line, char *ret_line, t_list *env)
 			in_double_quotes ^= 1;
 		if (line[aux.i] == '\'' && in_double_quotes)
 			must_expand ^= 1;
-		if (line[aux.i] == '$' && must_expand && !ms_validate_env_name(&line[aux.i]))
+		if (line[aux.i] == '$' && must_expand
+			&& !ms_validate_env_name(&line[aux.i]))
 			ms_expand_env_util2(line, ret_line, &aux, env);
 		else
 		{
@@ -53,22 +54,23 @@ void	ms_expand_env_util(char *line, char *ret_line, t_list *env)
 
 void	ms_expand_env_util2(char *line, char *ret_line, t_pos *aux, t_list *env)
 {
-	char			*env_value;
-	int				env_len;
+	char					*env_value;
+	int						env_len;
 	extern unsigned int		g_exit_status;
 
 	if(line[aux->i + 1] == '?')
 	{
 		if (g_exit_status == 0)
 			env_len = 1;
-		else 
+		else
 			env_len = ms_count_decimal(g_exit_status);
 		env_value = ft_itoa(g_exit_status);
 		ft_memcpy(&ret_line[aux->j], env_value, env_len);
 	}
 	else
 	{
-		env_value = ft_substr(&line[aux->i], 1, ms_get_env_name_len(&line[aux->i]));
+		env_value = ft_substr(&line[aux->i], 1,
+				ms_get_env_name_len(&line[aux->i]));
 		env_len = ft_strlen(ms_getenv_lst(env, env_value));
 		ft_memcpy(&ret_line[aux->j], ms_getenv_lst(env, env_value), env_len);
 	}

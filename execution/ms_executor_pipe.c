@@ -6,11 +6,12 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 18:30:55 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/28 19:23:59 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 09:01:33 by kefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
 int	ms_exit_pipe(t_word **word, t_list **env_lst);
 
 void	ms_builtin_exec_pipe(t_word *node, t_list **env_lst, uint16_t builtin)

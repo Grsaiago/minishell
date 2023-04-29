@@ -6,23 +6,13 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 18:56:53 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/27 11:27:56 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 09:36:05 by kefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-void	ms_set_sighandle(void);
-void	ms_sigint_handle(int signal);
-__attribute__((noreturn))
-void	ms_exit(t_word **word, t_list **env_lst);
 
 unsigned int	g_exit_status;
-
-void debug_func(void)
-{
-	printf("Tamanho de t_list > %ld\nTamanho de t_word > %ld\n", sizeof(t_list), sizeof(t_word));
-	return ;
-}
 
 int	main(void)
 {
@@ -33,13 +23,12 @@ int	main(void)
 	word_lst = NULL;
 	env = ms_create_env_lst();
 	ms_set_sighandle();
-	debug_func(); //debug
 	while (42)
 	{
 		line = readline("$> ");
 		if (!line)
 		{
-			ft_putstr_fd("Minishell: Logging out\n",STDOUT_FILENO);
+			ft_putstr_fd("Minishell: Logging out\n", STDOUT_FILENO);
 			ms_exit(&word_lst, &env);
 		}
 		if (ms_parser(line, &word_lst, env))

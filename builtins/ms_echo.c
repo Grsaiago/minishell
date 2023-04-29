@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:20:44 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/26 15:26:38 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 08:26:02 by kefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,3 @@ int	ms_echo(t_word *node)
 		ft_putchar_fd('\n', head->fd_out);
 	return (0);
 }
-
-/*
-int	main(void)
-{
-	char	*mat[6] = {"echo", "-n", "oieoi", "shishd", "lkdbfkjsagk", NULL};
-	int		count = 6;
-
-	ms_echo(4, mat);
-	return(0);
-}
-*/
