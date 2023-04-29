@@ -38,9 +38,9 @@ SRCS =	./ms_main.c \
 		./builtins/ms_unset.c \
 		./builtins/ms_export.c \
 		./builtins/ms_exit.c \
-		
+
 CC = cc 
-	
+
 LIBFT_PATH = ./libft
 
 LIBFT = $(LIBFT_PATH)/libft.a
@@ -53,6 +53,12 @@ CPPFLAGS += -I ~/.brew/opt/readline/include
 LDFLAGS += -L ~/.brew/opt/readline/lib
 
 LIBFT_LINK = -L$(LIBFT_PATH) -lft
+
+CPPFLAGS = -I /opt/homebrew/Cellar/readline/8.2.1/include
+
+CPPFLAGS += -I ~/.brew/opt/readline/include
+
+LDFLAGS += -L ~/.brew/opt/readline/lib
 
 all: $(NAME)
 
