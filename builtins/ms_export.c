@@ -6,11 +6,12 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:20:19 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/23 16:22:28 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 08:39:34 by kefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
 char	**ms_getenv_node(t_list *env_node, char *env);
 
 int	ms_export(t_word *node)

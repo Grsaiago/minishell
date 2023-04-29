@@ -6,15 +6,15 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:55:48 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/28 19:36:57 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 08:38:30 by kefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
 static int	ms_strisnum(char *str);
 static int	ms_exit_err_check(t_word **lst);
-//break the two validations in aux because if they happen the program doesn't exit.
-//take off this noreturn as well
+
 void	ms_exit(t_word **word, t_list **env_lst)
 {
 	unsigned char	ret;
@@ -46,10 +46,10 @@ static int	ms_exit_err_check(t_word **lst)
 		return (0);
 	node = *lst;
 	if (node->next && node->next->flag == MS_WORD
-			&& node->next->next && node->next->next->flag == MS_WORD)
+		&& node->next->next && node->next->next->flag == MS_WORD)
 	{
-			ft_putstr_fd("Minishell: Exit: Too many args\n", STDERR_FILENO);
-			return (1);
+		ft_putstr_fd("Minishell: Exit: Too many args\n", STDERR_FILENO);
+		return (1);
 	}
 	else if (node->next && node->next->flag == MS_WORD)
 	{
@@ -63,11 +63,12 @@ static int	ms_exit_err_check(t_word **lst)
 	}
 	return (0);
 }
+
 static int	ms_strisnum(char *str)
 {
 	if (!str || *str == '-')
 		return (2);
-	if (*str == '+') 
+	if (*str == '+')
 		str++;
 	if (!*str)
 		return (1);

@@ -6,11 +6,12 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 23:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/27 18:52:00 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 08:25:10 by kefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
 static int	ms_cd_without_params(t_word *node);
 static int	ms_cd_with_params(t_word *node);
 
@@ -56,8 +57,8 @@ static int	ms_cd_with_params(t_word *node)
 	char	*pwd;
 
 	if (node && node->next && node->next->flag == MS_WORD
-			&& node->next->next && node->next->next->flag == MS_WORD)
-		return(ft_putstr_fd("Ms: cd: too many arguments\n", STDERR_FILENO), 1);
+		&& node->next->next && node->next->next->flag == MS_WORD)
+		return (ft_putstr_fd("Ms: cd: too many arguments\n", STDERR_FILENO), 1);
 	pwd = getcwd(NULL, 0);
 	if (chdir(node->next->word) == -1)
 	{
