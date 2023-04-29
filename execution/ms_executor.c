@@ -6,23 +6,31 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:40:13 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/28 16:01:00 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/28 18:55:23 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+int		ms_has_pipe(t_word *node);
+void	ms_exec_pipe(t_word *node, t_list **env_lst);
+void	ms_builtin_exec_pipe(t_word *node, t_list **env_lst, uint16_t builtin);
+void	ms_bin_exec_pipe(t_word *node, t_list *env_lst);
+void	ms_exec_no_pipe(t_word *node, t_list **env_lst);
 t_word **ms_get_next_cmd_addr(t_word *node);
+void	ms_builtin_exec_pipe(t_word *node, t_list **env_lst, uint16_t builtin);
 
 int	ms_executor(t_word **lst, t_list **env_lst)
 {
-	uint16_t	builtin;
 	uint8_t		flag;
+	int			has_pipe;
 	t_word		*node;
 	t_word		**aux;
 
 	node = *lst;
 	flag = 0;
-	ms_pipe(node);
+	has_pipe = ms_has_pipe(*lst);
+	if (has_pipe == 0)
+		ms_pipe(node);
 	while (node)
 	{
 		if (ms_do_redirections(node) != 0)
@@ -31,17 +39,41 @@ int	ms_executor(t_word **lst, t_list **env_lst)
 			node = clean_sentence_redirections(lst, 1);
 		else
 			node = clean_sentence_redirections(aux, 0);
-		builtin = is_builtin(node);
-		if (!builtin)
-			ms_bin_exec(node, *env_lst);
-		else
-			ms_builtin_exec(node, env_lst, builtin);
+		if (has_pipe != 0)
+			ms_exec_no_pipe(node, env_lst);
+		else 
+			ms_exec_pipe(node, env_lst);
 		ms_close_sentence_fd(node);
 		aux = ms_get_next_cmd_addr(node);
 		node = ms_get_next_command(node);
 		flag++;
 	}
 	return (0);
+}
+
+void	ms_exec_pipe(t_word *node, t_list **env_lst)
+{
+	uint16_t	builtin;
+
+	builtin = is_builtin(node);
+	node->pid = fork();
+	if (node->pid != 0)
+		return ;
+	if (!builtin)
+		ms_bin_exec_pipe(node, *env_lst);
+	else
+		ms_builtin_exec_pipe(node, env_lst, builtin);
+}
+
+void	ms_exec_no_pipe(t_word *node, t_list **env_lst)
+{
+	uint16_t	builtin;
+
+	builtin = is_builtin(node);
+	if (!builtin)
+		ms_bin_exec(node, *env_lst);
+	else
+		ms_builtin_exec(node, env_lst, builtin);
 }
 
 void	ms_builtin_exec(t_word *node, t_list **env_lst, uint16_t builtin)
@@ -135,4 +167,15 @@ t_word **ms_get_next_cmd_addr(t_word *node)
 		return (&node->next);
 	else
 		return (NULL);
+}
+
+int	ms_has_pipe(t_word *node)
+{
+	while (node)
+	{
+		if (node->flag == MS_PIPE)
+			return (0);
+		node = node->next;
+	}
+	return (1);
 }
