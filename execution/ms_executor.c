@@ -6,19 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:40:13 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/29 11:42:55 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 13:30:13 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int		ms_has_pipe(t_word *node);
-void	ms_exec_pipe(t_word *node, t_list **env_lst);
-void	ms_builtin_exec_pipe(t_word *node, t_list **env_lst, uint16_t builtin);
-void	ms_bin_exec_pipe(t_word *node, t_list *env_lst);
-void	ms_exec_no_pipe(t_word *node, t_list **env_lst);
-t_word	**ms_get_next_cmd_addr(t_word *node);
-void	ms_builtin_exec_pipe(t_word *node, t_list **env_lst, uint16_t builtin);
 
 int	ms_executor(t_word **lst, t_list **env_lst, int flag)
 {
@@ -47,20 +39,6 @@ int	ms_executor(t_word **lst, t_list **env_lst, int flag)
 		flag++;
 	}
 	return (0);
-}
-
-void	ms_exec_pipe(t_word *node, t_list **env_lst)
-{
-	uint16_t	builtin;
-
-	builtin = is_builtin(node);
-	node->pid = fork();
-	if (node->pid != 0)
-		return ;
-	if (!builtin)
-		ms_bin_exec_pipe(node, *env_lst);
-	else
-		ms_builtin_exec_pipe(node, env_lst, builtin);
 }
 
 void	ms_exec_no_pipe(t_word *node, t_list **env_lst)
@@ -114,30 +92,6 @@ int	is_builtin(t_word *node)
 	return (0);
 }
 
-t_word	*ms_get_next_command(t_word *node)
-{
-	while (node)
-	{
-		if (node->flag == MS_PIPE)
-			return (node->next);
-		node = node->next;
-	}
-	return (node);
-}
-
-void	ms_close_sentence_fd(t_word *node)
-{
-	while (node && node->flag != MS_PIPE)
-	{
-		if (node->fd_in != STDIN_FILENO)
-			close(node->fd_in);
-		if (node->fd_out != STDOUT_FILENO)
-			close(node->fd_out);
-		node = node->next;
-	}
-	return ;
-}
-
 t_word	*clean_sentence_redirections(t_word **lst, int flag)
 {
 	t_word	*ref;
@@ -155,25 +109,4 @@ t_word	*clean_sentence_redirections(t_word **lst, int flag)
 		}
 	}
 	return (*lst);
-}
-
-t_word	**ms_get_next_cmd_addr(t_word *node)
-{
-	while (node && node->flag != MS_PIPE)
-		node = node->next;
-	if (node)
-		return (&node->next);
-	else
-		return (NULL);
-}
-
-int	ms_has_pipe(t_word *node)
-{
-	while (node)
-	{
-		if (node->flag == MS_PIPE)
-			return (0);
-		node = node->next;
-	}
-	return (1);
 }

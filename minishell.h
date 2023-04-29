@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/29 11:56:27 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 13:34:54 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,16 +191,24 @@ int		ms_pwd(t_word *node);
 int		ms_unset(t_word *node, t_list **env);
 void	ms_delete_env(t_list **node, char *ref);
 void	ms_exit(t_word **word, t_list **env_lst);
+int		ms_exit_pipe(t_word **word, t_list **env_lst);
 /* exec*/
 int		ms_executor(t_word **lst, t_list **env_lst, int flag);
-void	ms_builtin_exec(t_word *node, t_list **env_lst, uint16_t builtin);
+int		ms_has_pipe(t_word *node);
 int		is_builtin(t_word *node);
 int		ms_bin_exec(t_word *node, t_list *env_lst);
+void	ms_bin_exec_pipe(t_word *node, t_list *env_lst);
+void	ms_exec_no_pipe(t_word *node, t_list **env_lst);
+void	ms_exec_pipe(t_word *node, t_list **env_lst);
+void	ms_builtin_exec_pipe(t_word *node, t_list **env_lst, uint16_t builtin);
+void	ms_builtin_exec(t_word *node, t_list **env_lst, uint16_t builtin);
+void	ms_builtin_exec_pipe(t_word *node, t_list **env_lst, uint16_t builtin);
 char	*ms_check_bin(char *cmd, t_list *env);
 char	**ms_get_cmd_mat_from_node(t_word *node);
 void	ms_close_sentence_fd(t_word *node);
 void	ms_close_all_fd(t_word *node);
 void	ms_close_pipe(int *fd);
+t_word	**ms_get_next_cmd_addr(t_word *node);
 t_word	*clean_sentence_redirections(t_word **lst, int flag);
 void	ms_wait_cmds(t_word *node);
 /* redirections */
