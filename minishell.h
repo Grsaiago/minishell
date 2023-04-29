@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/29 11:52:20 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 11:56:27 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ int		ms_update_env(t_list *env_lst, char *ref, char *newvalue);
 int		ms_echo(t_word *node);
 int		ms_env(t_word *node);
 int		ms_export(t_word *node);
+char	**ms_getenv_node(t_list *env_node, char *env);
 int		ms_pwd(t_word *node);
 int		ms_unset(t_word *node, t_list **env);
 void	ms_delete_env(t_list **node, char *ref);
