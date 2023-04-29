@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 12:26:04 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/23 16:24:24 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 09:14:42 by kefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ms_redirect_out(t_word *node)
 	head = node;
 	while (head && head->flag != MS_WORD)
 		head = head->next;
-	while (head && node && node->flag != MS_PIPE) 
+	while (head && node && node->flag != MS_PIPE)
 	{
 		if (node->flag == MS_REDIRECT_OUT || node->flag == MS_APPEND)
 		{
@@ -58,22 +58,19 @@ int	ms_redirect_out(t_word *node)
 				close(head->fd_out);
 			if (node->flag == MS_REDIRECT_OUT)
 				head->fd_out = open(node->next->word,
-					O_WRONLY | O_CREAT | O_TRUNC, 0777);
+						O_WRONLY | O_CREAT | O_TRUNC, 0777);
 			else
 				head->fd_out = open(node->next->word,
-					O_WRONLY | O_CREAT | O_APPEND, 0777);
+						O_WRONLY | O_CREAT | O_APPEND, 0777);
 			if (head->fd_out == -1)
-			{
-				//print erro;
 				return (-1);
-			}
 		}
 		node = node->next;
 	}
 	return (0);
 }
 
-int	ms_heredoc(t_word* node)
+int	ms_heredoc(t_word *node)
 {
 	int		fd[2];
 	char	*line;
@@ -104,6 +101,6 @@ int	ms_do_redirections(t_word *node)
 	if (!node)
 		return (0);
 	if (ms_redirect_in(node) || ms_redirect_out(node))
-			return (-1);
+		return (-1);
 	return (0);
 }

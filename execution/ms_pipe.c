@@ -6,11 +6,12 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 19:11:09 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/23 16:24:18 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 09:06:17 by kefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
 void	ms_close_all_fd(t_word *node);
 
 int	ms_pipe(t_word *node)
@@ -20,7 +21,7 @@ int	ms_pipe(t_word *node)
 
 	while (node)
 	{
-		while (node && node->flag != MS_PIPE && node->flag != MS_WORD) 
+		while (node && node->flag != MS_PIPE && node->flag != MS_WORD)
 			node = node->next;
 		cmd = node;
 		while (node && node->flag != MS_PIPE)
@@ -32,7 +33,7 @@ int	ms_pipe(t_word *node)
 		cmd->fd_out = fd[1];
 		node = node->next;
 		cmd = node;
-		while (cmd && cmd->flag != MS_PIPE && cmd->flag != MS_WORD) 
+		while (cmd && cmd->flag != MS_PIPE && cmd->flag != MS_WORD)
 			cmd = cmd->next;
 		if (cmd)
 			cmd->fd_in = fd[0];

@@ -6,17 +6,18 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:40:13 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/28 18:55:23 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 08:57:11 by kefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
 int		ms_has_pipe(t_word *node);
 void	ms_exec_pipe(t_word *node, t_list **env_lst);
 void	ms_builtin_exec_pipe(t_word *node, t_list **env_lst, uint16_t builtin);
 void	ms_bin_exec_pipe(t_word *node, t_list *env_lst);
 void	ms_exec_no_pipe(t_word *node, t_list **env_lst);
-t_word **ms_get_next_cmd_addr(t_word *node);
+t_word	**ms_get_next_cmd_addr(t_word *node);
 void	ms_builtin_exec_pipe(t_word *node, t_list **env_lst, uint16_t builtin);
 
 int	ms_executor(t_word **lst, t_list **env_lst)
@@ -41,7 +42,7 @@ int	ms_executor(t_word **lst, t_list **env_lst)
 			node = clean_sentence_redirections(aux, 0);
 		if (has_pipe != 0)
 			ms_exec_no_pipe(node, env_lst);
-		else 
+		else
 			ms_exec_pipe(node, env_lst);
 		ms_close_sentence_fd(node);
 		aux = ms_get_next_cmd_addr(node);

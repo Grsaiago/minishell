@@ -6,11 +6,12 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:33:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/28 20:24:36 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 09:21:08 by kefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
 void	ms_close_all_fd(t_word *node);
 
 char	**ms_get_cmd_mat_from_node(t_word *node)
@@ -62,6 +63,5 @@ void	ms_wait_cmds(t_word *node)
 			g_exit_status = WEXITSTATUS(node->ret);
 		node = node->next;
 	}
-
 	return ;
 }
