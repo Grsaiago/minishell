@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:06:24 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/29 13:33:45 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 14:04:20 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ms_bin_exec_pipe(t_word *node, t_list *env_lst)
 		return ;
 	cmd = ms_check_bin(node->word, env_lst);
 	if (!cmd)
-		return ;
+		exit(127);
 	signal(SIGQUIT, SIG_DFL);
 	if (node->fd_out != STDOUT_FILENO)
 		dup2(node->fd_out, STDOUT_FILENO);
