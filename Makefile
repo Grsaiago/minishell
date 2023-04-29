@@ -6,7 +6,7 @@
 #    By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/22 17:02:28 by gsaiago           #+#    #+#              #
-#    Updated: 2023/04/28 18:43:49 by gsaiago          ###   ########.fr        #
+#    Updated: 2023/04/29 08:39:27 by gsaiago          ###   ########.fr        #
 #    Updated: 2023/04/22 20:09:31 by gsaiago          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -38,9 +38,9 @@ SRCS =	./ms_main.c \
 		./builtins/ms_unset.c \
 		./builtins/ms_export.c \
 		./builtins/ms_exit.c \
-		
+
 CC = cc 
-	
+
 LIBFT_PATH = ./libft
 
 LIBFT = $(LIBFT_PATH)/libft.a
@@ -48,10 +48,16 @@ CFLAGS = -g -Wall -Wextra
 
 LIBFT_LINK = -L$(LIBFT_PATH) -lft
 
+CPPFLAGS = -I /opt/homebrew/Cellar/readline/8.2.1/include
+
+CPPFLAGS += -I ~/.brew/opt/readline/include
+
+LDFLAGS += -L ~/.brew/opt/readline/lib
+
 all: $(NAME)
 
 $(NAME): $(SRCS) $(LIBFT)
-	$(CC) $(CFLAGS) $(SRCS) -o $(NAME) -lreadline $(LIBFT_LINK)
+	$(CC) $(CFLAGS) $(SRCS) -o $(NAME) -lreadline $(CPPFLAGS) $(LDFLAGS) $(LIBFT_LINK)
 
 $(LIBFT): 
 	make -C $(LIBFT_PATH)
