@@ -6,13 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:33:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/29 09:21:08 by kefernan         ###   ########.fr       */
+/*   Updated: 2023/04/29 13:47:18 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	ms_close_all_fd(t_word *node);
 
 char	**ms_get_cmd_mat_from_node(t_word *node)
 {
