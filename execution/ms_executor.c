@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:40:13 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/25 18:00:58 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/28 16:01:00 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,18 @@ int	ms_executor(t_word **lst, t_list **env_lst)
 
 void	ms_builtin_exec(t_word *node, t_list **env_lst, uint16_t builtin)
 {
-	extern unsigned int	g_exit_status;
-
 	if (builtin == MS_ECHO)
-		g_exit_status = ms_echo(node);
+		node->ret = ms_echo(node);
 	else if (builtin == MS_CD)
-		g_exit_status = ms_cd(node);
+		node->ret = ms_cd(node);
 	else if (builtin == MS_PWD)
-		g_exit_status = ms_pwd(node);
+		node->ret = ms_pwd(node);
 	else if (builtin == MS_EXPORT)
-		g_exit_status = ms_export(node);
+		node->ret = ms_export(node);
 	else if (builtin == MS_ENV)
-		g_exit_status = ms_env(node);
+		node->ret = ms_env(node);
 	else if (builtin == MS_UNSET)
-		g_exit_status = ms_unset(node, env_lst);
+		node->ret = ms_unset(node, env_lst);
 	else if (builtin == MS_EXIT)
 		ms_exit(&node->head, &node->env_lst);
 	return ;

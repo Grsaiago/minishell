@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:33:15 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/26 17:07:21 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/28 16:03:16 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,25 @@ char	**ms_get_cmd_mat_from_node(t_word *node)
 
 void	ms_wait_cmds(t_word *node)
 {
+	t_word				*aux;
 	extern unsigned int	g_exit_status;
 
 	if (!node)
 		return ;
+	aux = node;
 	while (node)
 	{
 		if (node->pid != 0)
-			waitpid(node->pid, (int *)&g_exit_status, 0);
+			waitpid(node->pid, &node->ret, 0);
 		node = node->next;
 	}
+	node = aux;
+	while (node)
+	{
+		if (node->ret >= 0)
+			g_exit_status = node->ret;
+		node = node->next;
+	}
+
 	return ;
 }
