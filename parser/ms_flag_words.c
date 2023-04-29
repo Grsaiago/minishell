@@ -27,7 +27,7 @@ int	ms_flag_word(char *word, int last_flag)
 	else if (ft_strncmp(word, ">", 2) == 0)
 		return (MS_REDIRECT_OUT);
 	else if (last_flag == MS_REDIRECT_OUT || last_flag == MS_REDIRECT_IN
-		|| last_flag == MS_HEREDOC)
+			|| last_flag == MS_HEREDOC || last_flag == MS_APPEND)
 		return (MS_REDIRECT_FILE);
 	return (MS_WORD);
 }

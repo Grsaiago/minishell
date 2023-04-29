@@ -58,7 +58,7 @@ void	ms_expand_env_util2(char *line, char *ret_line, t_pos *aux, t_list *env)
 	int						env_len;
 	extern unsigned int		g_exit_status;
 
-	if (line[1] == '?')
+	if(line[aux->i + 1] == '?')
 	{
 		if (g_exit_status == 0)
 			env_len = 1;
