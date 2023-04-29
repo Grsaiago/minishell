@@ -6,17 +6,17 @@
 #    By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/22 17:02:28 by gsaiago           #+#    #+#              #
-#    Updated: 2023/04/29 08:37:37 by kefernan         ###   ########.fr        #
-#    Updated: 2023/04/22 20:09:31 by gsaiago          ###   ########.fr        #
+#    Updated: 2023/04/29 13:30:57 by gsaiago          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minishell 
+NAME = minishell
 
 SRCS =	./ms_main.c \
 		./parser/ms_parser.c \
 		./parser/ms_flag_words.c \
 		./parser/ms_analyze_syntax.c \
+		./parser/ms_analyze_syntax2.c \
 		./parser/ms_create_word_lst.c \
 		./parser/ms_expand_env.c \
 		./parser/ms_expand_env2.c \
@@ -26,6 +26,7 @@ SRCS =	./ms_main.c \
 		./parser/ms_utils_lst.c \
 		./parser/ms_utils_free.c \
 		./execution/ms_executor.c \
+		./execution/ms_execution_utils.c \
 		./execution/ms_pipe.c \
 		./execution/ms_redirects.c \
 		./execution/ms_bin_exec.c \
@@ -44,7 +45,8 @@ CC = cc
 LIBFT_PATH = ./libft
 
 LIBFT = $(LIBFT_PATH)/libft.a
-CFLAGS = -g -Wall -Wextra 
+
+CFLAGS = -g -Wall -Wextra -Werror
 
 CPPFLAGS = -I /opt/homebrew/Cellar/readline/8.2.1/include
 

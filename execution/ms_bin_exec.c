@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:06:24 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/29 08:55:47 by kefernan         ###   ########.fr       */
+/*   Updated: 2023/04/29 13:33:45 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static int	ms_check_bin_current_dir(char **cmd);
 static int	ms_check_bin_path(char **cmd, t_list *env);
-void		ms_bin_exec_pipe(t_word *node, t_list *env_lst);
 
 void	ms_bin_exec_pipe(t_word *node, t_list *env_lst)
 {

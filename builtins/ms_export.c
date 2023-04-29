@@ -6,19 +6,17 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:20:19 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/29 08:39:34 by kefernan         ###   ########.fr       */
+/*   Updated: 2023/04/29 12:03:24 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	**ms_getenv_node(t_list *env_node, char *env);
+static void	ms_export_util(char *arg, t_word *node);
 
 int	ms_export(t_word *node)
 {
 	char	**av;
-	char	**env_node;
-	char	*env_name;
 	int		i;
 
 	av = ms_get_cmd_mat_from_node(node);
@@ -27,26 +25,34 @@ int	ms_export(t_word *node)
 	i = 1;
 	while (av[i])
 	{
-		if (av[i][0] != '=' && ft_strchr(av[i], '='))
-		{
-			env_name = ft_substr(av[i], 0, ft_strchr(av[i], '=') - av[i]);
-			env_node = ms_getenv_node(node->env_lst, env_name);
-			if (env_node)
-			{
-				free(*env_node);
-				*env_node = av[i];
-			}
-			else
-				ft_lstadd_back(&node->env_lst, ft_lstnew(av[i]));
-			free(env_name);
-		}
-		else
-			free(av[i]);
+		ms_export_util(av[i], node);
 		i++;
 	}
 	free(av[0]);
 	free(av);
 	return (0);
+}
+
+static void	ms_export_util(char *arg, t_word *node)
+{
+	char	**env_node;
+	char	*env_name;
+
+	if (arg[0] != '=' && ft_strchr(arg, '='))
+	{
+		env_name = ft_substr(arg, 0, ft_strchr(arg, '=') - arg);
+		env_node = ms_getenv_node(node->env_lst, env_name);
+		if (env_node)
+		{
+			free(*env_node);
+			*env_node = arg;
+		}
+		else
+			ft_lstadd_back(&node->env_lst, ft_lstnew(arg));
+		free(env_name);
+	}
+	else
+		free(arg);
 }
 
 char	**ms_getenv_node(t_list *env_node, char *env)

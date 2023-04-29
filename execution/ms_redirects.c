@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 12:26:04 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/29 09:14:42 by kefernan         ###   ########.fr       */
+/*   Updated: 2023/04/29 11:48:59 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ int	ms_redirect_in(t_word *node)
 			else
 			{
 				printf("Error: No such file as '%s'\n", node->next->word);
-				return (-1);
-			}
-			if (head->fd_in == -1)
-			{
-				printf("Error: Failed to open '%s' file\n", node->next->word);
 				return (-1);
 			}
 		}

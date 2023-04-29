@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:27:57 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/29 09:24:53 by kefernan         ###   ########.fr       */
+/*   Updated: 2023/04/29 13:34:54 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,8 @@ int		ms_analyze_lexx(t_word **lst);
 int		ms_analyze_syntax(t_word *word_lst);
 int		ms_analyze_pipe_syntax(t_word *word_lst);
 int		ms_analyze_redirect_syntax(t_word *word_lst);
+int		ms_analyze_cmd_syntax(t_word *word_lst);
+int		ms_count_cmd_in_sentence(t_word *node);
 /* env expansion */
 char	*ms_getenv_lst(t_list *env_node, char *env);
 char	*ms_expand_env(char *line, t_list *env);
@@ -184,19 +186,29 @@ int		ms_update_env(t_list *env_lst, char *ref, char *newvalue);
 int		ms_echo(t_word *node);
 int		ms_env(t_word *node);
 int		ms_export(t_word *node);
+char	**ms_getenv_node(t_list *env_node, char *env);
 int		ms_pwd(t_word *node);
 int		ms_unset(t_word *node, t_list **env);
 void	ms_delete_env(t_list **node, char *ref);
 void	ms_exit(t_word **word, t_list **env_lst);
+int		ms_exit_pipe(t_word **word, t_list **env_lst);
 /* exec*/
-int		ms_executor(t_word **lst, t_list **env_lst);
-void	ms_builtin_exec(t_word *node, t_list **env_lst, uint16_t builtin);
+int		ms_executor(t_word **lst, t_list **env_lst, int flag);
+int		ms_has_pipe(t_word *node);
 int		is_builtin(t_word *node);
 int		ms_bin_exec(t_word *node, t_list *env_lst);
+void	ms_bin_exec_pipe(t_word *node, t_list *env_lst);
+void	ms_exec_no_pipe(t_word *node, t_list **env_lst);
+void	ms_exec_pipe(t_word *node, t_list **env_lst);
+void	ms_builtin_exec_pipe(t_word *node, t_list **env_lst, uint16_t builtin);
+void	ms_builtin_exec(t_word *node, t_list **env_lst, uint16_t builtin);
+void	ms_builtin_exec_pipe(t_word *node, t_list **env_lst, uint16_t builtin);
 char	*ms_check_bin(char *cmd, t_list *env);
 char	**ms_get_cmd_mat_from_node(t_word *node);
 void	ms_close_sentence_fd(t_word *node);
 void	ms_close_all_fd(t_word *node);
+void	ms_close_pipe(int *fd);
+t_word	**ms_get_next_cmd_addr(t_word *node);
 t_word	*clean_sentence_redirections(t_word **lst, int flag);
 void	ms_wait_cmds(t_word *node);
 /* redirections */
@@ -209,4 +221,8 @@ int		ms_pipe(t_word *node);
 void	ms_lstclear(t_word **lst, int flag);
 /* utils */
 int		ms_count_decimal(int n);
+/* signal */
+void	ms_set_sighandle(void);
+void	ms_sigint_handle(int signal);
+
 #endif
