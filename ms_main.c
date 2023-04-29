@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 18:56:53 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/29 09:36:05 by kefernan         ###   ########.fr       */
+/*   Updated: 2023/04/29 11:50:28 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(void)
 			ms_lstclear(&word_lst, 1);
 			continue ;
 		}
-		ms_executor(&word_lst, &env);
+		ms_executor(&word_lst, &env, 0);
 		ms_wait_cmds(word_lst);
 		ms_lstclear(&word_lst, 1);
 	}

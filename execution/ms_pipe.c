@@ -6,13 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 19:11:09 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/29 09:06:17 by kefernan         ###   ########.fr       */
+/*   Updated: 2023/04/29 11:47:55 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	ms_close_all_fd(t_word *node);
 
 int	ms_pipe(t_word *node)
 {
@@ -38,12 +36,16 @@ int	ms_pipe(t_word *node)
 		if (cmd)
 			cmd->fd_in = fd[0];
 		else
-		{
-			close(fd[0]);
-			close(fd[1]);
-		}
+			ms_close_pipe(fd);
 	}
 	return (0);
+}
+
+void	ms_close_pipe(int *fd)
+{
+	close(fd[0]);
+	close(fd[1]);
+	return ;
 }
 
 void	ms_close_all_fd(t_word *node)

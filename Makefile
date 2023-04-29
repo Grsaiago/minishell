@@ -6,12 +6,11 @@
 #    By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/22 17:02:28 by gsaiago           #+#    #+#              #
-#    Updated: 2023/04/29 08:37:37 by kefernan         ###   ########.fr        #
-#    Updated: 2023/04/22 20:09:31 by gsaiago          ###   ########.fr        #
+#    Updated: 2023/04/29 11:34:28 by gsaiago          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minishell 
+NAME = minishell
 
 SRCS =	./ms_main.c \
 		./parser/ms_parser.c \
@@ -44,7 +43,8 @@ CC = cc
 LIBFT_PATH = ./libft
 
 LIBFT = $(LIBFT_PATH)/libft.a
-CFLAGS = -g -Wall -Wextra 
+
+CFLAGS = -g -Wall -Wextra -Werror
 
 CPPFLAGS = -I /opt/homebrew/Cellar/readline/8.2.1/include
 

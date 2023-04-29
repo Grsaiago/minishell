@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 12:47:22 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/29 09:30:21 by kefernan         ###   ########.fr       */
+/*   Updated: 2023/04/29 11:50:56 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ms_flag_word(char *word, int last_flag)
 	else if (ft_strncmp(word, ">", 2) == 0)
 		return (MS_REDIRECT_OUT);
 	else if (last_flag == MS_REDIRECT_OUT || last_flag == MS_REDIRECT_IN
-			|| last_flag == MS_HEREDOC || last_flag == MS_APPEND)
+		|| last_flag == MS_HEREDOC || last_flag == MS_APPEND)
 		return (MS_REDIRECT_FILE);
 	return (MS_WORD);
 }

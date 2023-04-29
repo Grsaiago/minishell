@@ -6,13 +6,11 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 14:18:20 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/29 09:26:34 by kefernan         ###   ########.fr       */
+/*   Updated: 2023/04/29 11:53:02 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-int	ms_analyze_cmd_syntax(t_word *word_lst);
-int	ms_count_cmd_in_sentence(t_word *node);
 
 int	ms_lexxer(t_word **word_lst)
 {
@@ -96,6 +94,8 @@ int	ms_analyze_cmd_syntax(t_word *word_lst)
 		}
 		while (word_lst && word_lst->flag != MS_PIPE)
 			word_lst = word_lst->next;
+		if (word_lst)
+			word_lst = word_lst->next;
 	}
 	return (0);
 }
@@ -105,7 +105,7 @@ int	ms_count_cmd_in_sentence(t_word *node)
 	int	cmd_count;
 
 	cmd_count = 0;
-	while(node && node->flag != MS_PIPE)
+	while (node && node->flag != MS_PIPE)
 	{
 		if (node->flag == MS_WORD)
 			cmd_count++;
