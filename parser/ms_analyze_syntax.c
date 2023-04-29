@@ -6,11 +6,13 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 14:18:20 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/22 21:19:33 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 09:27:47 by gsaiago          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+int	ms_analyze_cmd_syntax(t_word *word_lst);
+int	ms_count_cmd_in_sentence(t_word *node);
 
 int	ms_lexxer(t_word **word_lst)
 {
@@ -19,6 +21,8 @@ int	ms_lexxer(t_word **word_lst)
 	if (ms_analyze_lexx(word_lst))
 		return (1);
 	if (ms_analyze_syntax(*word_lst))
+		return (1);
+	if (ms_analyze_cmd_syntax(*word_lst))
 		return (1);
 	return (0);
 }
@@ -58,7 +62,6 @@ int	ms_analyze_syntax(t_word *word_lst)
 	return (0);
 }
 
-
 int	ms_analyze_pipe_syntax(t_word *word_lst)
 {
 	t_word	*node;
@@ -80,6 +83,35 @@ int	ms_analyze_pipe_syntax(t_word *word_lst)
 		node = node->next;
 	}
 	return (0);
+}
+
+int	ms_analyze_cmd_syntax(t_word *word_lst)
+{
+	while (word_lst)
+	{
+		if (ms_count_cmd_in_sentence(word_lst) == 0)
+		{
+			ft_putstr_fd("Syntax error: sentence w/no command\n", STDERR_FILENO);
+			return (1);
+		}
+		while (word_lst && word_lst->flag != MS_PIPE)
+			word_lst = word_lst->next;
+	}
+	return (0);
+}
+
+int	ms_count_cmd_in_sentence(t_word *node)
+{
+	int	cmd_count;
+
+	cmd_count = 0;
+	while(node && node->flag != MS_PIPE)
+	{
+		if (node->flag == MS_WORD)
+			cmd_count++;
+		node = node->next;
+	}
+	return (cmd_count);
 }
 
 int	ms_analyze_redirect_syntax(t_word *word_lst)
