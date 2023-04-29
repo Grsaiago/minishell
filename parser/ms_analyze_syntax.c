@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 14:18:20 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/22 21:19:33 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 09:26:34 by kefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	ms_analyze_syntax(t_word *word_lst)
 		return (-1);
 	return (0);
 }
-
 
 int	ms_analyze_pipe_syntax(t_word *word_lst)
 {

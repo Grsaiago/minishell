@@ -6,7 +6,7 @@
 /*   By: gsaiago <gsaiago@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 18:38:40 by gsaiago           #+#    #+#             */
-/*   Updated: 2023/04/25 11:59:23 by gsaiago          ###   ########.fr       */
+/*   Updated: 2023/04/29 09:39:53 by kefernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,30 +105,3 @@ static void	ms_head_init(t_word *head)
 	}
 	return ;
 }
-
-/*
-int	ms_count_words(char *line)
-{
-	unsigned int	words;
-
-	while (*line && ft_isspace(*line))
-		line++;
-	words = 0;
-	while (*line)
-	{
-		words++;
-		while (ft_isspace(*line))
-			line++;
-		if (ms_ismeta(line))
-			line += ms_ismeta(line);
-		else if (*line && !ft_isspace(*line))
-		{
-			while (*line && !ft_isspace(*line) && !ms_ismeta(line))
-				line++;
-		}
-		while (ft_isspace(*line))
-			line++;
-	}
-	return (words);
-}
-*/
